@@ -1,0 +1,94 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" />
+
+    <!-- Background css -->
+    <link rel="stylesheet" id="bg-switcher-css" href="{% static 'assets/css/backgrounds/bg-4.css' %}">
+
+   {% comment %} <div id="ec-overlay">
+       <div class="ec-ellipsis">
+           <div></div>
+           <div></div>
+           <div></div>
+           <div></div>
+       </div>
+   </div> {% endcomment %}
+
+<!-- Ec breadcrumb start -->
+<div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+   <div class="container">
+       <div class="row">
+           <div class="col-12">
+               <div class="row ec_breadcrumb_inner">
+                   <div class="col-md-6 col-sm-12">
+                       <h2 class="ec-breadcrumb-title">Register</h2>
+                   </div>
+                   <div class="col-md-6 col-sm-12">
+                       <!-- ec-breadcrumb-list start -->
+                       <ul class="ec-breadcrumb-list">
+                           <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                           <li class="ec-breadcrumb-item active">Register</li>
+                       </ul>
+                       <!-- ec-breadcrumb-list end -->
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+<!-- Ec breadcrumb end -->
+
+<!-- Ec Register page -->
+<section class="ec-page-content section-space-p">
+   <div class="container">
+       <div class="row">
+           <div class="col-md-12 text-center">
+               <div class="section-title">
+                   <h2 class="ec-bg-title">Register</h2>
+                   <h2 class="ec-title">Register</h2>
+               </div>
+           </div>
+           <div class="ec-login-wrapper">
+               <div class="ec-login-container">
+                   <div class="ec-login-form">
+                       <form action="" method="POST">
+                            {% csrf_token %}
+                            <span class="ec-login-wrap">
+                               {{ form.username }}
+                            </span>
+                            <span class="ec-login-wrap">
+                                {{ form.email }}
+                            </span>
+                            <span class="ec-login-wrap">
+                                {{ form.password1 }}
+                            </span>
+                            <span class="ec-login-wrap">
+                                {{ form.password2 }}
+                            </span>
+                           <span class="ec-login-wrap ec-login-btn">
+                               <button class="btn btn-primary" type="submit">Register</button>
+                           </span>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</section>
+
+<div class="footer-offer">
+   <div class="container">
+       <div class="row">
+           <div class="text-center footer-off-msg">
+               <span>Win a contest! Get this limited-editon</span><a href="#" target="_blank">View
+                   Detail</a>
+           </div>
+       </div>
+   </div>
+</div>
+
+{% endblock content %}
