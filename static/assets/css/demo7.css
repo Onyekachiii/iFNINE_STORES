@@ -18470,13 +18470,13 @@ section.ec-instagram-section {
 }
 
 .ec-main-slider .slide-1 {
-  background-image: url("../images/main-slider-banner/18.jpg");
+  background-image: url("../images/main-slider-banner/interior_banner.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .ec-main-slider .slide-2 {
-  background-image: url("../images/main-slider-banner/19.jpg");
+  background-image: url("../images/main-slider-banner/tech_banner.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -18498,7 +18498,7 @@ section.ec-instagram-section {
 }
 .ec-slide-content .ec-slide-title {
   font-size: 55px;
-  color: #ff909d;
+  color: #3474d4;
   margin-bottom: 15px;
   letter-spacing: 0.05rem;
   font-weight: 700;
@@ -18519,7 +18519,7 @@ section.ec-instagram-section {
 }
 .ec-slide-content .ec-slide-stitle {
   font-size: 30px;
-  color: #1c8855;
+  color: #0f0f0f;
   margin-bottom: 15px;
   letter-spacing: 10px;
   position: relative;

@@ -1,5 +1,8 @@
 {% extends 'partials/base.html' %}
 {% load static %}
+
+{% block page_title %}iFNINE STORES | Categories {% endblock %}
+
 {% block content %}
 
  
@@ -123,18 +126,6 @@
         </div>
         <div class="row margin-minus-b-15 margin-minus-t-15" data-animation="fadeIn">
             <div id="ec-cat-slider">
-            <div class="ec_cat_content ec_cat_content_1 col-sm-12 col-md-6 col-lg-3">
-                <div class="ec_cat_inner ec_cat_inner-1">
-                    <div class="ec-category-image">
-                        <img src="{% static 'assets/images/icons/drink-6.png' %}" class="svg_img" alt="drink" />
-                    </div>
-                    <div class="ec-category-desc">
-                        <h3>juice & drinks <span title="Category Items">(53)</span></h3>
-                        <a href="shop-left-sidebar-col-3.html" class="cat-show-all">Show All <i class="ecicon eci-angle-double-right"
-                                aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
             {% for c in categories %}
             <div class="ec_cat_content ec_cat_content_2 col-sm-12 col-md-6 col-lg-3">
                 <div class="ec_cat_inner ec_cat_inner-2">
@@ -142,8 +133,8 @@
                         <img src="{{c.image.url}}" class="svg_img" alt="category_imgs" />
                     </div>
                     <div class="ec-category-desc">
-                        <h3>{{c.title}} <span title="Category Items">(58)</span></h3>
-                        <a href="shop-left-sidebar-col-3.html" class="cat-show-all">Show All <i class="ecicon eci-angle-double-right"
+                        <h3>{{c.title}} <span title="Category Items">({{c.category.count}})</span></h3>
+                        <a href="{% url 'core:category-product-list' c.cid %}" class="cat-show-all">Show All <i class="ecicon eci-angle-double-right"
                                 aria-hidden="true"></i></a>
                     </div>
                 </div>
@@ -172,18 +163,21 @@
                 <!--Category Nav Start -->
                 <div class="col-lg-3">
                     <ul class="ec-cat-tab-nav nav">
+                        
                         <li class="cat-item"><a class="cat-link active" data-bs-toggle="tab" href="#tab-cat-1">
                                 <div class="cat-icons"><img class="cat-icon" src="{% static 'assets/images/icons/cat_1.png' %}"
                                         alt="cat-icon"><img class="cat-icon-hover" src="{% static 'assets/images/icons/cat_1_1.png' %}"
                                         alt="cat-icon"></div>
                                 <div class="cat-desc"><span>Clothes</span><span>440 Products</span></div>
-                            </a></li>
+                            </a>
+                        </li>
                         <li class="cat-item"><a class="cat-link" data-bs-toggle="tab" href="#tab-cat-2">
                                 <div class="cat-icons"><img class="cat-icon" src="{% static 'assets/images/icons/cat_2.png' %}"
                                         alt="cat-icon"><img class="cat-icon-hover" src="{% static 'assets/images/icons/cat_2_1.png' %}"
                                         alt="cat-icon"></div>
                                 <div class="cat-desc"><span>Watches</span><span>510 Products</span></div>
-                            </a></li>
+                            </a>
+                        </li>
                         <li class="cat-item"><a class="cat-link" data-bs-toggle="tab" href="#tab-cat-3">
                                 <div class="cat-icons"><img class="cat-icon" src="{% static 'assets/images/icons/cat_3.png' %}"
                                         alt="cat-icon"><img class="cat-icon-hover" src="{% static 'assets/images/icons/cat_3_1.png' %}"
@@ -238,37 +232,61 @@
     </section>
     <!-- Category Section End -->
 
-
-    <!--  Category Section Start -->
-    <section class="section ec-category-section ec-category-wrapper-4 section-space-p">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="section-title">
-                        <h2 class="ec-bg-title">Classic</h2>
-                        <h2 class="ec-title">Classic</h2>
-                        <p class="sub-title">Browse The Collection of Top Categories</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row cat-space-3 cat-auto margin-minus-tb-15">
+    <!-- START Product Transparent Style -->
+	<section class="sec-tp el-prod section-space-p">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="section-title">
+						<h2 class="ec-bg-title">Classic</h2>
+						<h2 class="ec-title">Classic</h2>
+						<p class="sub-title">Browse The Collection of Top Categories</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
                 {% for c in categories %}
-                <div class="col-lg-2 col-md-4 col-sm-12">
-                    <div class="cat-card">
-                        <div class="card-img">
-                            <img class="cat-icon" src="{{c.image.url}}" alt="cat-icon">
-                        </div>
-                        <div class="cat-detail">
-                            <h4>{{c.title}}</h4>
-                            <h5>Starting at <br>$110.00</h5>
-                            <a class="btn-primary" href="">shop now</a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<!-- START single card -->
+					<div class="ec-product-tp">
+						<div class="ec-product-image">
+							<a href="#">
+								<img src="{{c.image.url}}" class="img-center" alt="">
+							</a>
+							<span class="ec-product-ribbon">New</span>
+							<div class="ec-link-icon">
+								<a href="#" data-tip="Add to Wishlist"><i class="fi-rr-heart"></i></a>
+								<a href="#" data-tip="Compare"><i class="fi fi-rr-arrows-repeat"></i></a>
+								<a href="#" data-tip="Quick View"><i class="fi-rr-eye"></i></a>
+							</div>
+						</div>
+						<div class="ec-product-body">
+							<h3 class="ec-title"><a href="#">{{c.title}}</a></h3>
+							<p class="ec-description">
+								{{c.category.count}} Product{{c.category.count|pluralize:'s'}}
+							</p>
+							<ul class="ec-rating">
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star"></li>
+							</ul>
+							<div class="ec-price"><span></span></div>
+							<div class="ec-link-btn">
+								<a class=" ec-add-to-cart" href="#">Explore</a>
+							</div>
+						</div>
+
+					</div>
+					<!-- START single card -->
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!--/END Product Default Style -->
+
 
     {% comment %} <!--  Category Section Start -->
     <section class="section ec-category-section ec-category-wrapper-5 section-space-p">
@@ -339,6 +357,16 @@
         </div>
     </section> {% endcomment %}
 
+    <div class="footer-offer">
+        <div class="container">
+            <div class="row">
+                <div class="text-center footer-off-msg">
+                    <span>Win a contest! Get this limited-editon</span><a href="#" target="_blank">View
+                        Detail</a>
+                </div>
+            </div>
+        </div>
+     </div>
 
     <!--Plugins JS-->
   
