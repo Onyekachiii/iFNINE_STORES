@@ -12,6 +12,7 @@ def index(request):
     }
     return render(request, 'core/index.html', context)
 
+
 def product_list_view(request):
     products = Product.objects.filter(product_status= "published")
     
@@ -38,3 +39,11 @@ def category_product_list_view(request, cid):
         "products": products,
     }
     return render(request, "core/category-product-list.html", context)
+
+
+def vendor_list_view(request):
+    vendors = Vendor.objects.all()
+    context = {
+        "vendors": vendors,
+    }
+    return render(request, 'core/vendor-list.html', context)

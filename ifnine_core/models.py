@@ -65,6 +65,7 @@ class Vendor(models.Model):
     warranty_period = models.CharField(max_length=30, default="100", null=True, blank=True)
     
     user = models.ForeignKey( User, on_delete=models.SET_NULL, null=True)
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     
     class Meta:
         verbose_name_plural = "Vendors"
@@ -80,7 +81,7 @@ class Product(models.Model):
     pid = ShortUUIDField(unique=True, length=10, max_length=30, prefix="prd", alphabet="abcdefgh12345")
     user = models.ForeignKey( User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="category")
-    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
+    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True, related_name="vendor")
     
     title = models.CharField(max_length=100, default="Product Title")
     image = models.ImageField(upload_to = user_directory_path, default="product.png")
