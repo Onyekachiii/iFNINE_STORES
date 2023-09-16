@@ -1,7 +1,7 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 
-{% block page_title %}iFNINE STORES | Products {% endblock %}
+{% block page_title %}iFNINE STORES | {{ tag.name|title }} {% endblock %}
 
 {% block content %}
 
@@ -96,13 +96,14 @@
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">Shop</h2>
+                            <h2 class="ec-breadcrumb-title">{{ tag.name }}</h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
-                                <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="ec-breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
                                 <li class="ec-breadcrumb-item active">Shop</li>
+                                <li class="ec-breadcrumb-item active">{{ tag.name }}</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
                         </div>
@@ -113,44 +114,14 @@
     </div>
     <!-- Ec breadcrumb end -->
 
-    <!-- Sart Shop -->
-    <section class="ec-page-content-bnr section-space-pb">
-        <div class="container">
-            <div class="row">
-                <div class="ec-shop-rightside col-lg-12 col-md-12">
-                    <!-- Shop Top Start -->
-                    <div class="ec-pro-list-top d-flex">
-                        <div class="col-md-6 ec-grid-list">
-                            <div class="ec-gl-btn">
-                                <button class="btn sidebar-toggle-icon"><i class="fi-rr-filter"></i></button>
-                                <button class="btn btn-grid-50 active"><i class="fi-rr-apps"></i></button>
-                                <button class="btn btn-list-50"><i class="fi-rr-list"></i></button>
-                            </div>
-                        </div>
-                        <div class="col-md-6 ec-sort-select">
-                            <span class="sort-by">Sort by</span>
-                            <div class="ec-select-inner">
-                                <select name="ec-select" id="ec-select">
-                                    <option selected disabled>Position</option>
-                                    <option value="1">Relevance</option>
-                                    <option value="2">Name, A to Z</option>
-                                    <option value="3">Name, Z to A</option>
-                                    <option value="4">Price, low to high</option>
-                                    <option value="5">Price, high to low</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Shop Top End -->
-
 	<!-- START Product Swip Down Style -->
 	<section class="sec-swd el-prod section-space-p">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<div class="section-title">
-						<h2 class="ec-bg-title">Products</h2>
-						<h2 class="ec-title">Products</h2>
+						<h2 class="ec-bg-title">#{{ tag.name }}</h2>
+						<h2 class="ec-title">#{{ tag.name }}</h2>
 						<p class="sub-title">Browse The Collection of Top Categories</p>
 					</div>
 				</div>

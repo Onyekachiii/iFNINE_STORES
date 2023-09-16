@@ -1,0 +1,371 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block page_title %}iFNINE STORES | Categories {% endblock %}
+
+{% block content %}
+
+ 
+     <!-- Main Style -->
+     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" />
+ 
+     <!-- Background css -->
+     <link rel="stylesheet" id="bg-switcher-css" href="{% static 'assets/css/backgrounds/bg-4.css' %}">
+
+
+    <!-- ekka Cart Start -->
+    <div class="ec-side-cart-overlay"></div>
+    <div id="ec-side-cart" class="ec-side-cart">
+        <div class="ec-cart-inner">
+            <div class="ec-cart-top">
+                <div class="ec-cart-title">
+                    <span class="cart_title">My Cart</span>
+                    <button class="ec-close">×</button>
+                </div>
+                <ul class="eccart-pro-items">
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="{% static 'assets/images/product-image/6_1.jpg' %}" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
+                            <span class="cart-price"><span>$76.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="{% static 'assets/images/product-image/12_1.jpg' %}" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
+                            <span class="cart-price"><span>$64.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="{% static 'assets/images/product-image/3_1.jpg' %}" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
+                            <span class="cart-price"><span>$59.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ec-cart-bottom">
+                <div class="cart-sub-total">
+                    <table class="table cart-table">
+                        <tbody>
+                            <tr>
+                                <td class="text-left">Sub-Total :</td>
+                                <td class="text-right">$300.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">VAT (20%) :</td>
+                                <td class="text-right">$60.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Total :</td>
+                                <td class="text-right primary-color">$360.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cart_btn">
+                    <a href="cart.html" class="btn btn-primary">View Cart</a>
+                    <a href="checkout.html" class="btn btn-secondary">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ekka Cart End -->
+
+    <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row ec_breadcrumb_inner">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="ec-breadcrumb-title">Vendor Details</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- ec-breadcrumb-list start -->
+                            <ul class="ec-breadcrumb-list">
+                                <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="ec-breadcrumb-item active">Vendor Details</li>
+                            </ul>
+                            <!-- ec-breadcrumb-list end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec breadcrumb end -->
+
+    <!--  Category Section Start -->
+    <section class="section ec-category-section ec-category-wrapper-2 section-space-p">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="section-title">
+                        <h2 class="ec-bg-title">Vendor Details</h2>
+                        <h2 class="ec-title">Vendor Details</h2>
+                        <p class="sub-title">Browse Our Products</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!--Category Nav Start -->
+                <div class="col-lg-3">
+                    <div class="ec-sidebar-block">
+                        <div class="ec-vendor-block">
+                            <div class="ec-vendor-block-bg"></div>
+                            <div class="ec-vendor-block-detail">
+                                <img class="v-img" src="{{ vendor.image.url }}" alt="vendor image">
+                                <h4>{{vendor.title}}</h4>
+                            </div>
+                            {% comment %} <div class="ec-vendor-block-items">
+                                <ul>
+                                    <li><a href="vendor-dashboard.html">Dashboard</a></li>
+                                    <li><a href="vendor-profile.html">Public Profile</a></li>
+                                    <li><a href="vendor-uploads.html">Uploads</a></li>
+                                    <li><a href="track-order.html">Track Shipping</a></li>
+                                    <li><a href="vendor-settings.html">Settings (Edit)</a></li>
+                                </ul>
+                            </div> {% endcomment %}
+                        </div>
+                    </div>
+                    {% comment %} <ul class="ec-cat-tab-nav nav">
+                        
+                        <li class="cat-item"><a class="cat-link active" data-bs-toggle="tab" href="#tab-cat-1">
+                                <div class="cat-icons"><img class="cat-icon" src="{% static 'assets/images/icons/cat_1.png' %}"
+                                        alt="cat-icon"><img class="cat-icon-hover" src="{% static 'assets/images/icons/cat_1_1.png' %}"
+                                        alt="cat-icon"></div>
+                                <div class="cat-desc"><span>Clothes</span><span>440 Products</span></div>
+                            </a>
+                        </li>
+                        <li class="cat-item"><a class="cat-link" data-bs-toggle="tab" href="#tab-cat-2">
+                                <div class="cat-icons"><img class="cat-icon" src="{% static 'assets/images/icons/cat_2.png' %}"
+                                        alt="cat-icon"><img class="cat-icon-hover" src="{% static 'assets/images/icons/cat_2_1.png' %}"
+                                        alt="cat-icon"></div>
+                                <div class="cat-desc"><span>Watches</span><span>510 Products</span></div>
+                            </a>
+                        </li>
+                        <li class="cat-item"><a class="cat-link" data-bs-toggle="tab" href="#tab-cat-3">
+                                <div class="cat-icons"><img class="cat-icon" src="{% static 'assets/images/icons/cat_3.png' %}"
+                                        alt="cat-icon"><img class="cat-icon-hover" src="{% static 'assets/images/icons/cat_3_1.png' %}"
+                                        alt="cat-icon"></div>
+                                <div class="cat-desc"><span>Bags</span><span>620 Products</span></div>
+                            </a></li>
+                        <li class="cat-item"><a class="cat-link" data-bs-toggle="tab" href="#tab-cat-4">
+                                <div class="cat-icons"><img class="cat-icon" src="{% static 'assets/images/icons/cat_4.png' %}"
+                                        alt="cat-icon"><img class="cat-icon-hover" src="{% static 'assets/images/icons/cat_4_1.png' %}"
+                                        alt="cat-icon"></div>
+                                <div class="cat-desc"><span>Shoes</span><span>320 Products</span></div>
+                            </a></li>
+                    </ul> {% endcomment %}
+
+                </div>
+                <!-- Category Nav End --> 
+                
+                <!--Category Tab Start -->
+                <div class="col-lg-9">
+                    <div class="tab-content">
+                        <!-- 1st Category tab end -->
+                        <div class="tab-pane fade show active" id="tab-cat-1">
+                            <div class="row">
+                                <img src="{{ vendor.cover_image.url }}" alt="" />
+                            </div>
+                        </div>
+                        <!-- 1st Category tab end -->
+                        <div class="tab-pane fade" id="tab-cat-2">
+                            <div class="row">
+                                <img src="{% static 'assets/images/cat-banner/2.jpg' %}" alt="" />
+                            </div>
+                        </div>
+                        <!-- 2nd Category tab end -->
+                        <!-- 3rd Category tab start -->
+                        <div class="tab-pane fade" id="tab-cat-3">
+                            <div class="row">
+                                <img src="{% static 'assets/images/cat-banner/3.jpg' %}" alt="" />
+                            </div>
+                        </div>
+                        <!-- 3rd Category tab end -->
+                        <!-- 4th Category tab start -->
+                        <div class="tab-pane fade" id="tab-cat-4">
+                            <div class="row">
+                                <img src="{% static 'assets/images/cat-banner/4.jpg' %}" alt="" />
+                            </div>
+                        </div>
+                        <!-- 4th Category tab end -->
+                    </div>
+                    <!-- Category Tab End -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Category Section End -->
+
+    <!-- START Product Transparent Style -->
+	<section class="sec-tp el-prod section-space-p">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="section-title">
+						<h2 class="ec-bg-title">Classic</h2>
+						<h2 class="ec-title">Classic</h2>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+                {% for p in products %}
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<!-- START single card -->
+					<div class="ec-product-tp">
+						<div class="ec-product-image">
+							<a href="#">
+								<img src="{{ p.image.url }}" class="img-center" alt="">
+							</a>
+							<span class="ec-product-ribbon">{{p.get_percentage|floatformat:0}}%</span>
+							<div class="ec-link-icon">
+								<a href="#" data-tip="Add to Wishlist"><i class="fi-rr-heart"></i></a>
+								<a href="#" data-tip="Compare"><i class="fi fi-rr-arrows-repeat"></i></a>
+								<a href="#" data-tip="Quick View"><i class="fi-rr-eye"></i></a>
+							</div>
+						</div>
+						<div class="ec-product-body">
+							<h3 class="ec-title"><a href="#">{{p.title}}</a></h3>
+							<div class="ec-price"><span>₦‎{{p.old_price}}</span> ₦‎{{p.price}}</div>
+							<ul class="ec-rating">
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star"></li>
+							</ul>
+							<div class="ec-price"><span></span></div>
+							<div class="ec-link-btn">
+								<a class=" ec-add-to-cart" href="#">Buy Now</a>
+							</div>
+						</div>
+
+					</div>
+					<!-- START single card -->
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!--/END Product Default Style -->
+
+
+    {% comment %} <!--  Category Section Start -->
+    <section class="section ec-category-section ec-category-wrapper-5 section-space-p">
+        <div class="container ec-category-wrapper-5">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="section-title">
+                        <h2 class="ec-bg-title">Classic</h2>
+                        <h2 class="ec-title">Classic</h2>
+                        <p class="sub-title">Browse The Collection of Top Categories</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row cat-space-2 margin-minus-tb-15">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="cat-card">
+                        <img class="cat-icon" src="{% static 'assets/images/cat-banner/11.jpg' %}" alt="cat-icon">
+                        <a class="btn-primary btn-primary-1" href="javacript:void(0)">shop now</a>
+                        <div class="cat-detail">
+                            <div class="cat-detail-block">
+                                <h4>Watches</h4>
+                                <h5>Starting at <br>$79.00</h5>
+                                <a class="btn-primary" href="">shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="cat-card">
+                        <img class="cat-icon" src="{% static 'assets/images/cat-banner/12.jpg' %}" alt="cat-icon">
+                        <a class="btn-primary btn-primary-1" href="javacript:void(0)">shop now</a>
+                        <div class="cat-detail">
+                            <div class="cat-detail-block">
+                                <h4>Head Phones</h4>
+                                <h5>Starting at <br>$93.00</h5>
+                                <a class="btn-primary" href="">shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="cat-card">
+                        <img class="cat-icon" src="{% static 'assets/images/cat-banner/13.jpg' %}" alt="cat-icon">
+                        <a class="btn-primary btn-primary-1" href="javacript:void(0)">shop now</a>
+                        <div class="cat-detail">
+                            <div class="cat-detail-block">
+                                <h4>Shoes</h4>
+                                <h5>Starting at <br>$60.00</h5>
+                                <a class="btn-primary" href="">shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="cat-card">
+                        <img class="cat-icon" src="{% static 'assets/images/cat-banner/14.jpg' %}" alt="cat-icon">
+                        <a class="btn-primary btn-primary-1" href="javacript:void(0)">shop now</a>
+                        <div class="cat-detail">
+                            <div class="cat-detail-block">
+                                <h4>Belts</h4>
+                                <h5>Starting at <br>$80.00</h5>
+                                <a class="btn-primary" href="">shop now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <div class="footer-offer">
+        <div class="container">
+            <div class="row">
+                <div class="text-center footer-off-msg">
+                    <span>Win a contest! Get this limited-editon</span><a href="#" target="_blank">View
+                        Detail</a>
+                </div>
+            </div>
+        </div>
+     </div>
+
+    <!--Plugins JS-->
+  
+    <script src="{% static 'assets/js/vendor/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.sticky-sidebar.js' %}"></script>
+    <!-- Google translate Js -->
+    <script src="{% static 'assets/js/vendor/google-translate.js' %}"></script>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+    </script>
+    <!-- Main Js -->
+    
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+{% endblock content %}
