@@ -1,5 +1,5 @@
 from django.urls import path, include
-from ifnine_core.views import index, category_list_view, category_product_list_view, product_list_view, vendor_list_view, vendor_detail_view, product_detail_view, tag_list
+from ifnine_core.views import index, category_list_view, category_product_list_view, product_list_view, vendor_list_view, vendor_detail_view, product_detail_view, tag_list, ajax_add_review, search_view
 
 app_name = 'core'
 
@@ -20,6 +20,12 @@ urlpatterns=[
     
     # Tags
     path('products/tag/<slug:tag_slug>/', tag_list, name='tags'),
+    
+    # Reviews
+    path('ajax-add-review/<int:pid>/', ajax_add_review, name='ajax-add-review'),
+    
+    # Search
+    path('search/', search_view, name='search'),
     
     
 ]

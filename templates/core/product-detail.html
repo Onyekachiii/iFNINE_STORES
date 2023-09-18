@@ -318,30 +318,23 @@
 
                                         </div>
                                         <div class="ec-ratting-content">
-                                            <h3>Add a Review</h3>
+                                            <h3 class= "add-review">Add a review</h3>
+                                            <strong class="text-success" id="review-resp"></strong>
                                             <div class="ec-ratting-form">
-                                                <form action="#">
-                                                    <div class="ec-ratting-star">
-                                                        <span>Your rating:</span>
-                                                        <div class="ec-t-review-rating">
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star-o"></i>
-                                                            <i class="ecicon eci-star-o"></i>
-                                                            <i class="ecicon eci-star-o"></i>
-                                                        </div>
+                                                <form class="form-contact comment_form hide-commentForm" action="{% url 'core:ajax-add-review' product.id %}" id="commentForm" method="POST">
+                                                    
+                                                    {% csrf_token %} 
+                                                    <div class="ec-ratting-input">
+                                                        {{ review_form.review }}
                                                     </div>
                                                     <div class="ec-ratting-input">
-                                                        <input name="your-name" placeholder="Name" type="text" />
+                                                       
+                                                        Your rating:{{ review_form.rating }}
                                                     </div>
-                                                    <div class="ec-ratting-input">
-                                                        <input name="your-email" placeholder="Email*" type="email"
-                                                            required />
-                                                    </div>
+                                            
                                                     <div class="ec-ratting-input form-submit">
-                                                        <textarea name="your-commemt"
-                                                            placeholder="Enter Your Comment"></textarea>
-                                                        <button class="btn btn-primary" type="submit"
+                                
+                                                        <button class="btn btn-primary" type="submit" 
                                                             value="Submit">Submit</button>
                                                     </div>
                                                 </form>
@@ -489,6 +482,7 @@
     <!-- Main Js -->
     <script src="{% static 'assets/js/vendor/index.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
+    {% comment %} <script src="{% static 'assets/js/function.js' %}"></script> {% endcomment %}
 
 </body>
 </html>

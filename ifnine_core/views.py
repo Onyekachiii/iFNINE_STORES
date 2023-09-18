@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse, HttpResponse
 from taggit.models import Tag
-
+from ifnine_core.forms import ProductReviewForm
 from ifnine_core.models import Product, ProductImages, Category, Vendor, CartOrder, CartOrderItems, ProductReview, WishList, Address
 
 # Create your views here.
@@ -63,16 +64,20 @@ def vendor_detail_view(request, vid):
 def product_detail_view(request, pid):
     product = Product.objects.get(pid=pid)
     product_images = ProductImages.objects.filter(product=product)
-    product_reviews = ProductReview.objects.filter(product=product)
+    # product_reviews = ProductReview.objects.filter(product=product)
     products = Product.objects.filter(product_status= "published", category=product.category).exclude(pid=pid)[:4]
     
     #To get all reviews
     reviews = ProductReview.objects.filter(product=product).order_by("-date")
     
+    #Product review form
+    review_form = ProductReviewForm()
+    
     product_images = product.product_images.all()
     
     context = {
         "product": product,
+        "review_form": review_form,
         "product_images": product_images,
         "reviews": reviews,
         "products": products,
@@ -93,3 +98,38 @@ def tag_list(request, tag_slug=None):
     }
     
     return render(request, 'core/tag.html', context)
+
+def ajax_add_review(request, pid):
+    product = Product.objects.get(pid=pid)
+    user = request.user
+    
+    review = ProductReview.objects.create(
+        user = user,
+        product = product,
+        review = request.POST['review'],
+        rating = request.POST['rating'],
+    )
+    
+    context = {
+        'user': user.username,
+        'review': request.POST['review'],
+        'rating': request.POST['rating'],
+    }    
+    
+    return JsonResponse(
+        {
+        'bool': True,
+        'context': context,
+        }
+    )
+    
+
+def search_view(request):
+    query = request.GET.get('q')
+    if query:
+        products = Product.objects.filter(title__icontains=query, description__icontains=query).order_by('-date')
+    context = {
+        "products": products,
+        "query": query,
+    }
+    return render(request, 'core/search.html', context)
