@@ -1,5 +1,5 @@
 from django.urls import path, include
-from ifnine_core.views import index, category_list_view, category_product_list_view, product_list_view, vendor_list_view, vendor_detail_view, product_detail_view, tag_list, ajax_add_review, search_view
+from ifnine_core.views import index, category_list_view, category_product_list_view, product_list_view, vendor_list_view, vendor_detail_view, product_detail_view, tag_list, ajax_add_review, search_view, filter_product, add_to_cart
 
 app_name = 'core'
 
@@ -26,6 +26,12 @@ urlpatterns=[
     
     # Search
     path('search/', search_view, name='search'),
+    
+    # Filter product URL
+    path('filter-products/', filter_product, name='filter-product'),
+    
+    #Add to cart URL
+    path('add-to-cart/', add_to_cart, name='add-to-cart'),
     
     
 ]

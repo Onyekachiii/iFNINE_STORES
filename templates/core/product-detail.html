@@ -191,7 +191,9 @@
                                         <div class="ec-single-price-stoke">
                                             <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">As low as</span>
-                                                <span class="new-price">₦‎{{ product.price }}</span>
+                                                <span>
+                                                    <span class="new-price" >₦</span><span class="new-price" id="current-product-price" >{{ product.price }}</span>
+                                                </span>
                                             </div>
                                             <div class="ec-single-stoke">
                                                 <span class="ec-single-ps-title">IN STOCK</span>
@@ -220,11 +222,16 @@
                                             </div> {% endcomment %}
                                         </div>
                                         <div class="ec-single-qty">
-                                            <div class="qty-plus-minus">
+                                            {% comment %} <div class="qty-plus-minus">
                                                 <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                                            </div>
+                                            </div>  {% endcomment %}
+                                            
+                                            <input type="number" value="1" name="" id="product-quantity" class="w-25 mb-15"/><br/>
+                                            
                                             <div class="ec-single-cart ">
-                                                <button class="btn btn-primary">Add To Cart</button>
+                                                <input type="hidden" value= "{{ product.id }}" class= "product-id" name="" id=""/>
+                                                <input type="hidden" value= "{{ product.title }}" class= "product-title" name="" id=""/>
+                                                <button class="btn btn-primary" type="submit" id="add-to-cart-btn">Add To Cart</button>
                                             </div>
                                             <div class="ec-single-wishlist">
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart"></i></a>
@@ -482,7 +489,7 @@
     <!-- Main Js -->
     <script src="{% static 'assets/js/vendor/index.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
-    {% comment %} <script src="{% static 'assets/js/function.js' %}"></script> {% endcomment %}
+    <script src="{% static 'assets/js/function.js' %}"></script> 
 
 </body>
 </html>

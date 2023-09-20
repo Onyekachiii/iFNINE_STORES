@@ -5,6 +5,8 @@
 
 {% block content %}
 
+
+
  
      <!-- Main Style -->
      <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
@@ -145,19 +147,19 @@
                     <!-- Shop content Start -->
                     <div class="shop-pro-content">
                         <div class="shop-pro-inner">
-                            <div class="row">
+                            <div class="row" id="filtered-product">
                                 {% for p in products %}
-                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
                                     <div class="ec-product-inner">
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
-                                                <a href="{% url 'core:product-detail' p.pid %}" class="image">
+                                                <a href="product-left-sidebar.html" class="image">
                                                     <img class="main-image"
                                                         src="{{p.image.url}}" alt="Product" />
                                                     <img class="hover-image"
                                                         src="{{p.image.url}}" alt="Product" />
                                                 </a>
-                                                <span class="percentage">{{ p.get_percentage|floatformat:0 }}%</span>
+                                                <span class="percentage">{{p.get_percentage|floatformat:0}}%</span>
                                                 <a href="#" class="quickview" data-link-action="quickview"
                                                     title="Quick view" data-bs-toggle="modal"
                                                     data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>
@@ -182,21 +184,20 @@
                                             </div>
                                             <div class="ec-pro-list-desc">{{ p.description }}</div>
                                             <span class="ec-price">
-                                                <span class="old-price">₦‎{{p.old_price}}</span>
-                                                <br>
-                                                <span class="new-price"> ₦‎{{p.price}}</span>
+                                                <span class="old-price">₦‎{{ p.old_price }}</span>
+                                                <span class="new-price">₦‎{{ p.price }}</span>
                                             </span>
                                             <div class="ec-pro-option">
                                                 <div class="ec-pro-color">
                                                     <span class="ec-pro-opt-label">Color</span>
                                                     <ul class="ec-opt-swatch ec-change-img">
                                                         <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                                data-src="{% static 'assets/images/product-image/6_1.jpg' %}"
+                                                                data-src="assets/images/product-image/6_1.jpg"
                                                                 data-src-hover="assets/images/product-image/6_1.jpg"
                                                                 data-tooltip="Gray"><span
                                                                     style="background-color:#e8c2ff;"></span></a></li>
                                                         <li><a href="#" class="ec-opt-clr-img"
-                                                                data-src="{% static 'assets/images/product-image/6_2.jpg' %}"
+                                                                data-src="assets/images/product-image/6_2.jpg"
                                                                 data-src-hover="assets/images/product-image/6_2.jpg"
                                                                 data-tooltip="Orange"><span
                                                                     style="background-color:#9cfdd5;"></span></a></li>
@@ -210,6 +211,10 @@
                                                                 data-tooltip="Small">S</a></li>
                                                         <li><a href="#" class="ec-opt-sz" data-old="$27.00"
                                                                 data-new="$22.00" data-tooltip="Medium">M</a></li>
+                                                        <li><a href="#" class="ec-opt-sz" data-old="$30.00"
+                                                                data-new="$25.00" data-tooltip="Large">X</a></li>
+                                                        <li><a href="#" class="ec-opt-sz" data-old="$35.00"
+                                                                data-new="$30.00" data-tooltip="Extra Large">XL</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -217,24 +222,24 @@
                                     </div>
                                 </div>
                                 {% endfor %}
+                                <!-- Ec Pagination Start -->
+                                <div class="ec-pro-pagination">
+                                    <span>Showing 1-12 of 21 item(s)</span>
+                                    <ul class="ec-pro-pagination-inner">
+                                        <li><a class="active" href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li><a class="next" href="#">Next <i class="ecicon eci-angle-right"></i></a></li>
+                                    </ul>
+                                </div>
+                                <!-- Ec Pagination End -->
                             </div>
+                            <!--Shop content End -->
                         </div>
-                        <!-- Ec Pagination Start -->
-                        <div class="ec-pro-pagination">
-                            <span>Showing 1-12 of 21 item(s)</span>
-                            <ul class="ec-pro-pagination-inner">
-                                <li><a class="active" href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a class="next" href="#">Next <i class="ecicon eci-angle-right"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- Ec Pagination End -->
-                    </div>
-                    <!--Shop content End -->
-                </div>
+                    </div>   
+                </div>     
                 <!-- Sidebar Area Start -->
                 <div class="ec-shop-leftside col-lg-3 col-md-12">
                     <div id="shop_sidebar">
@@ -245,46 +250,18 @@
                             <!-- Sidebar Category Block -->
                             <div class="ec-sidebar-block">
                                 <div class="ec-sb-title">
-                                    <h3 class="ec-sidebar-title">Category</h3>
+                                    <h3 class="ec-sidebar-title">Categories</h3>
                                 </div>
                                 <div class="ec-sb-block-content">
                                     <ul>
+                                        {% for c in categories %}
                                         <li>
                                             <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" checked /> <a href="#">clothes</a><span
+                                                <input type="checkbox" class="filter-checkbox" data-filter="category" value="{{ c.id }}"/> <a href="{% url 'core:category-product-list' c.cid %}">{{ c.title }}</a><span
                                                     class="checked"></span>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">Bags</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">Shoes</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">cosmetics</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">electrics</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">phone</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
+                                        {% endfor %}
                                         <li id="ec-more-toggle-content" style="padding: 0; display: none;">
                                             <ul>
                                                 <li>
@@ -314,44 +291,22 @@
                             <!-- Sidebar Size Block -->
                             <div class="ec-sidebar-block">
                                 <div class="ec-sb-title">
-                                    <h3 class="ec-sidebar-title">Size</h3>
+                                    <h3 class="ec-sidebar-title">Vendors</h3>
                                 </div>
                                 <div class="ec-sb-block-content">
                                     <ul>
+                                        {% for v in vendors %}
                                         <li>
                                             <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" checked /><a href="#">S</a><span
-                                                    class="checked"></span>
+                                                <input type="checkbox" class="filter-checkbox" data-filter="vendor" value="{{ v.id }}" checked /><a href="#">{{ v.title }}</a>
+                                                <span class="checked "></span>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /><a href="#">M</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /> <a href="#">L</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /><a href="#">XL</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /><a href="#">XXL</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
-                            <!-- Sidebar Color item -->
+                            {% comment %} <!-- Sidebar Color item -->
                             <div class="ec-sidebar-block ec-sidebar-block-clr">
                                 <div class="ec-sb-title">
                                     <h3 class="ec-sidebar-title">Color</h3>
@@ -401,25 +356,32 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!-- Sidebar Price Block -->
-                            <div class="ec-sidebar-block">
-                                <div class="ec-sb-title">
-                                    <h3 class="ec-sidebar-title">Price</h3>
-                                </div>
-                                <div class="ec-sb-block-content es-price-slider">
-                                    <div class="ec-price-filter">
-                                        <div id="ec-sliderPrice" class="filter__slider-price" data-min="0"
-                                            data-max="250" data-step="10"></div>
-                                        <div class="ec-price-input">
-                                            <label class="filter__label"><input type="text"
-                                                    class="filter__input"></label>
-                                            <span class="ec-price-divider"></span>
-                                            <label class="filter__label"><input type="text"
-                                                    class="filter__input"></label>
+                            <!-- Sidebar Price Block --> {% endcomment %}
+                            <div class="ec-sb-title">
+                                <h3 class="ec-sidebar-title">Price</h3>
+                            </div>
+                            <div class="ec-sb-block-content es-price-slider">
+    
+                                <div class="sidebar-widget price_range range">
+                                    
+                                    <div class="price-filter mb-20">
+                                        
+                                        <div class="ec-sliderPrice">
+                                            <input type = "range" name="range"/>
+                                            
+                                            <div class="d-flex justify-content-between">
+                                                <div class="caption">From: ₦‎ 0 <strong id="slider-range-value1" class="text-brand"></strong></div>
+                                                <div class="caption">To: ₦‎ 500,000 <strong id="slider-range-value2" class="text-brand"></strong></div>
+                                            </div>
                                         </div>
                                     </div>
+                                    
+                                </div>
+                                <div class="mb-20 w-100">
+                                    <button class="btn mt-20 w-100">Filter</button>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -464,7 +426,7 @@
     <!-- Main Js -->
     <script src="{% static 'assets/js/vendor/index.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
-    {% comment %} <script src="{% static 'assets/js/function.js' %}"></script> {% endcomment %}
+    <script src="{% static 'assets/js/function.js' %}"></script>
 
 </body>
 </html>

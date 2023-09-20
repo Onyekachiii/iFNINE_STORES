@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from taggit.models import Tag
 from ifnine_core.forms import ProductReviewForm
 from ifnine_core.models import Product, ProductImages, Category, Vendor, CartOrder, CartOrderItems, ProductReview, WishList, Address
+from django.template.loader import render_to_string
 
 # Create your views here.
 def index(request):
@@ -126,10 +127,54 @@ def ajax_add_review(request, pid):
 
 def search_view(request):
     query = request.GET.get('q')
-    if query:
-        products = Product.objects.filter(title__icontains=query, description__icontains=query).order_by('-date')
+
+    products = Product.objects.filter(title__icontains=query, description__icontains=query).order_by('-date')
+    
     context = {
         "products": products,
         "query": query,
     }
     return render(request, 'core/search.html', context)
+
+
+def filter_product(request):
+    categories = request.GET.getlist('category[]')
+    vendors = request.GET.getlist('vendor[]')
+    
+    products = Product.objects.filter(product_status= "published").order_by("-id").distinct()
+    
+    if len(categories) > 0:
+        products = products.filter(category__id__in=categories).distinct()
+        
+    if len(vendors) > 0:
+        products = products.filter(vendor__id__in=vendors).distinct()
+
+        
+    data = render_to_string("core/async/product-list.html", {"products": products})
+    return JsonResponse({"data":data})
+
+
+def add_to_cart(request):
+    cart_product = {}
+    cart_product[str(request.GET['id'])] = {
+        'title': request.GET['title'],
+        'price': request.GET['price'],
+        'qty':  request.GET['qty'],
+    }
+    
+    if 'cart_data_obj' in request.session:
+        if str(request.GET['id']) in request.session['cart_data_obj']:
+            cart_data = request.session['cart_data_obj']
+            cart_data[str(request.GET['id'])]['qty'] = int(cart_product[str(request.GET['id'])]['qty'])
+            cart_data.update(cart_data)
+            request.session['cart_data_obj'] = cart_data
+            
+        else:
+            cart_data = request.session['cart_data_obj']
+            cart_data.update(cart_product)
+            request.session['cart_data_obj'] = cart_data
+    
+    else:
+        request.session['cart_data_obj'] = cart_product
+        
+    return JsonResponse({"data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj'])})

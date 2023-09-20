@@ -92,17 +92,7 @@
                                </ul>
                            </div>
                            <!-- Currency End -->
-                           <!-- Language Start -->
-                           <div class="header-top-lan dropdown">
-                               <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
-                                       class="ecicon eci-caret-down" aria-hidden="true"></i></button>
-                               <ul class="dropdown-menu">
-                                   <li class="active"><a class="dropdown-item" href="#">English</a></li>
-                                   <li><a class="dropdown-item" href="#">Italiano</a></li>
-                               </ul>
-                           </div>
-                           <!-- Language End -->
-
+                           
                        </div>
                    </div>
                    <!-- Header Top Language Currency -->
@@ -132,7 +122,7 @@
                            <!-- Header Cart Start -->
                            <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
                                <div class="header-icon"><i class="fi-rr-shopping-basket"></i></div>
-                               <span class="ec-header-count ec-cart-count cart-count-lable">3</span>
+                               <span class="ec-header-count cart-items-count">{{ request.session.cart_data_obj|length }}</span>
                            </a>
                            <!-- Header Cart End -->
                            <!-- Header menu Start -->
@@ -199,8 +189,8 @@
                                <!-- Header wishlist End -->
                                <!-- Header Cart Start -->
                                <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-                                   <div class="header-icon"><i class="fi-rr-shopping-basket"></i></div>
-                                   <span class="ec-header-count ec-cart-count cart-count-lable">3</span>
+                                   <div class="header-icon" ><i class="fi-rr-shopping-basket"></i></div>
+                                   <span class="ec-header-count cart-items-count">{{ request.session.cart_data_obj|length }}</span>
                                </a>
                                <!-- Header Cart End -->
                            </div>
@@ -861,7 +851,7 @@
     <!-- Main Js -->
     <script src="{% static 'assets/js/vendor/index.js' type='text/javascript' %}"></script>
     <script src="{% static 'assets/js/demo-7.js' %}"></script>
-    <script src="{% static 'assets/js/function.js' %}"></script>
+    {% comment %} <script src="{% static 'assets/js/function.js' %}"></script> {% endcomment %}
 </body>
 
 </html>
