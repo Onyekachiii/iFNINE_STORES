@@ -86,8 +86,12 @@ WSGI_APPLICATION = 'ifnine_stores.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'iFNINE_stores_db',
+        'USER': 'postgres',
+        'PASSWORD': 'Splendour01',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

@@ -141,7 +141,7 @@
 							<div class="ec-link-icon">
 								<a href="#" data-tip="Add to Wishlist"><i class="fi-rr-heart"></i></a>
 								<a href="#" data-tip="Compare"><i class="fi fi-rr-arrows-repeat"></i></a>
-								<a href="#" data-tip="Quick View"><i class="fi-rr-eye"></i></a>
+								<a href="{% url 'core:product-detail' p.pid %}" data-tip="Quick View"><i class="fi-rr-eye"></i></a>
 							</div>
 						</div>
 						<div class="ec-product-body">
@@ -156,9 +156,16 @@
 								<li class="ecicon eci-star fill"></li>
 								<li class="ecicon eci-star"></li>
 							</ul>
-							<div class="ec-price"><span>₦‎{{p.old_price}}</span> ₦‎{{p.price}}</div>
+							<div class="ec-price"><span>₦‎{{p.old_price}}</span> 
+                                <div class="current-product-price-{{ product.id }}">₦‎{{p.price}}</div></div>
+
 							<div class="ec-link-btn">
-								<a class=" ec-add-to-cart" href="#">add to cart</a>
+                                <input type="hidden" value="1" name="" id="product-quantity" class="w-25 mb-20 product-quantity-{{p.id}}">
+                                <input type="hidden" class="product-pid-{{p.id}}" value="{{p.pid}}">
+                                <input type="hidden" class="product-image-{{p.id}}" value="{{p.image.url}}">
+                                <input type="hidden" class="product-id-{{p.id}}" value="{{ p.id }}">
+                                <input type="hidden" class="product-title-{{p.id}}" value="{{ p.title }}">
+								<button class=" ec-add-to-cart add-to-cart-btn" id="add-to-cart-btn">add to cart</button>
 							</div>
 						</div>
 
@@ -175,8 +182,7 @@
         <div class="container">
             <div class="row">
                 <div class="text-center footer-off-msg">
-                    <span>Win a contest! Get this limited-editon</span><a href="#" target="_blank">View
-                        Detail</a>
+                    <span>Need measurements taken or products installed?</span><a href="#" target="_blank">Click here</a>
                 </div>
             </div>
         </div>
@@ -187,12 +193,12 @@
   <script src="{% static 'assets/js/vendor/jquery.magnific-popup.min.js' %}"></script>
   <script src="{% static 'assets/js/plugins/jquery.sticky-sidebar.js' %}"></script>
   <!-- Google translate Js -->
-  <script src="{% static 'assets/js/vendor/google-translate.js' %}"></script>
+  {% comment %} <script src="{% static 'assets/js/vendor/google-translate.js' %}"></script>
   <script>
       function googleTranslateElementInit() {
           new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
       }
-  </script>
+  </script> {% endcomment %}
   <!-- Main Js -->
   
   <script src="{% static 'assets/js/main.js' %}"></script>
