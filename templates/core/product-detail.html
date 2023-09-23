@@ -100,7 +100,7 @@
                         <div class="col-md-6 col-sm-12">
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
-                                <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="ec-breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
                                 <li class="ec-breadcrumb-item active">Products</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
@@ -126,7 +126,7 @@
                                     <div class="single-product-scroll">
                                         <div class="single-product-cover">
                                             <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="{{ product.image.url }}"
+                                                <img class="img-responsive" src="{{ p.image.url }}"
                                                     alt="product image">
                                             </div>
                                             {% for product_image in product_images %}
@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="single-pro-desc single-pro-desc-no-sidebar">
                                     <div class="single-pro-content">
-                                        <h5 class="ec-single-title">{{ product.title }}</h5>
+                                        <h5 class="ec-single-title">{{ p.title }}</h5>
                                         <div class="ec-single-rating-wrap">
                                             <div class="ec-single-rating">
                                                 <i class="ecicon eci-star fill"></i>
@@ -169,7 +169,7 @@
                                             <span class="ec-read-review"><a href="#ec-spt-nav-review">Be the first to
                                                     review this product</a></span>
                                         </div>
-                                        <div class="ec-single-desc">{{ product.description|truncatechars:150|safe }}</div>
+                                        <div class="ec-single-desc">{{ p.description|truncatechars:150|safe }}</div>
 
                                         <div class="ec-single-sales">
                                             <div class="ec-single-sales-inner">
@@ -177,7 +177,7 @@
                                                 {% comment %} <div class="ec-single-sales-visitor">real time <span>24</span> visitor
                                                     right now!</div> {% endcomment %}
                                                 <div class="ec-single-sales-progress">
-                                                    <span class="ec-single-progress-desc">Hurry up! Left {{product.stock_count}} items in
+                                                    <span class="ec-single-progress-desc">Hurry up! Left {{p.stock_count}} items in
                                                         stock</span>
                                                     <span class="ec-single-progressbar"></span>
                                                 </div>
@@ -192,12 +192,12 @@
                                             <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">As low as</span>
                                                 <span>
-                                                    <span class="new-price" >₦</span><span class="new-price" id="current-product-price" >{{ product.price }}</span>
+                                                    <span class="new-price" >₦</span><span class="new-price current-product-price{{ p.id }}" id="current-product-price{{ p.id }}" >{{ p.price }}</span>
                                                 </span>
                                             </div>
                                             <div class="ec-single-stoke">
                                                 <span class="ec-single-ps-title">IN STOCK</span>
-                                                <span class="ec-single-sku">{{ product.sku }}</span>
+                                                <span class="ec-single-sku">{{ p.sku }}</span>
                                             </div>
                                         </div>
                                         <div class="ec-pro-variation">
@@ -226,15 +226,15 @@
                                                 <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
                                             </div>  {% endcomment %}
                                             
-                                            <input type="number" value="1" name="" id="product-quantity" class="w-25 mb-15 product-quantity"/><br/>
+                                            <input type="number" value="1" name="" id="product-quantity" class="w-25 mb-15 product-quantity-{{p.id}}"/><br/>
                                             
                                             <div class="ec-single-cart ">
-                                                <input type="hidden" value="1" name="" id="product-quantity" class="w-25 mb-20 product-quantity-{{p.id}}">
+                                                {% comment %} <input type="hidden" value="1" name="" id="product-quantity" class="w-25 mb-20 product-quantity-{{p.id}}"> {% endcomment %}
                                                 <input type="hidden" class="product-pid-{{p.id}}" value="{{p.pid}}">
                                                 <input type="hidden" class="product-image-{{p.id}}" value="{{p.image.url}}">
                                                 <input type="hidden" class="product-id-{{p.id}}" value="{{ p.id }}">
                                                 <input type="hidden" class="product-title-{{p.id}}" value="{{ p.title }}">
-                                                <button class="btn btn-primary" type="submit" id="add-to-cart-btn">Add To Cart</button>
+                                                <button class="btn btn-primary add-to-cart-btn" id="add-to-cart-btn" data-index="{{ p.id }}" type="submit">Add To Cart</button>
                                             </div>
                                             <div class="ec-single-wishlist">
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart"></i></a>
@@ -285,7 +285,7 @@
                             <div class="tab-content  ec-single-pro-tab-content">
                                 <div id="ec-spt-nav-details" class="tab-pane fade show active">
                                     <div class="ec-single-pro-tab-desc">
-                                        <p>{{  product.description|safe }}
+                                        <p>{{  p.description|safe }}
                                         </p>
                                     </div>
                                 </div>
@@ -331,7 +331,7 @@
                                             <h3 class= "add-review">Add a review</h3>
                                             <strong class="text-success" id="review-resp"></strong>
                                             <div class="ec-ratting-form">
-                                                <form class="form-contact comment_form hide-commentForm" action="{% url 'core:ajax-add-review' product.id %}" id="commentForm" method="POST">
+                                                <form class="form-contact comment_form hide-commentForm" action="{% url 'core:ajax-add-review' p.id %}" id="commentForm" method="POST">
                                                     
                                                     {% csrf_token %} 
                                                     <div class="ec-ratting-input">
@@ -378,18 +378,18 @@
             {% if products %}
             <div class="row margin-minus-b-30">
                 <!-- Related Product Content -->
-                {% for product in products %}
+                {% for p in products %}
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
                     <div class="ec-product-inner">
                         <div class="ec-pro-image-outer">
                             <div class="ec-pro-image">
-                                <a href="{% url 'core:product-detail' product.pid %}" class="image">
+                                <a href="{% url 'core:product-detail' p.pid %}" class="image">
                                     <img class="main-image"
-                                        src="{{ product.image.url }}" alt="Product" />
+                                        src="{{ p.image.url }}" alt="Product" />
                                     <img class="hover-image"
-                                        src="{{ product.image.url }}" alt="Product" />
+                                        src="{{ p.image.url }}" alt="Product" />
                                 </a>
-                                <span class="percentage">{{ product.get_percentage|floatformat:0 }}%</span>
+                                <span class="percentage">{{ p.get_percentage|floatformat:0 }}%</span>
                                 <a href="#" class="quickview" data-link-action="quickview" title="Quick view"
                                     data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>
                                 <div class="ec-pro-actions">
@@ -400,14 +400,14 @@
                                     <input type="hidden" class="product-image-{{p.id}}" value="{{p.image.url}}">
                                     <input type="hidden" class="product-id-{{p.id}}" value="{{ p.id }}">
                                     <input type="hidden" class="product-title-{{p.id}}" value="{{ p.title }}">
-                                    <button title="Add To Cart" class="add-to-cart add-to-cart-btn" id="add-to-cart-btn"><i
+                                    <button title="Add To Cart" class="add-to-cart add-to-cart-btn" id="add-to-cart-btn" data-index="{{ p.id }}"><i
                                             class="fi-rr-shopping-basket"></i> Add To Cart</button>
                                     <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="{% url 'core:product-detail' product.pid %}">{{ product.title}}</a></h5>
+                            <h5 class="ec-pro-title"><a href="{% url 'core:product-detail' p.pid %}">{{ p.title}}</a></h5>
                             <div class="ec-pro-rating">
                                 <i class="ecicon eci-star fill"></i>
                                 <i class="ecicon eci-star fill"></i>
@@ -415,10 +415,10 @@
                                 <i class="ecicon eci-star fill"></i>
                                 <i class="ecicon eci-star"></i>
                             </div>
-                            <div class="ec-pro-list-desc">L{{ product.description|safe }}</div>
+                            <div class="ec-pro-list-desc">L{{ p.description|safe }}</div>
                             <span class="ec-price">
-                                <span class="old-price">₦‎{{ product.old_price}}</span>
-                                <span>₦‎<span class="new-price current-product-price-{{ product.id }}" id="current-product-price-{{ product.id }}">{{ product.price }}</span></span>
+                                <span class="old-price">₦‎{{ p.old_price}}</span>
+                                <span>₦‎<span class="new-price current-product-price-{{ p.id }}" id="current-product-price-{{ p.id }}">{{ p.price }}</span></span>
                             </span>
                             <div class="ec-pro-option">
 

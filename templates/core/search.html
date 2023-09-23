@@ -102,7 +102,7 @@
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
                                 
-                                <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="ec-breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
                                 {% if query %}
                                 <li class="ec-breadcrumb-item active">Shop</li>
                                 <li class="ec-breadcrumb-item active">{{query}}</li>

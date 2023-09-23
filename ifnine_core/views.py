@@ -1,9 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from taggit.models import Tag
 from ifnine_core.forms import ProductReviewForm
 from ifnine_core.models import Product, ProductImages, Category, Vendor, CartOrder, CartOrderItems, ProductReview, WishList, Address
 from django.template.loader import render_to_string
+from django.contrib import messages
+
 
 # Create your views here.
 def index(request):
@@ -77,7 +79,7 @@ def product_detail_view(request, pid):
     product_images = product.product_images.all()
     
     context = {
-        "product": product,
+        "p": product,
         "review_form": review_form,
         "product_images": product_images,
         "reviews": reviews,
@@ -180,3 +182,14 @@ def add_to_cart(request):
         request.session['cart_data_obj'] = cart_product
         
     return JsonResponse({"data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj'])})
+
+
+def cart_view(request):
+    cart_total_amount = 0
+    if 'cart_data_obj' in request.session:
+        for p_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'])    
+        return render(request, 'core/cart.html', {"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount})
+    else:
+        messages.warning(request, "Your cart is empty")
+        return redirect("core:index")
