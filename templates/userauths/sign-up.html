@@ -1,7 +1,7 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 
-{% block page_title %}iFNINE STORES | Register {% endblock %}
+{% block page_title %}iFNINE STORES | Register{% endblock %}
 {% block content %}
 
     <!-- Main Style -->
@@ -45,11 +45,16 @@
                    <h2 class="ec-bg-title">Register</h2>
                    <h2 class="ec-title">Register</h2>
                </div>
+               {% if form.errors %}
+               <div class="alert alert-danger">
+                    <strong>{{ form.errors }}</stong>
+                </div>
+                {% endif %}
            </div>
            <div class="ec-login-wrapper">
                <div class="ec-login-container">
                    <div class="ec-login-form">
-                       <form action="" method="POST">
+                       <form method="POST" action="">
                             {% csrf_token %}
                             <span class="ec-login-wrap">
                                {{ form.username }}
@@ -63,11 +68,15 @@
                             <span class="ec-login-wrap">
                                 {{ form.password2 }}
                             </span>
-                           <span class="ec-login-wrap ec-login-btn">
+                            <span class="ec-login-wrap ec-login-fp">
+                                <label>Already have an account?<a href="{% url 'userauths:sign-in' %}"> Sign in.</a></label>
+                            </span>
+                            <span class="ec-login-wrap ec-login-btn">
                                <button class="btn btn-primary" type="submit">Register</button>
-                           </span>
-                       </form>
-                   </div>
+                            </span>
+                           
+                        </form>
+                    </div>
                </div>
            </div>
        </div>
@@ -78,8 +87,7 @@
    <div class="container">
        <div class="row">
            <div class="text-center footer-off-msg">
-               <span>Win a contest! Get this limited-editon</span><a href="#" target="_blank">View
-                   Detail</a>
+            <span>Need measurements taken or products installed?</span><a href="#" target="_blank">Click here</a>
            </div>
        </div>
    </div>

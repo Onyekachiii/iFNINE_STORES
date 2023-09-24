@@ -1,0 +1,227 @@
+
+<main class="main-content" id="cart_list">
+     <!-- Main Style -->
+     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" /> 
+     <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" />
+  
+      <!-- Background css -->
+     <link rel="stylesheet" id="bg-switcher-css" href="{% static 'assets/css/backgrounds/bg-4.css' %}"> 
+
+    <!-- ekka Cart Start -->
+    <div class="ec-side-cart-overlay"></div>
+    <div id="ec-side-cart" class="ec-side-cart">
+        <div class="ec-cart-inner">
+            <div class="ec-cart-top">
+                <div class="ec-cart-title">
+                    <span class="cart_title">My Cart</span>
+                    <button class="ec-close">×</button>
+                </div>
+                <ul class="eccart-pro-items">
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="{% static 'assets/images/product-image/6_1.jpg' %}" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
+                            <span class="cart-price"><span>$76.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="{% static 'assets/images/product-image/12_1.jpg' %}" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
+                            <span class="cart-price"><span>$64.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="{% static 'assets/images/product-image/3_1.jpg' %}" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
+                            <span class="cart-price"><span>$59.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ec-cart-bottom">
+                <div class="cart-sub-total">
+                    <table class="table cart-table">
+                        <tbody>
+                            <tr>
+                                <td class="text-left">Sub-Total :</td>
+                                <td class="text-right">$300.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">VAT (20%) :</td>
+                                <td class="text-right">$60.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Total :</td>
+                                <td class="text-right primary-color">$360.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cart_btn">
+                    <a href="cart.html" class="btn btn-primary">View Cart</a>
+                    <a href="checkout.html" class="btn btn-secondary">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ekka Cart End -->
+
+    <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row ec_breadcrumb_inner">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="ec-breadcrumb-title">Cart</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- ec-breadcrumb-list start -->
+                            <ul class="ec-breadcrumb-list">
+                                <li class="ec-breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
+                                <li class="ec-breadcrumb-item active">Cart</li>
+                            </ul>
+                            <!-- ec-breadcrumb-list end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec breadcrumb end -->
+
+    <!-- Ec cart page -->
+    <section class="ec-page-content section-space-p">
+        <div class="container">
+            <div class="row">
+                <div class="ec-cart-leftside col-lg-8 col-md-12 ">
+                    <!-- cart content Start -->
+                    <div class="ec-cart-content">
+                        <div class="ec-cart-inner">
+                            <div class="row">
+                                <form action="#">
+                                    <div class="table-content cart-table-content">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Price</th>
+                                                    <th style="text-align: center;">Quantity</th>
+                                                    <th>Total</th>
+                                                    <th>Refresh</th>
+                                                    <th>Delete</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for product_id, item in cart_data.items %}
+                                                <tr>
+                                                    <td data-label="Product" class="ec-cart-pro-name"><a
+                                                            href="{% url 'core:product-detail' item.pid %}"><img
+                                                                class="ec-cart-pro-img mr-4"
+                                                                src="{{ item.image }}" alt="" />{{ item.title }}</a></td>
+                                                    <td data-label="Price" class="ec-cart-pro-price"><span
+                                                            class="amount">₦{{ item.price|floatformat:2 }}</span></td>
+                                                    <td data-label="Quantity" class="ec-cart-pro-qty"
+                                                        style="text-align: center;">
+                                                        <div class="cart-qty-plus-minus">
+                                                            <input class="cart-plus-minus" type="text"
+                                                                name="cartqtybutton" value="{{ item.qty }}" />
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="Total" class="ec-cart-pro-subtotal">₦{% widthratio item.price 1 item.qty %}</td>
+                                                    <td data-label="Refresh" class="ec-cart-pro-remove">
+                                                        <button class="text-body"><i class="ecicon eci-refresh"></i></button>
+                                                    </td>
+                                                    <td data-label="Remove" class="ec-cart-pro-remove">
+                                                        <button class="text-body delete-product" data-product="{{ product_id }}"><i class="ecicon eci-trash-o"></i></button>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="ec-cart-update-bottom">
+                                                <a href="">Continue Shopping</a>
+                                                {% if totalcartitems %}
+                                                <button class="btn btn-primary">Check Out</button>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--cart content End -->
+                </div>
+                <!-- Sidebar Area Start -->
+                <div class="ec-cart-rightside col-lg-4 col-md-12">
+                    <div class="ec-sidebar-wrap">
+                        <!-- Sidebar Summary Block -->
+                        <div class="ec-sidebar-block">
+                            <div class="ec-sb-title">
+                                <h3 class="ec-sidebar-title">Summary</h3>
+                            </div>
+                            <div class="ec-sb-block-content">
+                                <h4 class="ec-ship-title">Total</h4>
+                                <div class="ec-cart-form">
+                                    <p>You have <span class="text-brand">{{ totalcartitems }}</span> products in your cart</p>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="ec-sb-block-content">
+                                <div class="ec-cart-summary-bottom">
+                                    <div class="ec-cart-summary">
+                                        <div>
+                                            <span class="text-left">Sub-Total</span>
+                                            <span class="text-right">₦{{ cart_total_amount|floatformat:2 }}</span>
+                                        </div>
+                                        <div class="ec-cart-coupan-content">
+                                            <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"
+                                                action="#">
+                                                <input class="ec-coupan" type="text" required=""
+                                                    placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
+                                                <button class="ec-coupan-btn button btn-primary" type="submit"
+                                                    name="subscribe" value="">Apply</button>
+                                            </form>
+                                        </div>
+                                        <div class="ec-cart-summary-total">
+                                            <span class="text-left">Total Amount</span>
+                                            <span class="text-right">₦{{ cart_total_amount|floatformat:2 }}</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar Summary Block -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</main>
+ 

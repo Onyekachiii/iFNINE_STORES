@@ -1,5 +1,5 @@
 from django.urls import path, include
-from ifnine_core.views import index, category_list_view, category_product_list_view, product_list_view, vendor_list_view, vendor_detail_view, product_detail_view, tag_list, ajax_add_review, search_view, filter_product, add_to_cart, cart_view
+from ifnine_core.views import index, category_list_view, category_product_list_view, product_list_view, vendor_list_view, vendor_detail_view, product_detail_view, tag_list, ajax_add_review, search_view, filter_product, add_to_cart, cart_view, delete_item_from_cart
 
 app_name = 'core'
 
@@ -35,4 +35,8 @@ urlpatterns=[
     
     # Cart page URL
     path('cart/', cart_view, name='cart'),
+    
+    # Delete item from cart
+    path('delete-from-cart/', delete_item_from_cart, name='delete-from-cart'),
+    
 ]
