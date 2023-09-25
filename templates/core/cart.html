@@ -149,13 +149,13 @@
                                                     <td data-label="Quantity" class="ec-cart-pro-qty"
                                                         style="text-align: center;">
                                                         <div class="cart-qty-plus-minus">
-                                                            <input class="cart-plus-minus" type="text"
-                                                                name="cartqtybutton" value="{{ item.qty }}" />
+                                                            <input class="cart-plus-minus" type="text" 
+                                                                name="cartqtybutton" value="{{ item.qty }}" id="product-qty-{{ product_id }}"/>
                                                         </div>
                                                     </td>
                                                     <td data-label="Total" class="ec-cart-pro-subtotal">₦{% widthratio item.price 1 item.qty %}</td>
                                                     <td data-label="Refresh" class="ec-cart-pro-remove">
-                                                        <button class="text-body"><i class="ecicon eci-refresh"></i></button>
+                                                        <button class="text-body update-product" data-product="{{ product_id }} "><i class="ecicon eci-refresh"></i></button>
                                                     </td>
                                                     <td data-label="Remove" class="ec-cart-pro-remove">
                                                         <button class="text-body delete-product" data-product="{{ product_id }}"><i class="ecicon eci-trash-o"></i></button>
@@ -170,7 +170,9 @@
                                             <div class="ec-cart-update-bottom">
                                                 <a href="">Continue Shopping</a>
                                                 {% if totalcartitems %}
-                                                <button class="btn btn-primary">Check Out</button>
+                                                <span class="ec-check-order-btn mb-6">
+                                                    <a class="btn btn-primary" href="{% url 'core:checkout' %}">Checkout</a>
+                                                </span>
                                                 {% endif %}
                                             </div>
                                         </div>

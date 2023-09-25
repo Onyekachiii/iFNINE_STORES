@@ -5,82 +5,6 @@
 {% block content %}
 
 
-    <!-- Ekka Cart Start -->
-    <div class="ec-side-cart-overlay"></div>
-    <div id="ec-side-cart" class="ec-side-cart">
-        <div class="ec-cart-inner">
-            <div class="ec-cart-top">
-                <div class="ec-cart-title">
-                    <span class="cart_title">My Cart</span>
-                    <button class="ec-close">×</button>
-                </div>
-                <ul class="eccart-pro-items">
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidecart_pro_img"><img
-                                src="{% static 'assets/images/product-image/55_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="single-product-left-sidebar.html" class="cart_pro_title">Roasted Almonds, Pumpkin Snacks</a>
-                            <span class="cart-price"><span>$49.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidecart_pro_img"><img
-                                src="{% static 'assets/images/product-image/64_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Lemon - Seedless</a>
-                            <span class="cart-price"><span>$8.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidecart_pro_img"><img
-                                src="{% static 'assets/images/product-image/71_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">lichi - organic</a>
-                            <span class="cart-price"><span>$25.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="ec-cart-bottom">
-                <div class="cart-sub-total">
-                    <table class="table cart-table">
-                        <tbody>
-                            <tr>
-                                <td class="text-left">Sub-Total :</td>
-                                <td class="text-right">$300.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">VAT (20%) :</td>
-                                <td class="text-right">$60.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Total :</td>
-                                <td class="text-right primary-color">$360.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="cart_btn">
-                    <a href="cart.html" class="btn btn-primary">View Cart</a>
-                    <a href="checkout.html" class="btn btn-secondary">Checkout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Ekka Cart End -->
-
     <!--  category Section Start -->
     <section class="section ec-category-section section-space-p">
         <div class="container">
@@ -188,24 +112,6 @@
                                         <ul>
                                             <li>
                                                 <div class="ec-sidebar-block-item"><img src="{{c.image.url}}" class="svg_img" alt="drink" /><a href="{% url 'core:category-product-list' c.cid %}"/>{{c.title}}</div>
-                                                <ul style="display: block;">
-                                                    <li>
-                                                        <div class="ec-sidebar-sub-item"><a href="shop-left-sidebar-col-3.html">Tomato <span title="Available Stock">- 25 kg</span></a>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="ec-sidebar-sub-item"><a href="shop-left-sidebar-col-3.html">Asparagus <span title="Available Stock">- 52 kg</span></a>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="ec-sidebar-sub-item"><a href="shop-left-sidebar-col-3.html">Coriander<span title="Available Stock">- 500 g</span></a>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="ec-sidebar-sub-item"><a href="shop-left-sidebar-col-3.html">Lemon <span title="Available Stock">- 35 kg</span></a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
                                             </li>
                                         </ul>
                                     </div>
@@ -235,13 +141,16 @@
                         </div>
                         <div class="ec-sidebar-slider">
                             <div class="ec-sb-slider-title">Best Sellers</div>
+                            
                             <div class="ec-sb-pro-sl">
+                                {% for p in products %}
                                 <div>
+                                    
                                     <div class="ec-sb-pro-sl-item">
-                                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                                src="{% static 'assets/images/product-image/79_1.jpg' %}" alt="product" /></a>
+                                        <a href="{% url 'core:product-detail' p.pid %}" class="sidekka_pro_img"><img
+                                                src="{{ p.image.url }}" alt="product" /></a>
                                         <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Californian Almonds Value Pack</a></h5>
+                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ p.title }}</a></h5>
                                             <div class="ec-pro-rating">
                                                 <i class="ecicon eci-star fill"></i>
                                                 <i class="ecicon eci-star fill"></i>
@@ -250,153 +159,16 @@
                                                 <i class="ecicon eci-star fill"></i>
                                             </div>
                                             <span class="ec-price">
-                                                <span class="old-price">$52.00</span>
-                                                <span class="new-price">$45.00</span>
+                                    
+                                                <span class="new-price">₦{{ p.price}}</span>
                                             </span>
                                         </div>
                                     </div>
+                                    
                                 </div>
-                                <div>
-                                    <div class="ec-sb-pro-sl-item">
-                                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                                src="{% static 'assets/images/product-image/80_1.jpg' %}" alt="product" /></a>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Lemon Seedless</a></h5>
-                                            <div class="ec-pro-rating">
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star"></i>
-                                            </div>
-                                            <span class="ec-price">
-                                                <span class="old-price">$10.00</span>
-                                                <span class="new-price">$7.00</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="ec-sb-pro-sl-item">
-                                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                                src="{% static 'assets/images/product-image/81_1.jpg' %}" alt="product" /></a>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Farm Eggs - Brown</a></h5>
-                                            <div class="ec-pro-rating">
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star"></i>
-                                                <i class="ecicon eci-star"></i>
-                                            </div>
-                                            <span class="ec-price">
-                                                <span class="old-price">$5.00</span>
-                                                <span class="new-price">$3.00</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="ec-sb-pro-sl-item">
-                                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                                src="{% static 'assets/images/product-image/82_1.jpg' %}" alt="product" /></a>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Cake and pastry</a></h5>
-                                            <div class="ec-pro-rating">
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                            </div>
-                                            <span class="ec-price">
-                                                <span class="old-price">$15.00</span>
-                                                <span class="new-price">$12.00</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="ec-sb-pro-sl-item">
-                                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                                src="{% static 'assets/images/product-image/83_1.jpg' %}" alt="product" /></a>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Blue Berry</a></h5>
-                                            <div class="ec-pro-rating">
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star"></i>
-                                            </div>
-                                            <span class="ec-price">
-                                                <span class="old-price">$15.00</span>
-                                                <span class="new-price">$12.00</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="ec-sb-pro-sl-item">
-                                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                                src="{% static 'assets/images/product-image/84_1.jpg' %}" alt="product" /></a>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Onion - Hybrid</a></h5>
-                                            <div class="ec-pro-rating">
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star"></i>
-                                                <i class="ecicon eci-star"></i>
-                                                <i class="ecicon eci-star"></i>
-                                            </div>
-                                            <span class="ec-price">
-                                                <span class="old-price">$50.00</span>
-                                                <span class="new-price">$45.00</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="ec-sb-pro-sl-item">
-                                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                                src="{% static 'assets/images/product-image/85_1.jpg' %}" alt="product" /></a>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Cheese</a></h5>
-                                            <div class="ec-pro-rating">
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                            </div>
-                                            <span class="ec-price">
-                                                <span class="old-price">$35.00</span>
-                                                <span class="new-price">$25.00</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="ec-sb-pro-sl-item">
-                                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                                src="{% static 'assets/images/product-image/86_1.jpg' %}" alt="product" /></a>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Apple</a></h5>
-                                            <div class="ec-pro-rating">
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star"></i>
-                                                <i class="ecicon eci-star"></i>
-                                            </div>
-                                            <span class="ec-price">
-                                                <span class="old-price">$15.00</span>
-                                                <span class="new-price">$13.00</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
+                            
                         </div>
                     </div>
             </div> 
@@ -499,25 +271,26 @@
                                 </div>
                             </div>
                             <div class="ec-new-slider">
+                                {%for p in products%}
                                 <div class="col-sm-12 ec-all-product-block">
                                     <div class="ec-all-product-inner">
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
                                                 <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/79_1.jpg' %}"
+                                                    <img class="main-image" src="{{ p.image.url }}"
                                                         alt="Product" />
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Californian Almonds Value Pack</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Dried Fruits</a></h6>
+                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ p.title }}</a></h5>
+                                            <h6 class="ec-pro-stitle"><a href="">{{ p.description }}</a></h6>
                                             <div class="ec-pro-rat-price">
                                                 <div class="ec-pro-rat-pri-inner">
                                                     <span class="ec-price">
-                                                        <span class="new-price">$50.00</span>
-                                                        <span class="old-price">$55.00</span>
-                                                        <span class="qty">- 2 pack</span>
+                                                        <span class="new-price">₦{{ p.price}}</span>
+                                                        <span class="old-price">₦{{ p.old_price}}</span>
+                                                        
                                                     </span>
                                                 </div>
                                             </div>
@@ -527,202 +300,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/80_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Lemon - Seedless</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Vegetables</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$62.00</span>
-                                                        <span class="old-price">$65.00</span>
-                                                        <span class="qty">- 1 kg</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/82_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">cake and pastry</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">bakery</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$52.00</span>
-                                                        <span class="old-price">$55.00</span>
-                                                        <span class="qty">- 1 pcs</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/81_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Farm Eggs - Brown</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Eggs</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$56.00</span>
-                                                        <span class="old-price">$78.00</span>
-                                                        <span class="qty">- 3 pcs</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label nonveg" title="Nonveg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/83_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">blue berry</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Fresh Fruits</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$10.00</span>
-                                                        <span class="old-price">$11.00</span>
-                                                        <span class="qty">- 500 g</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/84_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Onion - Hybrid</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Vegetables</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$42.00</span>
-                                                        <span class="old-price">$45.00</span>
-                                                        <span class="qty">- 5 kg</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/85_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Cheese</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">dairy</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$25.00</span>
-                                                        <span class="old-price">$30.00</span>
-                                                        <span class="qty">- 250 g</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/86_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Apple</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Fruits</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$20.00</span>
-                                                        <span class="old-price">$30.00</span>
-                                                        <span class="qty">- 12 pcs</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
+                                {%endfor %}
                             </div>
                         </div>
                         <!-- ec Top Selling -->
@@ -733,25 +311,25 @@
                                 </div>
                             </div>
                             <div class="ec-new-slider">
+                                {% for p in products %}
                                 <div class="col-sm-12 ec-all-product-block">
                                     <div class="ec-all-product-inner">
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
                                                 <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/84_1.jpg' %}"
+                                                    <img class="main-image" src="{{ p.image.url }}"
                                                         alt="Product" />
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Onion - Hybrid</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Vegetables</a></h6>
+                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ p.title }}</a></h5>
+                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">{{ p.description }}</a></h6>
                                             <div class="ec-pro-rat-price">
                                                 <div class="ec-pro-rat-pri-inner">
                                                     <span class="ec-price">
-                                                        <span class="new-price">$42.00</span>
-                                                        <span class="old-price">$45.00</span>
-                                                        <span class="qty">- 5 kg</span>
+                                                        <span class="new-price">₦{{ p.price }}</span>
+                                                        <span class="old-price">₦{{ p.old_price}}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -761,202 +339,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/85_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Cheese</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">dairy</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$25.00</span>
-                                                        <span class="old-price">$30.00</span>
-                                                        <span class="qty">- 250 g</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/80_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Lemon - Seedless</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Vegetables</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$62.00</span>
-                                                        <span class="old-price">$65.00</span>
-                                                        <span class="qty">- 1 kg</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/83_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">blue berry</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Fresh Fruits</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$10.00</span>
-                                                        <span class="old-price">$11.00</span>
-                                                        <span class="qty">- 500 g</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/82_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">cake and pastry</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">bakery</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$52.00</span>
-                                                        <span class="old-price">$55.00</span>
-                                                        <span class="qty">- 1 pcs</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/86_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Apple</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Fruits</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$20.00</span>
-                                                        <span class="old-price">$30.00</span>
-                                                        <span class="qty">- 12 pcs</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/81_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Farm Eggs - Brown</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Eggs</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$56.00</span>
-                                                        <span class="old-price">$78.00</span>
-                                                        <span class="qty">- 3 pcs</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label nonveg" title="Nonveg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/79_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Californian Almonds Value Pack</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Dried Fruits</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$50.00</span>
-                                                        <span class="old-price">$55.00</span>
-                                                        <span class="qty">- 2 pack</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <!-- ec Top Rated -->
@@ -967,25 +350,25 @@
                                 </div>
                             </div>
                             <div class="ec-new-slider">
+                                {% for p in products %}
                                 <div class="col-sm-12 ec-all-product-block">
                                     <div class="ec-all-product-inner">
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
                                                 <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/80_1.jpg' %}"
+                                                    <img class="main-image" src="{{ p.image.url }}"
                                                         alt="Product" />
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Lemon - Seedless</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Vegetables</a></h6>
+                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ p.title }}</a></h5>
+                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">{{ p.description }}</a></h6>
                                             <div class="ec-pro-rat-price">
                                                 <div class="ec-pro-rat-pri-inner">
                                                     <span class="ec-price">
-                                                        <span class="new-price">$62.00</span>
-                                                        <span class="old-price">$65.00</span>
-                                                        <span class="qty">- 1 kg</span>
+                                                        <span class="new-price">₦{{ p.price }}</span>
+                                                        <span class="old-price">₦{{ p.old_price }}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -995,202 +378,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/81_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Farm Eggs - Brown</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Eggs</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$56.00</span>
-                                                        <span class="old-price">$78.00</span>
-                                                        <span class="qty">- 3 pcs</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label nonveg" title="Nonveg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/79_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Californian Almonds Value Pack</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Dried Fruits</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$50.00</span>
-                                                        <span class="old-price">$55.00</span>
-                                                        <span class="qty">- 2 pack</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/82_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">cake and pastry</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">bakery</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$52.00</span>
-                                                        <span class="old-price">$55.00</span>
-                                                        <span class="qty">- 1 pcs</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/83_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">blue berry</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Fresh Fruits</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$10.00</span>
-                                                        <span class="old-price">$11.00</span>
-                                                        <span class="qty">- 500 g</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/84_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Onion - Hybrid</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Vegetables</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$42.00</span>
-                                                        <span class="old-price">$45.00</span>
-                                                        <span class="qty">- 5 kg</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/85_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Cheese</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">dairy</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$25.00</span>
-                                                        <span class="old-price">$30.00</span>
-                                                        <span class="qty">- 250 g</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ec-all-product-block">
-                                    <div class="ec-all-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image" src="{% static 'assets/images/product-image/86_1.jpg' %}"
-                                                        alt="Product" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Apple</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">Fruits</a></h6>
-                                            <div class="ec-pro-rat-price">
-                                                <div class="ec-pro-rat-pri-inner">
-                                                    <span class="ec-price">
-                                                        <span class="new-price">$20.00</span>
-                                                        <span class="old-price">$30.00</span>
-                                                        <span class="qty">- 12 pcs</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="label veg" title="Veg">
-                                            <span class="dot"></span>
-                                        </span>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -1208,7 +396,7 @@
                                     <div class="ec-spe-pro-inner">
                                         <div class="ec-spe-pro-image-outer col-md-6 col-sm-12">
                                             <div class="ec-spe-pro-image">
-                                                <img class="img-responsive" src="{% static 'assets/images/product-image/77_1.jpg' %}" alt="">                                                                              
+                                                <img class="img-responsive" src="{% static 'assets/images/product-image/258834.jpg' %}" alt="">                                                                              
                                             </div>
                                         </div>
                                         <div class="ec-spe-pro-content col-md-6 col-sm-12">
@@ -1221,19 +409,18 @@
                                                     <i class="ecicon eci-star"></i>
                                                 </span>
                                             </div>
-                                            <h5 class="ec-spe-pro-title"><a href="product-left-sidebar.html">Organic Mango 20kg Box</a></h5>
-                                            <div class="ec-spe-pro-desc">Lorem ipsum dolor sit amet consectetur Lorem ipsum
-                                                dolor dolor sit amet consectetur Lorem ipsum dolor</div>
+                                            <h5 class="ec-spe-pro-title"><a href="product-left-sidebar.html">SKISET PRO DIGITAL LOCK S18-PRO</a></h5>
+                                            <div class="ec-spe-pro-desc">Smart Keylock with face recognition, fingerprint scanner, keycard swipe, extended battery life, etc</div>
                                             <div class="ec-spe-price">
-                                                <span class="new-price">$199.00</span>
-                                                <span class="old-price">$200.00</span>
+                                                <span class="new-price">₦399999.99</span>
+                                                <span class="old-price">₦459999.00</span>
                                             </div>
                                             <div class="ec-spe-pro-btn">
                                                 <a href="#" class="btn btn-lg btn-primary">Add To Cart</a>
                                             </div>
                                             <div class="ec-spe-pro-progress">
                                                 <span class="ec-spe-pro-progress-desc"><span>Already Sold:
-                                                        <b>15</b></span><span>Available: <b>40</b></span></span>
+                                                        <b>3</b></span><span>Available: <b>7</b></span></span>
                                                 <span class="ec-spe-pro-progressbar"></span>
                                             </div>
                                             <div class="countdowntimer">
@@ -1373,11 +560,9 @@
                             <div class="banner-block">
                                 <div class="banner-content">
                                     <div class="banner-text">
-                                        <span class="ec-banner-disc">25% discount</span>
-                                        <span class="ec-banner-title">Vegetables & Fruits</span>
-                                        <span class="ec-banner-stitle">Starting @ $10</span>
+                                        <span class="ec-banner-disc"> up to 25% discount</span>
                                     </div>
-                                    <span class="ec-banner-btn"><a href="shop-left-sidebar-col-3.html">Shop Now <i
+                                    <span class="ec-banner-btn"><a href="{% url 'core:product-list' %}">Shop Now <i
                                                 class="ecicon eci-angle-double-right" aria-hidden="true"></i></a></span>
                                 </div>
                             </div>
@@ -1399,8 +584,8 @@
                                     <i class="fi fi-ts-truck-moving"></i>
                                 </div>
                                 <div class="ec-service-desc">
-                                    <h2>Worldwide Delivery</h2>
-                                    <p>For Order Over $100</p>
+                                    <h2>Nationwide Delivery</h2>
+                                    <p>Subject to location</p>
                                 </div>
                             </div>
                         </div>
@@ -1411,7 +596,7 @@
                                 </div>
                                 <div class="ec-service-desc">
                                     <h2>Next Day delivery</h2>
-                                    <p>UK Orders Only</p>
+                                    <p>Lagos Orders Only</p>
                                 </div>
                             </div>
                         </div>
@@ -1422,7 +607,7 @@
                                 </div>
                                 <div class="ec-service-desc">
                                     <h2>Best Online Support</h2>
-                                    <p>Hours: 8AM -11PM</p>
+                                    <p>24 hours a day</p>
                                 </div>
                             </div>
                         </div>
@@ -1432,8 +617,8 @@
                                     <i class="fi fi-ts-badge-percent"></i>
                                 </div>
                                 <div class="ec-service-desc">
-                                    <h2>Return Policy</h2>
-                                    <p>Easy & Free Return</p>
+                                    <h2>Flawless Installations</h2>
+                                    <p>For interiors and smart home devices</p>
                                 </div>
                             </div>
                         </div>
@@ -1443,8 +628,8 @@
                                     <i class="fi fi-ts-donate"></i>
                                 </div>
                                 <div class="ec-service-desc">
-                                    <h2>30% money back</h2>
-                                    <p>For Order Over $100</p>
+                                    <h2>Warranty Policy</h2>
+                                    <p>For electronics & tech gadgets</p>
                                 </div>
                             </div>
                         </div>
@@ -1464,71 +649,15 @@
                 <div class="ec-insta-outer">
                     <div class="insta-auto">
                         <!-- instagram item -->
+                        {% for p in products %}
                         <div class="ec-insta-item">
                             <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="{% static 'assets/images/product-image/79_1.jpg' %}" alt="">
+                                <a href="#" target="_blank"><img src="{{ p.image.url }}" alt="">
 
                                 </a>
                             </div>
                         </div>
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="{% static 'assets/images/product-image/80_1.jpg' %}" alt="">
-
-                                </a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="{% static 'assets/images/product-image/81_1.jpg' %}" alt="">
-
-                                </a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="{% static 'assets/images/product-image/82_1.jpg' %}" alt="">
-
-                                </a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="{% static 'assets/images/product-image/83_1.jpg' %}" alt="">
-
-                                </a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="{% static 'assets/images/product-image/84_1.jpg' %}" alt="">
-
-                                </a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="{% static 'assets/images/product-image/85_1.jpg' %}" alt="">
-
-                                </a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="{% static 'assets/images/product-image/86_1.jpg' %}" alt="">
-
-                                </a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
+                        {% endfor %}
                     </div>
                 </div>
             </div>
