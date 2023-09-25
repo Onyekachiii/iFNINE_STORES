@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'taggit',
     'ckeditor',
     
+    # Payment Integration Apps
+    'paypal.standard.ipn',
+    
     # Custom Apps
     'ifnine_core',
     'userauths',
@@ -155,6 +158,8 @@ JAZZMIN_SETTINGS = {
     'copyright' : 'iFNINE Stores',
 }
 
+LOGIN_URL = "userauths:sign-in"
+
 
 AUTH_USER_MODEL = 'userauths.User'
 
@@ -174,3 +179,6 @@ CKEDITOR_CONFIGS = {
         ),
     }
 }
+
+PAYPAL_RECEIVER_EMAIL = 'stanleyonyekachiii@yahoo.com'
+PAYPAL_TEST = True

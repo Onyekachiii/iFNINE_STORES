@@ -162,7 +162,7 @@
                                                 <span class="percentage">{{p.get_percentage|floatformat:0}}%</span>
                                                 <a href="{% url 'core:product-detail' p.pid %}" class="quickview" data-link-action="quickview"
                                                     title="Quick view" 
-                                                    data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>
+                                                    data-bs-target="{% url 'core:product-detail' p.pid %}"><i class="fi-rr-eye"></i></a>
                                                 <div class="ec-pro-actions">
                                                     <a href="compare.html" class="ec-btn-group compare"
                                                         title="Compare"><i class="fi fi-rr-arrows-repeat"></i></a>

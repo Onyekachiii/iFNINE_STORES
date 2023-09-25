@@ -1,0 +1,84 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block page_title %}iFNINE STORES | Cart {% endblock %}
+
+{% block content %}
+
+
+     <!-- Main Style -->
+     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" /> 
+     <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" />
+  
+      <!-- Background css -->
+     <link rel="stylesheet" id="bg-switcher-css" href="{% static 'assets/css/backgrounds/bg-4.css' %}">
+
+    <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row ec_breadcrumb_inner">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="ec-breadcrumb-title">Payment Failed</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- ec-breadcrumb-list start -->
+                            <ul class="ec-breadcrumb-list">
+                                <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="ec-breadcrumb-item active">Payment Failed</li>
+                            </ul>
+                            <!-- ec-breadcrumb-list end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec breadcrumb end -->
+
+    <!-- Ec Payment Fail page -->
+    <section class="ec-payment-fail-page section-space-p">
+        <div class="container">
+            <div class="ec-payment-fail">
+            <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <!-- Payment Fail Start -->
+                        <div class="ec-payment-content">
+                            <div class="section-title">
+                                <h2 class="ec-title">Payment Error</h2>
+                                <p class="sub-title">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                            </div>
+                            <ul>
+                                <li><i class="ecicon eci-check-circle-o"></i>Lorem Ipsum is simply dummy text of the printing</li>
+                                <li><i class="ecicon eci-check-circle-o"></i>Lorem Ipsum is simply dummy text of the printing</li>
+                                <li><i class="ecicon eci-check-circle-o"></i>Lorem Ipsum is simply dummy text of the printing</li>
+                                <li><i class="ecicon eci-times-circle-o"></i>Lorem Ipsum is simply dummy text of the printing</li>
+                                <li><i class="ecicon eci-times-circle-o"></i>Lorem Ipsum is simply dummy text of the printing</li>
+                            </ul>
+                            <a href="faq.html" class="btn btn-primary">Read More</a>   
+                        </div>
+                        <!-- Payment Fail End -->
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <img src="{% static 'assets/images/icons/round-error-icon-16.jpg' %}" alt="payment">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-offer">
+        <div class="container">
+            <div class="row">
+                <div class="text-center footer-off-msg">
+                    <span>Need measurements taken or products installed?</span><a href="#" target="_blank">Click here</a>
+                </div>
+            </div>
+        </div>
+     </div>
+
+
+
+</main>
+{% endblock content %}
