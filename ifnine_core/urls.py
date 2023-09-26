@@ -1,5 +1,5 @@
 from django.urls import path, include
-from ifnine_core.views import index, category_list_view, category_product_list_view, product_list_view, vendor_list_view, vendor_detail_view, product_detail_view, tag_list, ajax_add_review, search_view, filter_product, add_to_cart, cart_view, delete_item_from_cart, update_cart, checkout_view, payment_completed_view, payment_failed_view
+from ifnine_core.views import index, category_list_view, category_product_list_view, product_list_view, vendor_list_view, vendor_detail_view, product_detail_view, tag_list, ajax_add_review, search_view, filter_product, add_to_cart, cart_view, delete_item_from_cart, update_cart, checkout_view, payment_completed_view, payment_failed_view, customer_dashboard, user_history, order_detail
 
 app_name = 'core'
 
@@ -53,5 +53,14 @@ urlpatterns=[
     
     # checkout url
     path('payment-failed/', payment_failed_view, name='payment-failed'),
+    
+    # User Dashboard
+    path('dashboard/', customer_dashboard, name='dashboard'),
+    
+    # User History
+    path('user-history/', user_history, name='user-history'),
+    
+    # Order detail
+    path('user-history/order/<int:id>', order_detail, name='order-detail'),
     
 ]

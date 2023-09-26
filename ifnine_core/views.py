@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from taggit.models import Tag
 from ifnine_core.forms import ProductReviewForm
-from ifnine_core.models import Product, ProductImages, Category, Vendor, CartOrder, CartOrderItems, ProductReview, WishList, Address
+from ifnine_core.models import Product, ProductImages, Category, Vendor, CartOrder, CartOrderProducts, ProductReview, WishList, Address
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.urls import reverse
@@ -237,12 +237,41 @@ def update_cart(request):
 
 @login_required
 def checkout_view(request):
+    cart_total_amount = 0
+    total_amount = 0
+    # Checking if cart_data_obj is in session
+    if 'cart_data_obj' in request.session:
+        
+        # Getting total amount for paypal
+        for product_id, item in request.session['cart_data_obj'].items():
+            total_amount += int(item['qty']) * float(item['price'])
+        
+        # Creating order objects
+        order = CartOrder.objects.create(
+            user = request.user,
+            price = total_amount,
+        )    
+        
+        # Getting total amount for the cart
+        for product_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'])
+            
+            cart_order_products = CartOrderProducts.objects.create(
+                order = order,
+                invoice_no = "INVOICE_NO-" + str(order.id),
+                item = item['title'],
+                image = item['image'],
+                qty = item['qty'],
+                price = item['price'],
+                total = float(item['qty']) * float(item['price']),
+            )
+
     host = request.get_host()
     paypal_dict = {
         'business' : settings.PAYPAL_RECEIVER_EMAIL,
-        'amount' : "200",
-        'item_name': "Order-Item-No-3",
-        'invoice' : "INV_NO-3",
+        'amount' : cart_total_amount,
+        'item_name': "Order-Item-No-" + str(order.id),
+        'invoice' : "INVOICE_NO-" + str(order.id),
         'currency_code' : "NGN",
         'notify_url': 'http://{}{}'.format(host,reverse('core:paypal-ipn')),
         'return_url': 'http://{}{}'.format(host,reverse('core:payment-completed')),
@@ -253,9 +282,7 @@ def checkout_view(request):
 
     
     # cart_total_amount = 0
-    # if 'cart_data_obj' in request.session:
-    #     for product_id, item in request.session['cart_data_obj'].items():
-    #         cart_total_amount += int(item['qty']) * float(item['price'])
+    # 
             
     return render(request, 'core/checkout.html', {'cart_data':request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount, 'paypal_payment_button':paypal_payment_button})
             
@@ -270,6 +297,29 @@ def payment_completed_view(request):
     return render(request, 'core/payment-completed.html',{'cart_data':request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount})
 
 
-
+@login_required
 def payment_failed_view(request):
     return render(request, 'core/payment-failed.html')
+
+
+@login_required
+def customer_dashboard(request):
+    return render(request, 'core/dashboard.html')
+
+@login_required
+def user_history(request):
+    orders = CartOrder.objects.filter(user=request.user).order_by("-id")
+    context = {
+        "orders": orders,
+    }
+    return render(request, 'core/user-history.html', context)
+
+def order_detail(request, id):
+    orders = CartOrder.objects.get(user=request.user, id=id)
+    order_items = CartOrderProducts.objects.filter(order=orders)
+    
+    context = {
+        "order_items": order_items,
+    }
+    return render(request, 'core/order-detail.html', context)
+    

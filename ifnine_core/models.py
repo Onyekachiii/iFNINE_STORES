@@ -7,7 +7,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 
 STATUS_CHOICE = (
-    ("process", "Processing"),
+    ("processing", "Processing"),
     ("shipped", "Shipped"),
     ("delivered", "Delivered"),
 )
@@ -57,7 +57,6 @@ class Vendor(models.Model):
     title = models.CharField(max_length=100, default="Vendor Title")
     image = models.ImageField(upload_to = user_directory_path, default="vendor.png")
     cover_image = models.ImageField(upload_to = user_directory_path, default="vendor.png")
-    # description = models.TextField(null=True, blank=True, default="This is a vendor description")
     description = RichTextUploadingField(null=True, blank=True, default="This is a vendor description")
         
     contact = models.CharField(max_length=30, default = "+123 (456) 789")
@@ -89,13 +88,11 @@ class Product(models.Model):
     
     title = models.CharField(max_length=100, default="Product Title")
     image = models.ImageField(upload_to = user_directory_path, default="product.png")
-    # description = models.TextField(null=True, blank=True, default="This is a product description")
     description = RichTextUploadingField(null=True, blank=True, default="This is a product description")
     
     price = models.DecimalField(max_digits=10, decimal_places=2, default=1.99)
     old_price = models.DecimalField(max_digits=10, decimal_places=2, default=2.99)
     
-    # specifications = models.TextField(null=True, blank=True, default="This is a product specification")
     specifications = RichTextUploadingField(null=True, blank=True, default="This is a product specification")
     stock_count = models.CharField(max_length=100, default="10")
     mfd_date = models.DateTimeField(auto_now_add=False, null=True, blank=True)
@@ -153,7 +150,7 @@ class CartOrder(models.Model):
         verbose_name_plural = "Cart Order"
         
 
-class CartOrderItems(models.Model):
+class CartOrderProducts(models.Model):
     order = models.ForeignKey(CartOrder, on_delete=models.CASCADE)
     invoice_no = models.CharField(max_length=200)
     product_status = models.CharField(max_length=200)
@@ -166,6 +163,9 @@ class CartOrderItems(models.Model):
     
     class Meta:
         verbose_name_plural = "Cart Order Items"
+    
+    def category_image(self):
+        return mark_safe('<img src="%s" width="50" height="50" />' %(self.image.url))
     
     def order_img(self):
         return mark_safe('<img src="/media/%s" width="50" height="50" />' %(self.image))

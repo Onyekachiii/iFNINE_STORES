@@ -218,10 +218,11 @@
                                                         <span class="flags">
                                                             <span class="new">-{{p.get_percentage|floatformat:0}}%</span>
                                                         </span>
+                                                        
                                                         <div class="ec-pro-actions">
+                                                            <a href="{% url 'core:product-detail' p.pid %}" class="quickview" data-link-action="quickview" title="Quick view"><i class="fi-rr-eye"></i></a>
                                                             <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart"></i></a>
-                                                            <a href="{% url 'core:product-detail' p.pid %}" class="ec-btn-group quickview" data-link-action="quickview" title="Quick view"
-                                                                ><i class="fi-rr-eye"></i></a>
+                                                            
                                                             {% comment %} <a href="compare.html" class="ec-btn-group compare" title="Compare"><i class="fi fi-rr-arrows-repeat"></i></a> {% endcomment %}
                                                             <span class="add-cart">
                                                                 <input type="hidden" value="1" name="" id="product-quantity" class="w-25 mb-20 product-quantity-{{p.id}}">
@@ -232,6 +233,7 @@
                                                                 <button type="submit" id="add-to-cart-btn" class="ec-btn-group add-to-cart-btn" data-index="{{ p.id }}"><i class="fi-rr-shopping-basket" id="add-to-cart-btn"></i></button>
                                                             </span>
                                                         </div>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="ec-pro-content">
@@ -426,47 +428,6 @@
                                             <div class="countdowntimer">
                                                 <span class="ec-spe-count-desc"> Hurry Up! Offer ends in:</span>
                                                 <span id="ec-spe-count-1"></span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ec-spe-product">
-                                    <div class="ec-spe-pro-inner">
-                                        <div class="ec-spe-pro-image-outer col-md-6 col-sm-12">
-                                            <div class="ec-spe-pro-image">
-                                                <img class="img-responsive"
-                                                            src="{% static 'assets/images/product-image/78_1.jpg' %}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="ec-spe-pro-content col-md-6 col-sm-12">
-                                            <div class="ec-spe-pro-rating">
-                                                <span class="ec-spe-rating-icon">
-                                                    <i class="ecicon eci-star fill"></i>
-                                                    <i class="ecicon eci-star fill"></i>
-                                                    <i class="ecicon eci-star fill"></i>
-                                                    <i class="ecicon eci-star"></i>
-                                                    <i class="ecicon eci-star"></i>
-                                                </span>
-                                            </div>
-                                            <h5 class="ec-spe-pro-title"><a href="product-left-sidebar.html">Fresh organic Apple 12 Pcs</a></h5>
-                                            <div class="ec-spe-pro-desc">Lorem ipsum dolor sit amet consectetur Lorem ipsum
-                                                dolor dolor sit amet consectetur Lorem ipsum dolor</div>
-                                            <div class="ec-spe-price">
-                                                <span class="new-price">$199.00</span>
-                                                <span class="old-price">$200.00</span>
-                                            </div>
-                                            <div class="ec-spe-pro-btn">
-                                                <a href="#" class="btn btn-lg btn-primary">Add To Cart</a>
-                                            </div>
-                                            <div class="ec-spe-pro-progress">
-                                                <span class="ec-spe-pro-progress-desc"><span>Already Sold:
-                                                        <b>20</b></span><span>Available: <b>40</b></span></span>
-                                                <span class="ec-spe-pro-progressbar"></span>
-                                            </div>
-                                            <div class="countdowntimer">
-                                                <span class="ec-spe-count-desc"> Hurry Up! Offer ends in:</span>
-                                                <span id="ec-spe-count-2"></span>
                                             </div>
 
                                         </div>
