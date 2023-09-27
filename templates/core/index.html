@@ -183,18 +183,6 @@
                         </div>
 
                         <!-- Tab Start -->
-                        <div class="col-md-12 ec-pro-tab">
-                            <ul class="ec-pro-tab-nav nav justify-content-end">
-                                <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab"
-                                        href="#all">All</a></li>
-                                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#snack">Snack & Spices</a></li>
-                                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
-                                        href="#veg">Vegetables</a></li>
-                                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
-                                            href="#fruit">Fruits</a></li>
-                            </ul>
-                        </div>
-                        <!-- Tab End -->
                     </div>
                     <div class="row margin-minus-b-15">
                         <div class="col">
@@ -221,7 +209,7 @@
                                                         
                                                         <div class="ec-pro-actions">
                                                             <a href="{% url 'core:product-detail' p.pid %}" class="quickview" data-link-action="quickview" title="Quick view"><i class="fi-rr-eye"></i></a>
-                                                            <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart"></i></a>
+                                                            <button class="ec-btn-group wishlist add-to-wishlist" data-product-item="{{p.id}}" title="Wishlist"><i class="fi-rr-heart"></i></button>
                                                             
                                                             {% comment %} <a href="compare.html" class="ec-btn-group compare" title="Compare"><i class="fi fi-rr-arrows-repeat"></i></a> {% endcomment %}
                                                             <span class="add-cart">
@@ -285,7 +273,7 @@
                                             </div>
                                         </div>
                                         <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ p.title }}</a></h5>
+                                            <h5 class="ec-pro-title"><a href="{% url 'core:product-detail' p.pid %}">{{ p.title }}</a></h5>
                                             <h6 class="ec-pro-stitle"><a href="">{{ p.description }}</a></h6>
                                             <div class="ec-pro-rat-price">
                                                 <div class="ec-pro-rat-pri-inner">
@@ -318,15 +306,15 @@
                                     <div class="ec-all-product-inner">
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
+                                                <a href="{% url 'core:product-detail' p.pid %}" class="image">
                                                     <img class="main-image" src="{{ p.image.url }}"
                                                         alt="Product" />
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ p.title }}</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">{{ p.description }}</a></h6>
+                                            <h5 class="ec-pro-title"><a href="{% url 'core:product-detail' p.pid %}">{{ p.title }}</a></h5>
+                                            <h6 class="ec-pro-stitle"><a href="">{{ p.description }}</a></h6>
                                             <div class="ec-pro-rat-price">
                                                 <div class="ec-pro-rat-pri-inner">
                                                     <span class="ec-price">
@@ -357,15 +345,15 @@
                                     <div class="ec-all-product-inner">
                                         <div class="ec-pro-image-outer">
                                             <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
+                                                <a href="{% url 'core:product-detail' p.pid %}" class="image">
                                                     <img class="main-image" src="{{ p.image.url }}"
                                                         alt="Product" />
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ p.title }}</a></h5>
-                                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">{{ p.description }}</a></h6>
+                                            <h5 class="ec-pro-title"><a href="{% url 'core:product-detail' p.pid %}">{{ p.title }}</a></h5>
+                                            <h6 class="ec-pro-stitle"><a href="">{{ p.description }}</a></h6>
                                             <div class="ec-pro-rat-price">
                                                 <div class="ec-pro-rat-pri-inner">
                                                     <span class="ec-price">
@@ -411,7 +399,7 @@
                                                     <i class="ecicon eci-star"></i>
                                                 </span>
                                             </div>
-                                            <h5 class="ec-spe-pro-title"><a href="product-left-sidebar.html">SKISET PRO DIGITAL LOCK S18-PRO</a></h5>
+                                            <h5 class="ec-spe-pro-title"><a href="">SKISET PRO DIGITAL LOCK S18-PRO</a></h5>
                                             <div class="ec-spe-pro-desc">Smart Keylock with face recognition, fingerprint scanner, keycard swipe, extended battery life, etc</div>
                                             <div class="ec-spe-price">
                                                 <span class="new-price">₦399999.99</span>
@@ -460,16 +448,33 @@
                                 <div class="ec-test-inner">
                                     <div class="ec-test-img">
                                         <img alt="testimonial" title="testimonial"
-                                            src="{% static 'assets/images/testimonial/1.jpg' %}" />
+                                            src="{% static 'assets/images/testimonial/IMG-20220805-WA0039.jpg' %}" />
                                     </div>
                                     <div class="ec-test-content">
-                                        <div class="ec-test-name">mark jofferson</div>
-                                        <div class="ec-test-designation">- CEO & Founder Invision</div>
+                                        <div class="ec-test-name">Stanley Onyeka</div>
+                                        <div class="ec-test-designation">- Concerned Citizen</div>
                                         <div class="ec-test-divider">
                                             <i class="fi-rr-quote-right"></i>
                                         </div>
-                                        <div class="ec-test-desc">Lorem ipsum dolor sit amet consectetur Lorem ipsum
-                                            dolor dolor sit amet.
+                                        <div class="ec-test-desc">A very good store with a wide range of products and
+                                            services. I highly recommend them.
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="ec-test-item">
+                                <div class="ec-test-inner">
+                                    <div class="ec-test-img">
+                                        <img alt="testimonial" title="testimonial"
+                                            src="{% static 'assets/images/testimonial/IMG-20220805-WA0039.jpg' %}" />
+                                    </div>
+                                    <div class="ec-test-content">
+                                        <div class="ec-test-name">Stanley Onyeka</div>
+                                        <div class="ec-test-designation">- CEO Stanon Digitals</div>
+                                        <div class="ec-test-divider">
+                                            <i class="fi-rr-quote-right"></i>
+                                        </div>
+                                        <div class="ec-test-desc">A very good store with a wide range of products and
+                                            services. I highly recommend them.
                                         </div>
                                     </div>
                                 </div>
@@ -478,34 +483,16 @@
                                 <div class="ec-test-inner">
                                     <div class="ec-test-img">
                                         <img alt="testimonial" title="testimonial"
-                                            src="{% static 'assets/images/testimonial/2.jpg' %}" />
+                                            src="{% static 'assets/images/testimonial/IMG-20220805-WA0039.jpg' %}" />
                                     </div>
                                     <div class="ec-test-content">
-                                        <div class="ec-test-name">mark jofferson</div>
-                                        <div class="ec-test-designation">- CEO & Founder Invision</div>
+                                        <div class="ec-test-name">Stanley Onyeka</div>
+                                        <div class="ec-test-designation">- CEO Stanon Digitals</div>
                                         <div class="ec-test-divider">
                                             <i class="fi-rr-quote-right"></i>
                                         </div>
-                                        <div class="ec-test-desc">Lorem ipsum dolor sit amet consectetur Lorem ipsum
-                                            dolor dolor sit amet.
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="ec-test-item">
-                                <div class="ec-test-inner">
-                                    <div class="ec-test-img">
-                                        <img alt="testimonial" title="testimonial"
-                                            src="{% static 'assets/images/testimonial/3.jpg' %}" />
-                                    </div>
-                                    <div class="ec-test-content">
-                                        <div class="ec-test-name">mark jofferson</div>
-                                        <div class="ec-test-designation">- CEO & Founder Invision</div>
-                                        <div class="ec-test-divider">
-                                            <i class="fi-rr-quote-right"></i>
-                                        </div>
-                                        <div class="ec-test-desc">Lorem ipsum dolor sit amet consectetur Lorem ipsum
-                                            dolor dolor sit amet.
+                                        <div class="ec-test-desc">A very good store with a wide range of products and
+                                            services. I highly recommend them.
                                         </div>
                                     </div>
                                 </div>
@@ -626,7 +613,6 @@
     </section>
     <!-- Ec Instagram End -->
 
-   
 
        
 {% endblock content %}

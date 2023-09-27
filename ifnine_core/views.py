@@ -10,6 +10,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
+from userauths.models import ContactUs
 
 
 # Create your views here.
@@ -280,11 +281,13 @@ def checkout_view(request):
     
     paypal_payment_button = PayPalPaymentsForm(initial=paypal_dict)
 
-    
-    # cart_total_amount = 0
-    # 
+    try:
+        active_address = Address.objects.get(user=request.user, status=True)
+    except:
+        messages.warning(request, "You have more than one address, please activate just one")
+        active_address = None
             
-    return render(request, 'core/checkout.html', {'cart_data':request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount, 'paypal_payment_button':paypal_payment_button})
+    return render(request, 'core/checkout.html', {'cart_data':request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount, 'paypal_payment_button':paypal_payment_button, 'active_address':active_address})
             
 
 @login_required
@@ -304,7 +307,25 @@ def payment_failed_view(request):
 
 @login_required
 def customer_dashboard(request):
-    return render(request, 'core/dashboard.html')
+    address = Address.objects.filter(user=request.user)
+    
+    if request.method == "POST":
+        address = request.POST.get("address")
+        mobile = request.POST.get("mobile")
+        new_address = Address.objects.create(
+            user=request.user, 
+            address=address, 
+            mobile=mobile,
+            )
+        
+        messages.success(request, "Address added succesfully")
+        return redirect("core:dashboard")
+
+    context = {
+        "address": address,
+    }
+    return render(request, 'core/dashboard.html', context)
+
 
 @login_required
 def user_history(request):
@@ -322,4 +343,68 @@ def order_detail(request, id):
         "order_items": order_items,
     }
     return render(request, 'core/order-detail.html', context)
+
+
+def make_address_default(request):
+    id = request.GET['id']
+    Address.objects.update(status=False)
+    Address.objects.filter(id=id).update(status=True)
+    return JsonResponse({"boolean":True})
+    
+
+@login_required
+def wishlist_view(request):
+    wishlist = WishList.objects.all()
+    context = {
+        "w" : wishlist,
+    }
+    return render(request, 'core/wishlist.html', context)
+
+
+def add_to_wishlist(request):
+    product_id = request.GET['id']
+    product = Product.objects.get(id=product_id)
+    
+    context = {}
+    
+    wishlist_count = WishList.objects.filter(user=request.user, product=product).count()
+    print(wishlist_count)
+    
+    if wishlist_count > 0:
+        context = {
+            "bool": True,
+        }
+    else:
+        new_wishlist = WishList.objects.create(
+            product = product,
+            user = request.user
+        )
+        context ={
+            "bool": True,
+        }
+    
+    return JsonResponse(context)
+
+
+def contact(request):
+    return render(request, 'core/contact.html')
+
+def ajax_contact_form(request):
+    full_name = request.GET['full_name']
+    email = request.GET['email']
+    phone = request.GET['phone']
+    message = request.GET['message']
+    
+    contact = ContactUs.objects.create(
+        full_name = full_name,
+        email = email,
+        phone = phone,
+        message = message,
+    )
+    
+    data = {
+        "bool": True,
+        "message": "Message sent successfully"
+    }
+    return JsonResponse({"data":data})
     

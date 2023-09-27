@@ -13,83 +13,6 @@
      <!-- Background css -->
      <link rel="stylesheet" id="bg-switcher-css" href="{% static 'assets/css/backgrounds/bg-4.css' %}">
 
-
-    <!-- ekka Cart Start -->
-    <div class="ec-side-cart-overlay"></div>
-    <div id="ec-side-cart" class="ec-side-cart">
-        <div class="ec-cart-inner">
-            <div class="ec-cart-top">
-                <div class="ec-cart-title">
-                    <span class="cart_title">My Cart</span>
-                    <button class="ec-close">×</button>
-                </div>
-                <ul class="eccart-pro-items">
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{% static 'assets/images/product-image/6_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
-                            <span class="cart-price"><span>$76.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{% static 'assets/images/product-image/12_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
-                            <span class="cart-price"><span>$64.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{% static 'assets/images/product-image/3_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
-                            <span class="cart-price"><span>$59.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="ec-cart-bottom">
-                <div class="cart-sub-total">
-                    <table class="table cart-table">
-                        <tbody>
-                            <tr>
-                                <td class="text-left">Sub-Total :</td>
-                                <td class="text-right">$300.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">VAT (20%) :</td>
-                                <td class="text-right">$60.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Total :</td>
-                                <td class="text-right primary-color">$360.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="cart_btn">
-                    <a href="cart.html" class="btn btn-primary">View Cart</a>
-                    <a href="checkout.html" class="btn btn-secondary">Checkout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ekka Cart End -->
-
     <!-- Ec breadcrumb start -->
     <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
         <div class="container">
@@ -137,47 +60,9 @@
                                 <img class="v-img" src="{{ vendor.image.url }}" alt="vendor image">
                                 <h4>{{vendor.title}}</h4>
                             </div>
-                            {% comment %} <div class="ec-vendor-block-items">
-                                <ul>
-                                    <li><a href="vendor-dashboard.html">Dashboard</a></li>
-                                    <li><a href="vendor-profile.html">Public Profile</a></li>
-                                    <li><a href="vendor-uploads.html">Uploads</a></li>
-                                    <li><a href="track-order.html">Track Shipping</a></li>
-                                    <li><a href="vendor-settings.html">Settings (Edit)</a></li>
-                                </ul>
-                            </div> {% endcomment %}
+                            
                         </div>
                     </div>
-                    {% comment %} <ul class="ec-cat-tab-nav nav">
-                        
-                        <li class="cat-item"><a class="cat-link active" data-bs-toggle="tab" href="#tab-cat-1">
-                                <div class="cat-icons"><img class="cat-icon" src="{% static 'assets/images/icons/cat_1.png' %}"
-                                        alt="cat-icon"><img class="cat-icon-hover" src="{% static 'assets/images/icons/cat_1_1.png' %}"
-                                        alt="cat-icon"></div>
-                                <div class="cat-desc"><span>Clothes</span><span>440 Products</span></div>
-                            </a>
-                        </li>
-                        <li class="cat-item"><a class="cat-link" data-bs-toggle="tab" href="#tab-cat-2">
-                                <div class="cat-icons"><img class="cat-icon" src="{% static 'assets/images/icons/cat_2.png' %}"
-                                        alt="cat-icon"><img class="cat-icon-hover" src="{% static 'assets/images/icons/cat_2_1.png' %}"
-                                        alt="cat-icon"></div>
-                                <div class="cat-desc"><span>Watches</span><span>510 Products</span></div>
-                            </a>
-                        </li>
-                        <li class="cat-item"><a class="cat-link" data-bs-toggle="tab" href="#tab-cat-3">
-                                <div class="cat-icons"><img class="cat-icon" src="{% static 'assets/images/icons/cat_3.png' %}"
-                                        alt="cat-icon"><img class="cat-icon-hover" src="{% static 'assets/images/icons/cat_3_1.png' %}"
-                                        alt="cat-icon"></div>
-                                <div class="cat-desc"><span>Bags</span><span>620 Products</span></div>
-                            </a></li>
-                        <li class="cat-item"><a class="cat-link" data-bs-toggle="tab" href="#tab-cat-4">
-                                <div class="cat-icons"><img class="cat-icon" src="{% static 'assets/images/icons/cat_4.png' %}"
-                                        alt="cat-icon"><img class="cat-icon-hover" src="{% static 'assets/images/icons/cat_4_1.png' %}"
-                                        alt="cat-icon"></div>
-                                <div class="cat-desc"><span>Shoes</span><span>320 Products</span></div>
-                            </a></li>
-                    </ul> {% endcomment %}
-
                 </div>
                 <!-- Category Nav End --> 
                 

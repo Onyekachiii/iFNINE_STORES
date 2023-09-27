@@ -1,5 +1,5 @@
 from django.urls import path, include
-from ifnine_core.views import index, category_list_view, category_product_list_view, product_list_view, vendor_list_view, vendor_detail_view, product_detail_view, tag_list, ajax_add_review, search_view, filter_product, add_to_cart, cart_view, delete_item_from_cart, update_cart, checkout_view, payment_completed_view, payment_failed_view, customer_dashboard, user_history, order_detail
+from ifnine_core.views import index, category_list_view, category_product_list_view, product_list_view, vendor_list_view, vendor_detail_view, product_detail_view, tag_list, ajax_add_review, search_view, filter_product, add_to_cart, cart_view, delete_item_from_cart, update_cart, checkout_view, payment_completed_view, payment_failed_view, customer_dashboard, user_history, order_detail, make_address_default, add_to_wishlist, wishlist_view, contact, ajax_contact_form
 
 app_name = 'core'
 
@@ -63,4 +63,16 @@ urlpatterns=[
     # Order detail
     path('user-history/order/<int:id>', order_detail, name='order-detail'),
     
+    # Making address default
+    path('make-default-address', make_address_default, name='make-default-address'),
+    
+     # Making address default
+    path('wishlist/', wishlist_view, name='wishlist'),
+    
+    # Making address default
+    path('add-to-wishlist/', add_to_wishlist, name='add-to-wishlist'),
+    
+    # Making address default
+    path('contact/', contact, name='contact'),
+    path('ajax-contact-form/', ajax_contact_form, name='ajax-contact-form'),
 ]

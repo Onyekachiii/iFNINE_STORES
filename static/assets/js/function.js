@@ -175,5 +175,96 @@ $(document).ready(function() {
     });
     
 
+    // Making default addresses
+    $(document).on("click", ".make-default-address", function(){
+        let id = $(this).attr("data-address-id")
+        let this_val = $(this)
 
-})
+        console.log("ADDRESS ID: ", id)
+        console.log("THIS VAL: ", this_val)
+
+        $.ajax({
+            url: '/make-default-address',
+            data: {
+                'id': id,
+            },
+            dataType: 'json',
+            success: function(response){
+                console.log("Default address updated")
+                if (response.boolean == true){
+
+                    $(".check").hide();
+                    $(".action_btn").show();
+                
+                    $(".check-"+id).show();
+                    $(".button-"+id).hide();
+                }
+            }
+
+        })
+    })
+
+    // Adding to wishlist
+    $(document).on("click", ".add-to-wishlist", function(){
+        let product_id = $(this).attr("data-product-item")
+        let this_val = $(this)
+
+        console.log("PRODUCT ID: ", product_id)
+
+        $.ajax({
+            url: '/add-to-wishlist',
+            data: {
+                'id': product_id,
+            },
+            dataType: 'json',
+            beforeSend: function(){
+                console.log("Adding to wishlist...")
+            },
+            success: function(response){
+                this_val.html("✓")
+                if (response.boolean === true){
+                    console.log("Added to wishlist")
+                }
+            }
+        })
+
+    
+    })
+
+
+    // Info from Contact Us page
+    $(document).on("submit", "#contact-form-ajax", function(){
+        e.preventDefault()
+        console.log("Contact us form submitted")
+
+        let full_name = $("#full_name").val()
+        let email = $("#email").val()
+        let phone = $("#phone").val()
+        let message = $("#message").val()
+
+        console.log("FULL NAME: ", full_name)
+        console.log("EMAIL: ", email)
+        console.log("PHONE: ", phone)
+        console.log("MESSAGE: ", message)
+
+        $.ajax({
+            url: '/ajax-contact-form',
+            data: {
+                'full_name': full_name,
+                'email': email,
+                'phone': phone,
+                'message': message,
+            },
+            dataType: 'json',
+            beforeSend: function(){
+                console.log("Sending message...")
+            },
+            success: function(response){
+                console.log("Message sent")
+                $("#contact-form-ajax").hide()
+                $("#message-response").html("Message sent successfully")
+            }
+        })
+    })
+
+});
