@@ -19,6 +19,8 @@
   <link rel="apple-touch-icon" href="{% static 'assets/images/favicon/if9_.png' %}" />
   <meta name="msapplication-TileImage" content="{% static 'assets/images/favicon/if9_.png' %}" />
 
+
+
   <!-- css Icon Font -->
   <link rel="stylesheet" href="{% static 'assets/css/vendor/ecicons.min.css' %}" />
 
@@ -35,6 +37,10 @@
 
   <!-- Main Style -->
   <link type="text/css" rel="stylesheet" href="{% static 'assets/css/demo7.css' %}" />
+
+  <!-- Fontawesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha512-L7MWcK7FNPcwNqnLdZq86lTHYLdQqZaz5YcAgE+5cnGmlw8JT03QB2+oxL100UeB6RlzZLUxCGSS4/++mNZdxw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   
 </head>
@@ -114,9 +120,9 @@
                            </div>
                            <!-- Header User End -->
                            <!-- Header Cart Start -->
-                           <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
+                           <a href="{% url 'core:wishlist' %}" class="ec-header-btn ec-header-wishlist">
                                <div class="header-icon"><i class="fi-rr-heart"></i></div>
-                               <span class="ec-header-count">4</span>
+                               <span class="ec-header-count">{{ wishlist.count }}</span>
                            </a>
                            <!-- Header Cart End -->
                            <!-- Header Cart Start -->
@@ -182,9 +188,9 @@
                                </div>
                                <!-- Header User End -->
                                <!-- Header wishlist Start -->
-                               <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
+                               <a href="{% url 'core:wishlist' %}" class="ec-header-btn ec-header-wishlist">
                                    <div class="header-icon"><i class="fi-rr-heart"></i></div>
-                                   <span class="ec-header-count">4</span>
+                                   <span class="ec-header-count">{{ wishlist.count }}</span>
                                </a>
                                <!-- Header wishlist End -->
                                <!-- Header Cart Start -->
@@ -597,7 +603,7 @@
                     <a href="{% url 'core:index' %}" class="ec-header-btn"><i class="fi-rr-home"></i></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="wishlist.html" class="ec-header-btn"><i class="fi-rr-heart"></i><span class="ec-cart-noti">4</span></a>
+                    <a href="{% url 'core:wishlist' %}" class="ec-header-btn"><i class="fi-rr-heart"></i><span class="ec-cart-noti">{{ wishlist.count }}</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
                     <a href="{% url 'userauths:sign-in' %}" class="ec-header-btn"><i class="fi-rr-user"></i></a>

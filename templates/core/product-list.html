@@ -128,7 +128,7 @@
                                 <button class="btn btn-list"><i class="fi-rr-list"></i></button>
                             </div>
                         </div>
-                        <div class="col-md-6 ec-sort-select">
+                        {% comment %} <div class="col-md-6 ec-sort-select">
                             <span class="sort-by">Sort by</span>
                             <div class="ec-select-inner">
                                 <select name="ec-select" id="ec-select">
@@ -140,7 +140,7 @@
                                     <option value="5">Price, high to low</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                     <!-- Shop Top End -->
 
@@ -217,15 +217,15 @@
                                 {% endfor %}
                                 <!-- Ec Pagination Start -->
                                 <div class="ec-pro-pagination">
-                                    <span>Showing 1-12 of 21 item(s)</span>
-                                    <ul class="ec-pro-pagination-inner">
+                                    <span>Showing 1-{{ products.count }} of {{ products.count }} item(s)</span>
+                                    {% comment %} <ul class="ec-pro-pagination-inner">
                                         <li><a class="active" href="#">1</a></li>
                                         <li><a href="#">2</a></li>
                                         <li><a href="#">3</a></li>
                                         <li><a href="#">4</a></li>
                                         <li><a href="#">5</a></li>
                                         <li><a class="next" href="#">Next <i class="ecicon eci-angle-right"></i></a></li>
-                                    </ul>
+                                    </ul> {% endcomment %}
                                 </div>
                                 <!-- Ec Pagination End -->
                             </div>
@@ -285,7 +285,7 @@
                                 </div>
                             </div>
                             
-                            <div class="ec-sb-title">
+                            {% comment %} <div class="ec-sb-title">
                                 <h3 class="ec-sidebar-title">Price</h3>
                             </div>
                             <div class="ec-sb-block-content es-price-slider">
@@ -308,7 +308,7 @@
                                 <div class="mb-20 w-100">
                                     <button class="btn mt-20 w-100">Filter</button>
                                 </div>
-                            </div>
+                            </div> {% endcomment %}
                             
                         </div>
                     </div>

@@ -25,7 +25,7 @@
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
                                 <li class="ec-breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
-                                <li class="ec-breadcrumb-item active">Products</li>
+                                <li class="ec-breadcrumb-item active">Product Details</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
                         </div>
@@ -106,8 +106,8 @@
                                                     <span class="ec-single-progressbar"></span>
                                                 </div>
                                                 <div class="ec-single-sales-countdown">
-                                                    <div class="ec-single-countdown"><span
-                                                            id="ec-single-countdown"></span></div>
+                                                    {% comment %} <div class="ec-single-countdown"><span
+                                                            id="ec-single-countdown"></span></div> {% endcomment %}
                                                     <div class="ec-single-count-desc">Time is Running Out!</div>
                                                 </div>
                                             </div>
@@ -134,22 +134,11 @@
                                                     </ul>
                                                 </div> 
                                             </div>
-                                            {% comment %} <div class="ec-pro-variation-inner ec-pro-variation-color">
-                                                <span>Color</span>
-                                                <div class="ec-pro-variation-content">
-                                                    <ul>
-                                                        <li class="active"><span
-                                                                style="background-color:#23839c;"></span></li>
-                                                        <li><span style="background-color:#000;"></span></li>
-                                                    </ul>
-                                                </div>
-                                            </div> {% endcomment %}
+                                            
                                         </div>
                                         
                                         <div class="ec-single-qty">
-                                            {% comment %} <div class="qty-plus-minus">
-                                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                                            </div>  {% endcomment %}
+                                            
                                             
                                             <input type="number" value="1" name="" id="product-quantity" class="qty-plus-minus  w-25 mb-15 product-quantity-{{p.id}}"/><br/>
                                             
@@ -226,7 +215,7 @@
 
                                 <div id="ec-spt-nav-review" class="tab-pane fade">
                                     <div class="row">
-                                        <div class="ec-t-review-wrapper">
+                                        <div class="ec-t-review-wrapper comment-list">
                                             {% for r in reviews %}
                                             <div class="ec-t-review-item">
                                                 <div class="ec-t-review-avtar">
@@ -234,17 +223,17 @@
                                                 </div>
                                                 <div class="ec-t-review-content">
                                                     <div class="ec-t-review-top">
-                                                        <div class="ec-t-review-name">{{ r.user.username|title }}</div>
-                                                        <div class="ec-t-review-rating">
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star fill"></i>
-                                                            <i class="ecicon eci-star-o"></i>
-                                                        </div>
+                                                        <div class="ec-t-review-name">{{ r.user.username|title }}</div>                                                        
                                                     </div>
+                                                    {% for s in r.rating|ljust:r.rating %}                                                    
+                                                        <i class="fas fa-star text-warning"></i>                                                    
+                                                    {% endfor %}
                                                     <div class="ec-t-review-bottom">
                                                         <p>{{ r.review }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="ec-t-review-bottom">
+                                                        <p>{{ r.date|date:"d M, Y" }}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -252,30 +241,36 @@
                                             {% endfor %}
 
                                         </div>
-                                        <div class="ec-ratting-content">
-                                            <h3 class= "add-review">Add a review</h3>
-                                            <strong class="text-success" id="review-resp"></strong>
-                                            <div class="ec-ratting-form">
-                                                <form class="form-contact comment_form hide-commentForm" action="{% url 'core:ajax-add-review' p.id %}" id="commentForm" method="POST">
+                                        {% if request.user.is_authenticated %}
+                                        {% if make_review %}
+                                            <div class="ec-ratting-content">
+                                                <h3 class= "add-review">Add a review</h3>
+                                                <strong class="text-success" id="review-resp"></strong>
+                                                <div class="ec-ratting-form">
                                                     
-                                                    {% csrf_token %} 
-                                                    <div class="ec-ratting-input">
-                                                        {{ review_form.review }}
-                                                    </div>
-                                                    <div class="ec-ratting-input">
-                                                       
-                                                        Your rating:{{ review_form.rating }}
-                                                    </div>
-                                            
-                                                    <div class="ec-ratting-input form-submit">
-                                
-                                                        <button class="btn btn-primary" type="submit" 
-                                                            value="Submit">Submit</button>
-                                                    </div>
-                                                </form>
+                                                    <form class="form-contact commentForm hide-commentForm" action="{% url 'core:ajax-add-review' p.id %}" id="commentForm" method="POST">
+                                                        
+                                                        {% csrf_token %} 
+                                                        <div class="ec-ratting-input">
+                                                            {{ review_form.review }}
+                                                        </div>
+                                                        <div class="ec-ratting-input">
+                                                        
+                                                            Your rating:{{ review_form.rating }}
+                                                        </div>
+                                                
+                                                        <div class="ec-ratting-input form-submit">
+                                    
+                                                            <button class="btn btn-primary" type="submit" 
+                                                                value="Submit">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                    
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        {% endif %}
+                                        {% endif %}
+                                    </div>    
                                 </div>
                             </div>
                         </div>
@@ -315,8 +310,8 @@
                                         src="{{ p.image.url }}" alt="Product" />
                                 </a>
                                 <span class="percentage">{{ p.get_percentage|floatformat:0 }}%</span>
-                                <a href="#" class="quickview" data-link-action="quickview" title="Quick view"
-                                    data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>
+                                <a href="{% url 'core:product-detail' p.pid %}" class="quickview" data-link-action="quickview" title="Quick view"
+                                     ><i class="fi-rr-eye"></i></a>
                                 <div class="ec-pro-actions">
                                     <a href="compare.html" class="ec-btn-group compare" title="Compare"><i
                                             class="fi fi-rr-arrows-repeat"></i></a>
@@ -348,19 +343,6 @@
                             <div class="ec-pro-option">
 
                                 <div class="ec-pro-color">
-                                    {% comment %} <span class="ec-pro-opt-label">Color</span>
-                                    <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="{% static 'assets/images/product-image/6_1.jpg' %}"
-                                                data-src-hover="assets/images/product-image/6_1.jpg"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#e8c2ff;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="{% static 'assets/images/product-image/6_2.jpg' %}"
-                                                data-src-hover="assets/images/product-image/6_2.jpg"
-                                                data-tooltip="Orange"><span
-                                                    style="background-color:#9cfdd5;"></span></a></li>
-                                    </ul> {% endcomment %}
                                 </div>
                                 <div class="ec-pro-size">
                                     <span class="ec-pro-opt-label">Size</span>
@@ -411,17 +393,9 @@
     <script src="{% static 'assets/js/plugins/infiniteslidev2.js' %}"></script>
     <script src="{% static 'assets/js/vendor/jquery.magnific-popup.min.js' %}"></script>
     <script src="{% static 'assets/js/plugins/jquery.sticky-sidebar.js' %}"></script>
-    <!-- Google translate Js -->
-    {% comment %} <script src="{% static 'assets/js/vendor/google-translate.js' %}"></script> {% endcomment %}
-    <script>
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
-        }
-    </script>
-    <!-- Main Js -->
-    {% comment %} <script src="{% static 'assets/js/vendor/index.js' %}"></script> {% endcomment %}
-    <script src="{% static 'assets/js/main.js' %}"></script>
-    {% comment %} <script src="{% static 'assets/js/function.js' %}"></script>   {% endcomment %}
+   
+    <script src="{% static 'assets/js/main.js' %}"></script>  
+    
 
 </body>
 </html>

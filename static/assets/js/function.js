@@ -1,45 +1,5 @@
 console.log("Hello World from function.js!")
 
-// $("#commentForm").submit(function(e) {
-//     e.preventDefault();
-    
-//     $.ajax({
-//         data: $(this).serialize(),
-
-//         method: $(this).attr("method"),
-
-//         url: $(this).attr("action"),
-        
-//         dataType: "json",
-       
-//         success: function(response) {
-//             console.log("comment saved");
-
-
-//             // if (response.bool== True) {
-//             //     $("#review-resp").html("Review added successfully")
-//             //     $(".hide-commentForm").hide()
-//             //     $(".add-review").hide()
-
-//             //     let _html = '<div class="ec-t-review-item">'<div class="ec-t-review-avtar">'
-//             //         '<img src="{% static 'assets/images/review-image/1.jpg' %}" alt="" /></div>'
-//             //         '<div class="ec-t-review-content">'
-//             //         '<div class="ec-t-review-top">'
-//             //         '<div class="ec-t-review-name">{{ r.user.username|title }}</div>'
-//             //         '<div class="ec-t-review-rating">{{ r.rating }}</div>'
-//             //         '</div>'
-//             //         '<div class="ec-t-review-bottom">'
-//             //         '<p>{{ r.review }}</p>'
-//             //         '</div>'
-//             //         '</div>'
-//             //         '</div>'
-            
-//         }
-//     });
-    
-// });
-
-
 
 // for category and vendor filter functionality
 
@@ -163,10 +123,10 @@ $(document).ready(function() {
             },
             dataType:'json',
             beforeSend:function(){
-                this_val.hide();
+                this_val.hide()
             },
             success:function(response){
-                this_val.show();
+                this_val.show()
                 $(".cart-items-count").text(response.totalcartitems)
                 $("#cart-list").html(response.data)
             }
@@ -231,6 +191,28 @@ $(document).ready(function() {
     
     })
 
+    // Removing from wishlist
+    $(document).on("click", ".delete-wishlist-product", function(){
+        let wishlist_id = $(this).attr("data-wishlist-product")
+        let this_val = $(this)
+
+        console.log("WISHLIST ID: ", wishlist_id)
+
+        $.ajax({
+            url: "/remove-from-wishlist",
+            data: {
+                'id': wishlist_id,
+            },
+            dataType: 'json',
+            beforeSend: function(){
+                console.log("Removing from wishlist...")
+            },
+            success: function(response){
+                $("#wishlist-list").html(response.data)
+            }
+        });
+    })
+
 
     // Info from Contact Us page
     $(document).on("submit", "#contact-form-ajax", function(){
@@ -266,5 +248,61 @@ $(document).ready(function() {
             }
         })
     })
+
+    $(".commentForm").submit(function(e) {
+        e.preventDefault();
+        
+        $.ajax({
+            data: $(this).serialize(),
+    
+            method: $(this).attr("method"),
+    
+            url: $(this).attr("action"),
+            
+            dataType: "json",
+           
+            success: function(response) {
+                console.log("comment saved");
+    
+    
+                if (response.bool == true) {
+                    $("#review-resp").html("Review added successfully")
+                    $(".hide-commentForm").hide()
+                    $(".add-review").hide()
+    
+                    let _html =  '<div class="ec-t-review-item">'
+                        _html += '<div class="ec-t-review-avtar">'
+                        _html += '<img src="ifnine_stores/static/assets/images/review-image/1.jpg" alt=""/>'
+                        _html += '</div>'
+
+                        _html += '<div class="ec-t-review-content">'
+                        _html += '<div class="ec-t-review-top">'
+                        _html += '<div class="ec-t-review-name">'+ response.context.user +'</div>'
+                        _html += '<div class="ec-t-review-rating">'
+
+                        for (let i = 1; i <= response.content.rating; i++ ){
+                            _html += '<i class="fas fa-star text-warning"></i>'
+                        }                
+                        _html += '</div>'                        
+                        _html += '</div>'
+
+                        _html += '<div class="ec-t-review-bottom">'
+                        _html += '<p>'+ response.content.review +'</p>'
+                        _html += '</div>'
+                        _html += '<div class="ec-t-review-bottom">'
+                        _html += '<p>{{ r.date|date:"d M, Y" }}</p>'
+                        _html += '</div>'
+                        _html += '</div>'
+                        _html += '</div>'
+
+                        $(".comment-list").prepend(_html)
+                    }
+                
+                
+            }
+        });
+        
+    });
+    
 
 });

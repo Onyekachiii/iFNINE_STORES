@@ -119,7 +119,7 @@
                                 </div>
                                 <!-- Sidebar Category Block -->
                                 <!-- Sidebar Price Block -->
-                                <div class="ec-sidebar-block ec-price-clock">
+                                {% comment %} <div class="ec-sidebar-block ec-price-clock">
                                     <div class="ec-sb-title">
                                         <h3 class="ec-sidebar-title">Price</h3>
                                     </div>
@@ -136,7 +136,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> {% endcomment %}
                             </div>
                         </div>
                         <div class="ec-sidebar-slider">
@@ -209,7 +209,7 @@
                                                         
                                                         <div class="ec-pro-actions">
                                                             <a href="{% url 'core:product-detail' p.pid %}" class="quickview" data-link-action="quickview" title="Quick view"><i class="fi-rr-eye"></i></a>
-                                                            <button class="ec-btn-group wishlist add-to-wishlist" data-product-item="{{p.id}}" title="Wishlist"><i class="fi-rr-heart"></i></button>
+                                                            <button type="submit" class="ec-btn-group wishlist add-to-wishlist" data-product-item="{{p.id}}" title="Wishlist"><i class="fi-rr-heart"></i></button>
                                                             
                                                             {% comment %} <a href="compare.html" class="ec-btn-group compare" title="Compare"><i class="fi fi-rr-arrows-repeat"></i></a> {% endcomment %}
                                                             <span class="add-cart">
@@ -406,16 +406,12 @@
                                                 <span class="old-price">₦459999.00</span>
                                             </div>
                                             <div class="ec-spe-pro-btn">
-                                                <a href="#" class="btn btn-lg btn-primary">Add To Cart</a>
+                                                <a href="{% url 'core:product-list' %}" class="btn btn-lg btn-primary">Chick it out</a>
                                             </div>
                                             <div class="ec-spe-pro-progress">
                                                 <span class="ec-spe-pro-progress-desc"><span>Already Sold:
                                                         <b>3</b></span><span>Available: <b>7</b></span></span>
                                                 <span class="ec-spe-pro-progressbar"></span>
-                                            </div>
-                                            <div class="countdowntimer">
-                                                <span class="ec-spe-count-desc"> Hurry Up! Offer ends in:</span>
-                                                <span id="ec-spe-count-1"></span>
                                             </div>
 
                                         </div>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from taggit.models import Tag
+from django.db.models import Count, Avg
 from ifnine_core.forms import ProductReviewForm
 from ifnine_core.models import Product, ProductImages, Category, Vendor, CartOrder, CartOrderProducts, ProductReview, WishList, Address
 from django.template.loader import render_to_string
@@ -11,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
 from userauths.models import ContactUs
+from django.core import serializers
 
 
 # Create your views here.
@@ -82,10 +84,19 @@ def product_detail_view(request, pid):
     #Product review form
     review_form = ProductReviewForm()
     
+    make_review = True
+    
+    if request.user.is_authenticated:
+        user_review_count = ProductReview.objects.filter(user=request.user, product=product).count()
+        
+        if user_review_count == 1:
+            make_review = False
+    
     product_images = product.product_images.all()
     
     context = {
         "p": product,
+        "make_review": make_review,
         "review_form": review_form,
         "product_images": product_images,
         "reviews": reviews,
@@ -109,7 +120,7 @@ def tag_list(request, tag_slug=None):
     return render(request, 'core/tag.html', context)
 
 def ajax_add_review(request, pid):
-    product = Product.objects.get(pid=pid)
+    product = Product.objects.get(pk=pid)
     user = request.user
     
     review = ProductReview.objects.create(
@@ -125,10 +136,13 @@ def ajax_add_review(request, pid):
         'rating': request.POST['rating'],
     }    
     
+    average_review = ProductReview.objects.filter(product=product).aggregate(rating=Avg('rating'))
+    
     return JsonResponse(
         {
         'bool': True,
         'context': context,
+        'average_review': average_review,
         }
     )
     
@@ -362,8 +376,8 @@ def wishlist_view(request):
 
 
 def add_to_wishlist(request):
-    product_id = request.GET['id']
-    product = Product.objects.get(id=product_id)
+    id = request.GET['id']
+    product = Product.objects.get(id=id)
     
     context = {}
     
@@ -407,4 +421,29 @@ def ajax_contact_form(request):
         "message": "Message sent successfully"
     }
     return JsonResponse({"data":data})
+
+
+@login_required
+def wishlist_view(request):
+    wishlist = WishList.objects.all()
+
+    context = {
+        "w" : wishlist,
+    }
+    return render(request, "core/wishlist.html", context)
+
+
+def remove_from_wishlist(request):
+    pid = request.GET['id']
+    wishlist = WishList.objects.filter(user=request.user)
+    product = WishList.objects.get(id=pid)
+    product.delete()
+    
+    context = {
+        "bool" : True,
+        "w": wishlist,
+    }
+    wishlist_json = serializers.serialize('json', wishlist)
+    data = render_to_string("core/async/wishlist-list.html", context)
+    return JsonResponse({"data": data, "w": wishlist_json})
     

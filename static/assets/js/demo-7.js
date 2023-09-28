@@ -150,6 +150,7 @@ function ecCheckCookie()
     });
     });
 
+    
     /*----------------------------- Siderbar Product Slider -------------------------------- */ 
     $(document).ready(function(){
         $('.ec-sidebar-slider .ec-sb-pro-sl').slick({
@@ -235,14 +236,7 @@ function ecCheckCookie()
         }
     });
 
-    /*--------------------- Add To Whishlist -----------------------------------*/
-    $("body").on("click", ".wishlist", function(){
-
-        var count = $(".ec-wishlist-count").html();        
-        count++;
-        $(".ec-wishlist-count").html(count); 
-        
-    });
+ 
 
     (function() {
         var $ecartToggle = $(".ec-side-toggle"),
@@ -342,25 +336,6 @@ function ecCheckCookie()
         ]
     });
 
-    // /*--------------------- Qty Plus Minus Button  ------------------------------ */
-    // var QtyPlusMinus = $(".qty-plus-minus");
-    // QtyPlusMinus.prepend('<div class="dec ec_qtybtn">-</div>');
-    // QtyPlusMinus.append('<div class="inc ec_qtybtn">+</div>');
-    // $(".ec_qtybtn").on("click", function() {
-    //     var $qtybutton = $(this);
-    //     var QtyoldValue = $qtybutton.parent().find("input").val();
-    //     if ($qtybutton.text() === "+") {
-    //         var QtynewVal = parseFloat(QtyoldValue) + 1;
-    //     } else {
-
-    //         if (QtyoldValue > 1) {
-    //             var QtynewVal = parseFloat(QtyoldValue) - 1;
-    //         } else {
-    //             QtynewVal = 1;
-    //         }
-    //     }
-    //     $qtybutton.parent().find("input").val(QtynewVal);
-    // });
 
     /*--------------------- Special inner product Slider  ------------------------------ */
     $('.ec-spe-products').slick({
@@ -971,18 +946,6 @@ function ecCheckCookie()
      });
     });
 
-    // /*--------------------- Add To  Cart Toast -------------------------------- */    
-    // $(document).ready(function(){
-    //     $(".ec-btn-group.add-to-cart").click(function() {
-    //         $("#addtocart_toast").addClass("show");
-    //         setTimeout(function(){ $("#addtocart_toast").removeClass("show") }, 3000);
-    //     });
-
-    //     $(".ec-btn-group.wishlist").click(function() {
-    //         $("#wishlist_toast").addClass("show");
-    //         setTimeout(function(){ $("#wishlist_toast").removeClass("show") }, 3000);
-    //     });
-    // });
     
     $(document).ready(function(){
         $('.ec-pro-image').append( "<div class='ec-pro-loader'></div>" );
@@ -1075,6 +1038,8 @@ function ecCheckCookie()
         return false;
 
     });
+
+    
 
     /*--------------------- Tools sidebar ---------------------- */
     $(".ec-tools-sidebar-toggle").on("click", function (e) {

@@ -1,0 +1,121 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block page_title %}iFNINE STORES | Wishlist {% endblock %}
+
+{% block content %}
+
+
+     <!-- Main Style -->
+     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" /> 
+     <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" />
+  
+      <!-- Background css -->
+     <link rel="stylesheet" id="bg-switcher-css" href="{% static 'assets/css/backgrounds/bg-4.css' %}"> 
+
+<main class="main-content" id="wishlist-list">
+
+    <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row ec_breadcrumb_inner">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="ec-breadcrumb-title">Wishlist</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- ec-breadcrumb-list start -->
+                            <ul class="ec-breadcrumb-list">
+                                <li class="ec-breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
+                                <li class="ec-breadcrumb-item active">Wishlist</li>
+                            </ul>
+                            <!-- ec-breadcrumb-list end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec breadcrumb end -->
+
+    <!-- User history section -->
+    <section class="ec-page-content ec-vendor-uploads ec-user-account wishlist-2 section-space-p">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar Area Start -->
+                <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+                    <div class="ec-sidebar-wrap">
+                        <!-- Sidebar Category Block -->
+                        <div class="ec-sidebar-block">
+                            <div class="ec-vendor-block">
+                                <div class="ec-vendor-block-items">
+                                    <ul>
+                                        <li><a href="{% url 'core:dashboard' %}">User Profile</a></li>
+                                        <li><a href="{% url 'core:user-history' %}">History</a></li>
+                                        <li><a href="{% url 'core:cart' %}">Cart</a></li>
+                                        <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ec-shop-rightside col-lg-9 col-md-12">
+                    <div class="ec-vendor-dashboard-card">
+                        <div class="ec-vendor-card-header">
+                            <h5>Wishlist</h5>
+                            <div class="ec-header-btn">
+                                <a class="btn btn-lg btn-primary" href="{% url 'core:product-list' %}">Shop Now</a>
+                            </div>
+                        </div>
+                        <div class="ec-vendor-card-body">
+                            <div class="ec-vendor-card-table">
+                                <table class="table ec-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="wish-empt">
+                                        {% for w in w %}
+                                        <tr class="pro-gl-content">
+                                            <th scope="row"><span>{{ w.product.id }}</span></th>
+                                            <td><img class="prod-img" src="{{ w.product.image.url }}"
+                                                    alt="product image"></td>
+                                            <td><span>
+                                                <h6><a href="{% url 'core:product-detail' w.product.pid %}"> {{ w.product.title|truncatechars:20 }}</a></h6>
+                                                </span></td>
+                                            <td><span class="d-flex"><h6>₦</h6><h6 class="current-product-price-{{ w.product.id }}">{{ w.product.price }}</h6></span></td>
+                                            <td><span class="avl">{% if w.product.in_stock %} Available {% else %}  Out of stock  {% endif %}</span></td>
+                                            <td><span class="tbl-btn">
+                                                <input type="hidden" value="1" name="" id="product-quantity" class="w-25 mb-20 product-quantity-{{w.product.id}}">
+                                                <input type="hidden" class="product-pid-{{w.product.id}}" value="{{w.product.pid}}">
+                                                <input type="hidden" class="product-image-{{w.product.id}}" value="{{w.product.image.url}}">
+                                                <input type="hidden" class="product-id-{{w.product.id}}" value="{{ w.product.id }}">
+                                                <input type="hidden" class="product-title-{{w.product.id}}" value="{{ w.product.title }}">
+                                                <button class="btn btn-lg btn-primary add-to-cart-btn" data-index="{{ w.product.id }}" title="Add To Cart"> 
+                                                    <i class="fi-rr-shopping-basket"></i>
+                                                </button>
+                                                <button class="btn btn-lg btn-primary delete-wishlist-product" data-wishlist-product="{{ w.id }}" title="Remove From List">×</button></span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End User history section -->
+
+</main>
+{% endblock content %}

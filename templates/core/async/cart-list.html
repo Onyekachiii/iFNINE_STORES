@@ -80,7 +80,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="ec-cart-update-bottom">
-                                                <a href="">Continue Shopping</a>
+                                                <a href="{% url "core:product-list" %}">Continue Shopping</a>
                                                 {% if totalcartitems %}
                                                 <span class="ec-check-order-btn mb-6">
                                                     <a class="btn btn-primary" href="{% url 'core:checkout' %}">Checkout</a>
@@ -153,5 +153,7 @@
             </div>
         </div>
      </div>
+
+
 
 </main>
