@@ -8,7 +8,7 @@
       <!-- Background css -->
      <link rel="stylesheet" id="bg-switcher-css" href="{% static 'assets/css/backgrounds/bg-4.css' %}"> 
 
-<main class="main-content" id="cart-list">
+<main class="main-content" id="wishlist-list">
 
     <!-- Ec breadcrumb start -->
     <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
@@ -45,11 +45,12 @@
                         <div class="ec-sidebar-block">
                             <div class="ec-vendor-block">
                                 <div class="ec-vendor-block-items">
-                                    <ul>
-                                        <li><a href="{% url 'core:dashboard' %}">User Profile</a></li>
+                                    <ul><li><a href="{% url 'core:user-profile' %}">User Profile</a></li>
+                                        <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
                                         <li><a href="{% url 'core:user-history' %}">History</a></li>
                                         <li><a href="{% url 'core:cart' %}">Cart</a></li>
                                         <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
+                                        <li><a href="{% url 'userauths:sign-out' %}">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -86,7 +87,7 @@
                                             <td><span>
                                                 <h6><a href="{% url 'core:product-detail' w.product.pid %}"> {{ w.product.title|truncatechars:20 }}</a></h6>
                                                 </span></td>
-                                            <td><span class="current-product-price-{{ w.product.id }}"><h6>₦{{ w.product.price }}</h6></span></td>
+                                            <td><span class="d-flex"><h6>₦</h6><h6 class="current-product-price-{{ w.product.id }}">{{ w.product.price }}</h6></span></td>
                                             <td><span class="avl">{% if w.product.in_stock %} Available {% else %}  Out of stock  {% endif %}</span></td>
                                             <td><span class="tbl-btn">
                                                 <input type="hidden" value="1" name="" id="product-quantity" class="w-25 mb-20 product-quantity-{{w.product.id}}">

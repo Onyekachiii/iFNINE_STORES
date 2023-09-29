@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect
-from userauths.forms import UserRegisterForm
+from userauths.forms import UserRegisterForm, ProfileForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.models import User
+from userauths.models import Profile
+
 
 
 User = settings.AUTH_USER_MODEL
 
-# Create your views here.
 
+# To register users
 def register_view(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST or None)
@@ -32,6 +34,7 @@ def register_view(request):
     return render(request, "userauths/sign-up.html", context)
 
 
+# To login users
 def login_view(request):
     if request.user.is_authenticated:
         messages.warning(request, f"You are already logged in")
@@ -53,8 +56,31 @@ def login_view(request):
     return render(request, "userauths/sign-in.html")
             
 
-
+# To logout users
 def logout_view(request):
     logout(request)
     messages.success(request, "You logged out successfully!")
     return redirect("userauths:sign-in")
+
+
+# To edit user profile
+def profile_update(request):
+    profile = Profile.objects.get(user=request.user)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            new_profile = form.save(commit=False)
+            new_profile.user = request.user
+            new_profile.save()
+            messages.success(request, "Profile updated successfully")
+            return redirect("core:user-profile")
+        
+    else:
+        form = ProfileForm(instance=profile)
+    
+    context = {
+        'form': form,
+        'profile': profile,
+        
+    }
+    return render (request, "userauths/profile-edit.html", context)

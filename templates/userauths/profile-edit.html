@@ -1,0 +1,130 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block page_title %}iFNINE STORES | User Profile {% endblock %}
+
+{% block content %}
+
+
+     <!-- Main Style -->
+     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" /> 
+     <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" />
+  
+      <!-- Background css -->
+     <link rel="stylesheet" id="bg-switcher-css" href="{% static 'assets/css/backgrounds/bg-4.css' %}"> 
+     
+
+<main class="main-content" id="cart-list">
+
+    <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row ec_breadcrumb_inner">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="ec-breadcrumb-title">Update Profile</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- ec-breadcrumb-list start -->
+                            <ul class="ec-breadcrumb-list">
+                                <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="ec-breadcrumb-item active">Update Profile</li>
+                            </ul>
+                            <!-- ec-breadcrumb-list end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec breadcrumb end -->
+
+    <!-- User profile section -->
+    <section class="ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar Area Start -->
+                <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+                    <div class="ec-sidebar-wrap ec-border-box">
+                        <!-- Sidebar Category Block -->
+                        <div class="ec-sidebar-block">
+                            <div class="ec-vendor-block">
+                                <!-- <div class="ec-vendor-block-bg"></div>
+                                <div class="ec-vendor-block-detail">
+                                    <img class="v-img" src="{% static 'assets/images/user/1.jpg' %}" alt="vendor image">
+                                    <h5>Mariana Johns</h5>
+                                </div> -->
+                                <div class="ec-vendor-block-items">
+                                    <ul>
+                                        <li><a href="{% url 'core:user-profile' %}">User Profile</a></li>
+                                        <li><a href="{% url 'userauths:sign-out' %}">Logout</a></li>
+                                        {% comment %} <li><a href="track-order.html">Track Order</a></li> {% endcomment %}
+                                        {% comment %} <li><a href="user-invoice.html">Invoice</a></li> {% endcomment %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ec-shop-rightside col-lg-9 col-md-12">
+                    <div class="ec-vendor-dashboard-card ec-vendor-setting-card">
+                        <div class="ec-vendor-card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="ec-vendor-block-profile">
+                                        <div class="ec-vendor-block-detail border-bottom">
+                                            {% if profile.image %}
+                                                <img class="v-img" src="{{ profile.image.url }}" alt="user image">
+                                            {% else %}
+                                                <img class="v-img" src="{% static 'assets/images/user/1.jpg' %}" alt="user image">
+                                            {% endif %}
+                                            <h5 class="name">{{ profile.full_name|title }}</h5>
+                                            {% comment %} <p>( Business Man )</p> {% endcomment %}
+                                        </div>
+                                        
+                                        <h5 class ="border-bottom mb-10">Update Profile</h5>
+                                        {% if form.errors %}
+                                        <div class= "alert-danger alert">
+                                            <strong>{{ form.errors }}</strong>                                        
+                                        </div>
+                                        {% endif %}                                        
+                                        <form action="" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="border-none;" style="font-weight: 500; color: #777;">
+                                                {{form.full_name}}
+                                            </div>
+                                            <br>
+                                            <div>
+                                                {{form.bio}}
+                                            </div>
+                                            <br>
+                                            <div>
+                                                {{form.phone}}
+                                            </div>
+                                            <br>
+                                            <div>
+                                                {{form.image}}
+                                            </div>
+                                            <br>
+                                            <div>
+                                                <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                                            </div>                              
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div> 
+            </div>
+        </div>
+    </section>
+    <!-- End User profile section -->
+
+  
+</main>
+
+    
+{% endblock content %}

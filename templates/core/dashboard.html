@@ -12,6 +12,7 @@
   
       <!-- Background css -->
      <link rel="stylesheet" id="bg-switcher-css" href="{% static 'assets/css/backgrounds/bg-4.css' %}"> 
+     
 
 <main class="main-content" id="cart-list">
 
@@ -23,13 +24,13 @@
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">User Profile</h2>
+                            <h2 class="ec-breadcrumb-title">User Dashboard</h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
                                 <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="ec-breadcrumb-item active">Profile</li>
+                                <li class="ec-breadcrumb-item active">Dashboard</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
                         </div>
@@ -57,13 +58,14 @@
                                 </div> -->
                                 <div class="ec-vendor-block-items">
                                     <ul>
-                                        <li><a href="{% url 'core:dashboard' %}">User Profile</a></li>
+                                        <li><a href="{% url 'core:user-profile' %}">User Profile</a></li>
                                         <li><a href="{% url 'core:user-history' %}">History</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="{% url 'core:wishlist' %}">Wishlist</a></li>
                                         <li><a href="{% url 'core:cart' %}">Cart</a></li>
                                         <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
-                                        <li><a href="track-order.html">Track Order</a></li>
-                                        <li><a href="{% url 'core:payment-completed' %}">Invoice</a></li>
+                                        <li><a href="{% url 'userauths:sign-out' %}">Logout</a></li>
+                                        {% comment %} <li><a href="track-order.html">Track Order</a></li> {% endcomment %}
+                                        {% comment %} <li><a href="{% url 'core:payment-completed' %}">Invoice</a></li> {% endcomment %}
                                     </ul>
                                 </div>
                             </div>
@@ -80,6 +82,19 @@
                                 <div class="col-md-12">
                                     
                                     <div class="ec-vendor-block-profile">
+                                        
+                                        <div class="ec-vendor-block-img space-bottom-30">
+                                            
+                                            <p>Hello <span>{{ request.user|title }}!</span></p>
+                                            <p>From your account you can easily view and track your orders. You can manage and change your account information like address and your contact information</p>
+                                        </div>
+                                        
+                                        <h5>Delivery Information</h5>
+
+                                        <div>
+                                            <canvas style="height: 50px;" id="myChart"></canvas>
+                                        </div>
+
                                         <form class="mb-4" method="POST">
                                             {% csrf_token %}
                                             <div class="card-hdeader">
@@ -98,14 +113,7 @@
                                                 <button type="submit" class="btn btn-primary" name="submit" value="Submit">Save Address</button>
                                             </div>
                                         </form>
-                                        <div class="ec-vendor-block-img space-bottom-30">
-                                            
-                                            <p>Hello <span>{{ request.user|title }}!</span></p>
-                                            <p>From your account you can easily view and track orders. You can manage and change your account information like address, contact information and history of orders.</p>
-                                        </div>
-                                        
-                                        <h5>Account Information</h5>
-                                        
+
                                         <div class="row">
                                             
                                             {% for a in address %}
@@ -134,4 +142,29 @@
     <!-- End User profile section -->
 
 </main>
+
+
+<script>
+    const labels = {{ month|safe }}
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Orders',
+            backgroundColor: 'rgb(67,111,255)',
+            borderColor: 'rgb(25, 99, 132)',
+            data: {{ total_orders|safe }}
+        }]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {}
+    };
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
+    
 {% endblock content %}

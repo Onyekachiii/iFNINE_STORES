@@ -1,68 +1,5 @@
 @charset "UTF-8";
-/*-----------------------------------------------------------------------------------
 
-    Item Name: Ekka - Ecommerce HTML Template + Admin Dashboard.
-    Author: ashishmaraviya
-    Version: 3.5
-    Copyright 2023
-	Author URI: https://themeforest.net/user/ashishmaraviya
-
------------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------
-    Included CSS INDEX
------------------------------------------------------------------------------------
-
-01. Typography
-02. Components
-    - Helper
-    - Common
-    - Popup Model
-    - Breadcrumb
-03. Layout 
-    - Header Section
-    - Mainslider Section
-    - Product Tab Section
-    - Banner Section
-    - Category Section
-    - Specials Section
-    - Services Section
-    - Offer Section
-    - New Product Section
-    - Testimonial Section
-    - Brand Section
-    - Instagram Section
-    - Footer Section
-    - Quickview Section
-    - Category Section
-    - Category Sidebar
-04. Pages
-    - Shop Page
-    - Login Page
-    - Register Page
-    - About us Page
-    - Term Page
-    - Contact us Page
-    - Faq Page
-    - Single Product Page
-    - Blog Page
-    - Cart Page
-    - Compare Page
-    - Track Order Page
-    - Checkout Page    
-    - Elements Tabs Page
-    - Elements Categories Page
-    - Elements Buttons Page
-    - Elements Products Page
-    - Elements Title Page
-    - Elements Coming-Soon Page
-    - Elements Blog Page
-    - Elements Typography Page
-    - Vendor Page
-    - User Page
-    - Offer Page
-    - Thank you Page
-
------------------------------------------------------------------------------------*/
 /*-------------------------------------------------
   Fonts Family & Style CSS
 ---------------------------------------------------*/
@@ -716,7 +653,7 @@ progress {
   margin-top: -1rem;
   margin-bottom: 1rem;
   font-size: 0.875em;
-  color: #6c757d;
+  color: #ffffff;
 }
 .blockquote-footer::before {
   content: "— ";
@@ -19432,7 +19369,7 @@ section.ec-instagram-section {
   font-size: 17px;
   font-weight: 600;
   margin-bottom: 11px;
-  color: #777;
+  color: #ffffff;
   letter-spacing: 0.7px;
   position: relative;
   display: block;
@@ -19448,10 +19385,10 @@ section.ec-instagram-section {
   border: 0;
   padding: 0;
   font-weight: 400;
-  color: #777;
+  color: #ffffff;
 }
 .ec-footer .footer-top .ec-footer-widget .ec-footer-links .ec-footer-link span {
-  color: #777;
+  color: #ffffff;
   font-weight: 700;
   padding-right: 6px;
 }
@@ -19462,7 +19399,7 @@ section.ec-instagram-section {
   font-size: 13px;
   line-height: 22px;
   padding: 0;
-  color: #777777;
+  color: #ffffff;
   margin-bottom: 0;
   display: inline-block;
   position: relative;
@@ -19511,7 +19448,7 @@ section.ec-instagram-section {
   line-height: 1.5;
   text-decoration: underline;
   padding-left: 11px;
-  color: #fff;
+  color: #ffffff;
 }
 .footer-off-msg a:hover {
   color: #ddd;
@@ -19592,7 +19529,7 @@ div#ec_news_signup {
   padding: 18px 0 20px 0;
 }
 .footer-bottom .ec-copy {
-  color: #777777;
+  color: #ffffff;
   font-size: 16px;
   line-height: 1.2;
 }
@@ -19608,11 +19545,11 @@ div#ec_news_signup {
 }
 .footer-bottom .ec-copy .site-name span {
   display: none;
-  color: #555;
+  color: #ffffff;
 }
 
 .footer-bottom-social {
-  color: #444444;
+  color: #ffffff;
 }
 .footer-bottom-social ul {
   display: initial;
@@ -19635,7 +19572,7 @@ div#ec_news_signup {
   font-size: 15px;
   background: #f7f7f7;
   border: 1px solid #eeeeee;
-  color: #777;
+  color: #ffffff;
 }
 .footer-bottom-social ul li a:hover {
   color: #fff;

@@ -281,7 +281,7 @@ $(document).ready(function() {
                         _html += '<div class="ec-t-review-rating">'
 
                         for (let i = 1; i <= response.content.rating; i++ ){
-                            _html += '<i class="fas fa-star text-warning"></i>'
+                            _html += '<i class="fi-rr-star text-danger"></i>'
                         }                
                         _html += '</div>'                        
                         _html += '</div>'

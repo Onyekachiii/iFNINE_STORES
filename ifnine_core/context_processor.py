@@ -9,8 +9,11 @@ def default(request):
     try:
         wishlist = WishList.objects.filter(user=request.user)
     except:
-        messages.warning(request, "You need to login before accessing your wishlist")
+        # messages.warning(request, "You have no products in your wishlist")
+        # wishlist = WishList.objects.filter(user=request.user)
         wishlist = 0
+        
+        
     
     return{
         'categories': categories,

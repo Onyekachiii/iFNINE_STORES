@@ -11,11 +11,14 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from paypal.standard.forms import PayPalPaymentsForm
-from userauths.models import ContactUs
+from userauths.models import ContactUs, Profile
 from django.core import serializers
 
+import calendar
+from django.db.models.functions import ExtractMonth
 
-# Create your views here.
+
+# To list products in homepage
 def index(request):
     products = Product.objects.filter(product_status= "published", featured=True)
     
@@ -25,6 +28,7 @@ def index(request):
     return render(request, 'core/index.html', context)
 
 
+# To list products in shop
 def product_list_view(request):
     products = Product.objects.filter(product_status= "published")
    
@@ -44,6 +48,7 @@ def category_list_view(request):
     return render(request, 'core/category-list.html', context)
 
 
+# To list productzs in each category
 def category_product_list_view(request, cid):
     category = Category.objects.get(cid=cid)
     products = Product.objects.filter(product_status= "published", category=category)
@@ -55,6 +60,7 @@ def category_product_list_view(request, cid):
     return render(request, "core/category-product-list.html", context)
 
 
+# To get all vendors
 def vendor_list_view(request):
     vendors = Vendor.objects.all()
     context = {
@@ -63,6 +69,7 @@ def vendor_list_view(request):
     return render(request, 'core/vendor-list.html', context)
 
 
+# To get vendor detail
 def vendor_detail_view(request, vid):
     vendor = Vendor.objects.get(vid = vid)
     products = Product.objects.filter(product_status= "published", vendor=vendor)
@@ -72,6 +79,8 @@ def vendor_detail_view(request, vid):
     }
     return render(request, 'core/vendor-detail.html', context)
 
+
+# To get a product detail
 def product_detail_view(request, pid):
     product = Product.objects.get(pid=pid)
     product_images = ProductImages.objects.filter(product=product)
@@ -104,6 +113,7 @@ def product_detail_view(request, pid):
     }
     return render(request, 'core/product-detail.html', context)
 
+# To get a tag list
 def tag_list(request, tag_slug=None):
     product = Product.objects.filter(product_status= "published").order_by('-id')
     
@@ -119,6 +129,8 @@ def tag_list(request, tag_slug=None):
     
     return render(request, 'core/tag.html', context)
 
+
+# To add reviews and ratings
 def ajax_add_review(request, pid):
     product = Product.objects.get(pk=pid)
     user = request.user
@@ -147,6 +159,7 @@ def ajax_add_review(request, pid):
     )
     
 
+# To search for products
 def search_view(request):
     query = request.GET.get('q')
 
@@ -159,6 +172,7 @@ def search_view(request):
     return render(request, 'core/search.html', context)
 
 
+# To filter products by categories & vendors
 def filter_product(request):
     categories = request.GET.getlist('category[]')
     vendors = request.GET.getlist('vendor[]')
@@ -175,6 +189,7 @@ def filter_product(request):
     return JsonResponse({"data":data})
 
 
+# To add to cart
 def add_to_cart(request):
     cart_product = {}
     cart_product[str(request.GET['id'])] = {
@@ -203,6 +218,8 @@ def add_to_cart(request):
     return JsonResponse({"data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj'])})
 
 
+# To list products in cart
+@login_required
 def cart_view(request):
     cart_total_amount = 0
     if 'cart_data_obj' in request.session:
@@ -211,9 +228,11 @@ def cart_view(request):
         return render(request, 'core/cart.html', {"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount': cart_total_amount})
     else:
         messages.warning(request, "Your cart is empty")
-    return redirect('core:index')
+        return redirect('core:index')
     
-
+    
+# To delete item from cart
+@login_required
 def delete_item_from_cart(request):
     product_id = str(request.GET['id'])
     if 'cart_data_obj' in request.session:
@@ -231,6 +250,8 @@ def delete_item_from_cart(request):
     return JsonResponse({"data":context, 'totalcartitems': len(request.session['cart_data_obj'])})
 
 
+# To update cart
+@login_required
 def update_cart(request):
     product_id = str(request.GET['id'])
     product_qty = int(request.GET['qty'])
@@ -250,6 +271,7 @@ def update_cart(request):
     return JsonResponse({"data":context, 'totalcartitems': len(request.session['cart_data_obj'])})
 
 
+# To checkout
 @login_required
 def checkout_view(request):
     cart_total_amount = 0
@@ -304,6 +326,7 @@ def checkout_view(request):
     return render(request, 'core/checkout.html', {'cart_data':request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount, 'paypal_payment_button':paypal_payment_button, 'active_address':active_address})
             
 
+# To show invoice after payment
 @login_required
 def payment_completed_view(request):
     cart_total_amount = 0
@@ -314,18 +337,41 @@ def payment_completed_view(request):
     return render(request, 'core/payment-completed.html',{'cart_data':request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount})
 
 
+# If payment fails
 @login_required
 def payment_failed_view(request):
     return render(request, 'core/payment-failed.html')
 
 
+# User Profile
+@login_required
+def user_profile(request):
+    profile = Profile.objects.get(user=request.user)
+    
+    context = {
+        "profile": profile,
+    }
+    
+    return render(request, 'core/user-profile.html', context)
+
+
+# To view user dashb oard
 @login_required
 def customer_dashboard(request):
     address = Address.objects.filter(user=request.user)
     
+    orders = CartOrder.objects.annotate(month=ExtractMonth('order_date')).values('month').annotate(count=Count('id')).values('month', 'count')
+    month = []
+    total_orders = []
+    
+    for o in orders:
+        month.append(calendar.month_name[o['month']])
+        total_orders.append(o['count'])
+    
     if request.method == "POST":
         address = request.POST.get("address")
         mobile = request.POST.get("mobile")
+        
         new_address = Address.objects.create(
             user=request.user, 
             address=address, 
@@ -336,19 +382,24 @@ def customer_dashboard(request):
         return redirect("core:dashboard")
 
     context = {
+        "orders": orders,
         "address": address,
+        "month": month,
+        "total_orders": total_orders,
     }
     return render(request, 'core/dashboard.html', context)
 
 
+# To view user history
 @login_required
 def user_history(request):
-    orders = CartOrder.objects.filter(user=request.user).order_by("-id")
+    order_list = CartOrder.objects.filter(user=request.user).order_by("-id")
     context = {
-        "orders": orders,
+        "order_list": order_list,
     }
     return render(request, 'core/user-history.html', context)
 
+# To view order details
 def order_detail(request, id):
     orders = CartOrder.objects.get(user=request.user, id=id)
     order_items = CartOrderProducts.objects.filter(order=orders)
@@ -358,23 +409,38 @@ def order_detail(request, id):
     }
     return render(request, 'core/order-detail.html', context)
 
-
+# To change address
 def make_address_default(request):
     id = request.GET['id']
     Address.objects.update(status=False)
     Address.objects.filter(id=id).update(status=True)
     return JsonResponse({"boolean":True})
+
+# For contact us page
+def contact(request):
+    return render(request, 'core/contact.html')
+
+# For contact form
+def ajax_contact_form(request):
+    full_name = request.GET['full_name']
+    email = request.GET['email']
+    phone = request.GET['phone']
+    message = request.GET['message']
     
-
-@login_required
-def wishlist_view(request):
-    wishlist = WishList.objects.all()
-    context = {
-        "w" : wishlist,
+    contact = ContactUs.objects.create(
+        full_name = full_name,
+        email = email,
+        phone = phone,
+        message = message,
+    )
+    
+    data = {
+        "bool": True,
+        "message": "Message sent successfully"
     }
-    return render(request, 'core/wishlist.html', context)
+    return JsonResponse({"data":data})
 
-
+# To add to wishlist
 def add_to_wishlist(request):
     id = request.GET['id']
     product = Product.objects.get(id=id)
@@ -399,33 +465,10 @@ def add_to_wishlist(request):
     
     return JsonResponse(context)
 
-
-def contact(request):
-    return render(request, 'core/contact.html')
-
-def ajax_contact_form(request):
-    full_name = request.GET['full_name']
-    email = request.GET['email']
-    phone = request.GET['phone']
-    message = request.GET['message']
-    
-    contact = ContactUs.objects.create(
-        full_name = full_name,
-        email = email,
-        phone = phone,
-        message = message,
-    )
-    
-    data = {
-        "bool": True,
-        "message": "Message sent successfully"
-    }
-    return JsonResponse({"data":data})
-
-
+# To view wishlist
 @login_required
 def wishlist_view(request):
-    wishlist = WishList.objects.all()
+    wishlist = WishList.objects.filter(user=request.user)
 
     context = {
         "w" : wishlist,
@@ -433,6 +476,8 @@ def wishlist_view(request):
     return render(request, "core/wishlist.html", context)
 
 
+# To remove from wishlist
+@login_required
 def remove_from_wishlist(request):
     pid = request.GET['id']
     wishlist = WishList.objects.filter(user=request.user)

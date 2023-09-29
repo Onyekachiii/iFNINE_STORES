@@ -50,11 +50,12 @@
                         <div class="ec-sidebar-block">
                             <div class="ec-vendor-block">
                                 <div class="ec-vendor-block-items">
-                                    <ul>
-                                        <li><a href="{% url 'core:dashboard' %}">User Profile</a></li>
+                                    <ul><li><a href="{% url 'core:user-profile' %}">User Profile</a></li>
+                                        <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
                                         <li><a href="{% url 'core:user-history' %}">History</a></li>
                                         <li><a href="{% url 'core:cart' %}">Cart</a></li>
                                         <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
+                                        <li><a href="{% url 'userauths:sign-out' %}">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

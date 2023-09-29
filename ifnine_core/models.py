@@ -6,6 +6,7 @@ from taggit.managers import TaggableManager
 from ckeditor_uploader.fields import RichTextUploadingField
 
 
+
 STATUS_CHOICE = (
     ("processing", "Processing"),
     ("shipped", "Shipped"),

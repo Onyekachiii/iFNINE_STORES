@@ -48,11 +48,11 @@
                         <div class="row">
                             <div class="col-sm-12 align-self-center">
                                 <div class="ec-slide-content slider-animation">
-                                    <h2 class="ec-slide-stitle">Interior Finishings</h2>
-                                    <h1 class="ec-slide-title">Flawless Installations</h1>
+                                    <h2 class="ec-slide-stitle"></h2>
+                                    <h1 class="ec-slide-title">Interior Finishings</h1>
                                     <div class="ec-slide-desc">
                                         
-                                        <a href="#" class="btn btn-lg btn-primary">Shop Now <i
+                                        <a href="{% url 'core:product-list' %}" class="btn btn-lg btn-primary">Shop Now <i
                                                 class="ecicon eci-angle-double-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
@@ -66,8 +66,8 @@
                             <div class="col-sm-12 align-self-center">
                                 <div class="ec-slide-content slider-animation">
                             
-                                    <h2 class="ec-slide-stitle">Smart Home & Tech Gadgets</h2>
-                                    <h1 class="ec-slide-title">Awesome Prices</h1>
+                                    <h2 class="ec-slide-stitle"></h2>
+                                    <h1 class="ec-slide-title">Smart Home & Tech Gadgets</h1>
                                     <div class="ec-slide-desc">
                                         
                                         
@@ -105,7 +105,7 @@
                                 <!-- Sidebar Category Block -->
                                 <div class="ec-sidebar-block">
                                     <div class="ec-sb-title">
-                                        <h3 class="ec-sidebar-title"><a href="{% url 'core:category-list' %}">Category<button class="ec-close">×</button></h3>
+                                        <h3 class="ec-sidebar-title"><a href="{% url 'core:category-list' %}">Category<button class="ec-close"></button></h3>
                                     </div>
                                     {% for c in categories %}
                                     <div class="ec-sb-block-content">
@@ -117,26 +117,7 @@
                                     </div>
                                     {%endfor%}
                                 </div>
-                                <!-- Sidebar Category Block -->
-                                <!-- Sidebar Price Block -->
-                                {% comment %} <div class="ec-sidebar-block ec-price-clock">
-                                    <div class="ec-sb-title">
-                                        <h3 class="ec-sidebar-title">Price</h3>
-                                    </div>
-                                    <div class="ec-sb-block-content es-price-slider">
-                                        <div class="ec-price-filter">
-                                            <div id="ec-sliderPrice" class="filter__slider-price" data-min="0"
-                                                data-max="250" data-step="5"></div>
-                                            <div class="ec-price-input">
-                                                <label class="filter__label"><input type="text"
-                                                        class="filter__input"></label>
-                                                <span class="ec-price-divider"></span>
-                                                <label class="filter__label"><input type="text"
-                                                        class="filter__input"></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> {% endcomment %}
+                    
                             </div>
                         </div>
                         <div class="ec-sidebar-slider">
@@ -150,7 +131,7 @@
                                         <a href="{% url 'core:product-detail' p.pid %}" class="sidekka_pro_img"><img
                                                 src="{{ p.image.url }}" alt="product" /></a>
                                         <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">{{ p.title }}</a></h5>
+                                            <h5 class="ec-pro-title"><a href="{% url 'core:product-detail' p.pid %}">{{ p.title }}</a></h5>
                                             <div class="ec-pro-rating">
                                                 <i class="ecicon eci-star fill"></i>
                                                 <i class="ecicon eci-star fill"></i>
@@ -160,7 +141,7 @@
                                             </div>
                                             <span class="ec-price">
                                     
-                                                <span class="new-price">₦{{ p.price}}</span>
+                                                <span class="new-price">₦{{p.price}}</span>
                                             </span>
                                         </div>
                                     </div>
@@ -209,7 +190,7 @@
                                                         
                                                         <div class="ec-pro-actions">
                                                             <a href="{% url 'core:product-detail' p.pid %}" class="quickview" data-link-action="quickview" title="Quick view"><i class="fi-rr-eye"></i></a>
-                                                            <button type="submit" class="ec-btn-group wishlist add-to-wishlist" data-product-item="{{p.id}}" title="Wishlist"><i class="fi-rr-heart"></i></button>
+                                                            <a class="ec-btn-group wishlist add-to-wishlist" data-product-item="{{p.id}}" title="Wishlist"><i class="fi-rr-heart"></i></a>
                                                             
                                                             {% comment %} <a href="compare.html" class="ec-btn-group compare" title="Compare"><i class="fi fi-rr-arrows-repeat"></i></a> {% endcomment %}
                                                             <span class="add-cart">

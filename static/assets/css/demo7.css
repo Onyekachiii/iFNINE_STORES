@@ -661,7 +661,7 @@ progress {
   margin-top: -1rem;
   margin-bottom: 1rem;
   font-size: 0.875em;
-  color: #6c757d;
+  color: #ffffff;
 }
 .blockquote-footer::before {
   content: "— ";
@@ -677,7 +677,7 @@ body {
   line-height: 1.625;
   position: relative;
   visibility: visible;
-  color: #444444;
+  color: #ffffff;
   letter-spacing: 0.4px;
   min-height: 100%;
 }
@@ -716,7 +716,7 @@ h6, .h6 {
   font-weight: 500;
   line-height: 1.2;
   font-size: 1rem;
-  color: #212121;
+  color: #ffffff;
 }
 
 .h6 {
@@ -725,7 +725,7 @@ h6, .h6 {
   font-weight: 500;
   line-height: 1.2;
   font-size: 1rem;
-  color: #212121;
+  color: #ffffff;
 }
 
 h5, .h5 {
@@ -734,7 +734,7 @@ h5, .h5 {
   font-weight: 500;
   line-height: 1.2;
   font-size: 1.25rem;
-  color: #212121;
+  color: #ffffff;
 }
 
 .h5 {
@@ -743,7 +743,7 @@ h5, .h5 {
   font-weight: 500;
   line-height: 1.2;
   font-size: 1.25rem;
-  color: #212121;
+  color: #ffffff;
 }
 
 h4, .h4 {
@@ -752,7 +752,7 @@ h4, .h4 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.275rem + 0.3vw);
-  color: #212121;
+  color: #ffffff;
 }
 
 .h4 {
@@ -761,7 +761,7 @@ h4, .h4 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.275rem + 0.3vw);
-  color: #212121;
+  color: #ffffff;
 }
 
 h3, .h3 {
@@ -770,7 +770,7 @@ h3, .h3 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.3rem + 0.6vw);
-  color: #212121;
+  color: #ffffff;
 }
 
 .h3 {
@@ -779,7 +779,7 @@ h3, .h3 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.3rem + 0.6vw);
-  color: #212121;
+  color: #ffffff;
 }
 
 h2, .h2 {
@@ -788,7 +788,7 @@ h2, .h2 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.325rem + 0.9vw);
-  color: #212121;
+  color: #ffffff;
 }
 
 .h2 {
@@ -797,7 +797,7 @@ h2, .h2 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.325rem + 0.9vw);
-  color: #212121;
+  color: #ffffff;
 }
 
 h1, .h1 {
@@ -806,7 +806,7 @@ h1, .h1 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.375rem + 1.5vw);
-  color: #212121;
+  color: #ffffff;
 }
 
 .h1 {
@@ -815,7 +815,7 @@ h1, .h1 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.375rem + 1.5vw);
-  color: #212121;
+  color: #ffffff;
 }
 
 p {
@@ -14525,7 +14525,7 @@ li {
   stroke: #fff;
 }
 .ec-cc-style .cc-footer .cc-call-button span {
-  color: #444444;
+  color: #ffffff;
 }
 .ec-cc-style .cc-button {
   background-color: #00969b;
@@ -15990,7 +15990,7 @@ body.ec-open:before {
 .footer-cat-block .footer-cat-stitle {
   margin-bottom: 14px;
   font-weight: 600;
-  color: #1c8855;
+  color: #ffffff;
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -16005,7 +16005,7 @@ body.ec-open:before {
   margin-bottom: 22px;
 }
 .footer-cat-block a, .footer-cat-block span {
-  color: #787878;
+  color: #ffffff;
 }
 .footer-cat-block a {
   padding: 0 5px;
@@ -22046,7 +22046,7 @@ i.ecicon.eci-star.fill {
     width: 100%;
   }
   .ec-cc-style .cc-footer .cc-call-button span {
-    color: #fff;
+    color: #ffffff;
   }
   .ec-brand-outer .slick-arrow.slick-next,
 .ec-brand-outer .slick-arrow.slick-prev {

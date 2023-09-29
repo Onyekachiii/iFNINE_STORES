@@ -90,8 +90,7 @@
                                                 <i class="ecicon eci-star fill"></i>
                                                 <i class="ecicon eci-star-o"></i>
                                             </div>
-                                            <span class="ec-read-review"><a href="#ec-spt-nav-review">Be the first to
-                                                    review this product</a></span>
+                                            <span class="ec-read-review"><a href="#ec-spt-nav-review">Drop your reviews here</a></span>
                                         </div>
                                         <div class="ec-single-desc">{{ p.description|truncatechars:150|safe }}</div>
 
@@ -128,7 +127,7 @@
                                             <div class="ec-pro-variation-inner ec-pro-variation-size">
                                                 <span>TAGS:</span>
                                                 <div class="ec-pro-variation-content">
-                                                    <span class="ec-single-ps-title">{% for tag in product.tags.all %} <a href="{% url 'core:tags' tag.slug %}" rel = "tag"> #{{ tag.name }} </a>,{% endfor %}</span>
+                                                    <span class="ec-single-ps-title">{% for tag in p.tags.all %} <a href="{% url 'core:tags' tag.slug %}" rel = "tag"> #{{ tag.name }} </a>,{% endfor %}</span>
                                                     <ul>
                                                         {% comment %} <li class="active"><span>{% for tag in product.tags.all %}<a href="#" rel = "tag">{{ tag.name }}{% endfor %}</span></li> {% endcomment %}
                                                     </ul>
@@ -156,7 +155,7 @@
                                             <div class="ec-single-quickview">
                                                 <a href="#" class="ec-btn-group quickview" data-link-action="quickview"
                                                     title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>
+                                                    ><i class="fi-rr-eye"></i></a>
                                             </div>
                                         </div>
                                         <div class="ec-single-social">
@@ -226,7 +225,7 @@
                                                         <div class="ec-t-review-name">{{ r.user.username|title }}</div>                                                        
                                                     </div>
                                                     {% for s in r.rating|ljust:r.rating %}                                                    
-                                                        <i class="fas fa-star text-warning"></i>                                                    
+                                                        <i class="fi-rr-star text-danger"></i>                                                    
                                                     {% endfor %}
                                                     <div class="ec-t-review-bottom">
                                                         <p>{{ r.review }}

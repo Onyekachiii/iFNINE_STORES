@@ -13,81 +13,6 @@
      <!-- Background css -->
      <link rel="stylesheet" id="bg-switcher-css" href="{% static 'assets/css/backgrounds/bg-4.css' %}">
 
-    <!-- ekka Cart Start -->
-    <div class="ec-side-cart-overlay"></div>
-    <div id="ec-side-cart" class="ec-side-cart">
-        <div class="ec-cart-inner">
-            <div class="ec-cart-top">
-                <div class="ec-cart-title">
-                    <span class="cart_title">My Cart</span>
-                    <button class="ec-close">×</button>
-                </div>
-                <ul class="eccart-pro-items">
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{% static 'assets/images/product-image/6_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
-                            <span class="cart-price"><span>$76.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{% static 'assets/images/product-image/12_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
-                            <span class="cart-price"><span>$64.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{% static 'assets/images/product-image/3_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
-                            <span class="cart-price"><span>$59.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">×</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="ec-cart-bottom">
-                <div class="cart-sub-total">
-                    <table class="table cart-table">
-                        <tbody>
-                            <tr>
-                                <td class="text-left">Sub-Total :</td>
-                                <td class="text-right">$300.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">VAT (20%) :</td>
-                                <td class="text-right">$60.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Total :</td>
-                                <td class="text-right primary-color">$360.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="cart_btn">
-                    <a href="cart.html" class="btn btn-primary">View Cart</a>
-                    <a href="checkout.html" class="btn btn-secondary">Checkout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ekka Cart End -->
 
 	<!-- Ec breadcrumb start -->
     <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
@@ -114,8 +39,6 @@
     </div>
 	<!-- Ec breadcrumb end -->
 
-
-
 	<!-- START Product Transparent Style -->
 	<section class="sec-tp el-prod section-space-p">
 		<div class="container">
@@ -137,10 +60,10 @@
 							<a href="{% url 'core:product-detail' p.pid %}">
 								<img src="{{p.image.url}}" class="img-center" alt="">
 							</a>
-							<span class="ec-product-ribbon">{{p.get_percentage|floatformat:0}}%</span>
+							<span class="ec-product-ribbon">-{{p.get_percentage|floatformat:0}}%</span>
 							<div class="ec-link-icon">
-								<a href="#" data-tip="Add to Wishlist"><i class="fi-rr-heart"></i></a>
-								<a href="#" data-tip="Compare"><i class="fi fi-rr-arrows-repeat"></i></a>
+								<button type="submit" class="ec-btn-group wishlist add-to-wishlist" data-product-item="{{p.id}}" title="Wishlist"><i class="fi-rr-heart"></i></button>
+								{% comment %} <a href="#" data-tip="Compare"><i class="fi fi-rr-arrows-repeat"></i></a> {% endcomment %}
 								<a href="{% url 'core:product-detail' p.pid %}" data-tip="Quick View"><i class="fi-rr-eye"></i></a>
 							</div>
 						</div>
@@ -149,13 +72,13 @@
 							<p class="ec-description">
 								{{p.description}}
 							</p>
-							<ul class="ec-rating">
+							{% comment %} <ul class="ec-rating">
 								<li class="ecicon eci-star fill"></li>
 								<li class="ecicon eci-star fill"></li>
 								<li class="ecicon eci-star fill"></li>
 								<li class="ecicon eci-star fill"></li>
 								<li class="ecicon eci-star"></li>
-							</ul>
+							</ul> {% endcomment %}
 							<div class="ec-price"><span>₦‎{{p.old_price}}</span> 
                                 <div class="current-product-price-{{ product.id }}">₦‎{{p.price}}</div></div>
 
@@ -192,14 +115,7 @@
   
   <script src="{% static 'assets/js/vendor/jquery.magnific-popup.min.js' %}"></script>
   <script src="{% static 'assets/js/plugins/jquery.sticky-sidebar.js' %}"></script>
-  <!-- Google translate Js -->
-  {% comment %} <script src="{% static 'assets/js/vendor/google-translate.js' %}"></script>
-  <script>
-      function googleTranslateElementInit() {
-          new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
-      }
-  </script> {% endcomment %}
-  <!-- Main Js -->
+
   
   <script src="{% static 'assets/js/main.js' %}"></script>
 

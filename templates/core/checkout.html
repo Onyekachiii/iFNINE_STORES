@@ -327,7 +327,7 @@
                             
                             <li><a href="{% url 'userauths:sign-in' %}">Login</a></li>
                             <li><a href="{% url 'userauths:sign-up' %}">Register</a></li>
-                            <li><a href="track-order.html">Track Order</a></li>
+                            {% comment %} <li><a href="track-order.html">Track Order</a></li> {% endcomment %}
                             
                         </ul>
                     </li>
@@ -419,14 +419,7 @@
                                     <div class="ec-bl-block-content">
                                         <div class="ec-check-subtitle">Checkout Options</div>
                                         <span class="ec-bill-option">
-                                            {% comment %} <span>
-                                                <input type="radio" id="bill1" name="radio-group">
-                                                <label for="bill1">I want to use an existing address</label>
-                                            </span>
-                                            <span>
-                                                <input type="radio" id="bill2" name="radio-group" checked>
-                                                <label for="bill2">I want to use new address</label>
-                                            </span> {% endcomment %}
+                                            
                                         </span>
                                         <div class="ec-check-bill-form">
                                             <form action="#" method="post">

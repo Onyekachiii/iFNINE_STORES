@@ -1,0 +1,152 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block page_title %}iFNINE STORES | User Profile {% endblock %}
+
+{% block content %}
+
+
+     <!-- Main Style -->
+     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" /> 
+     <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" />
+  
+      <!-- Background css -->
+     <link rel="stylesheet" id="bg-switcher-css" href="{% static 'assets/css/backgrounds/bg-4.css' %}"> 
+     
+
+<main class="main-content" id="cart-list">
+
+    <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row ec_breadcrumb_inner">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="ec-breadcrumb-title">User Profile</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- ec-breadcrumb-list start -->
+                            <ul class="ec-breadcrumb-list">
+                                <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="ec-breadcrumb-item active">Profile</li>
+                            </ul>
+                            <!-- ec-breadcrumb-list end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec breadcrumb end -->
+
+    <!-- User profile section -->
+    <section class="ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar Area Start -->
+                <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+                    <div class="ec-sidebar-wrap ec-border-box">
+                        <!-- Sidebar Category Block -->
+                        <div class="ec-sidebar-block">
+                            <div class="ec-vendor-block">
+                                
+                                <div class="ec-vendor-block-items">
+                                    <ul>
+                                        <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+                                        <li><a href="{% url 'core:user-history' %}">History</a></li>
+                                        <li><a href="{% url 'core:wishlist' %}">Wishlist</a></li>
+                                        <li><a href="{% url 'core:cart' %}">Cart</a></li>
+                                        <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
+                                        <li><a href="{% url 'userauths:sign-out' %}">Logout</a></li>
+                                        {% comment %} <li><a href="track-order.html">Track Order</a></li> {% endcomment %}
+                                        {% comment %} <li><a href="user-invoice.html">Invoice</a></li> {% endcomment %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ec-shop-rightside col-lg-9 col-md-12">
+                    <div class="ec-vendor-dashboard-card ec-vendor-setting-card">
+                        <div class="ec-vendor-card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="ec-vendor-block-profile">
+                                        <div class="ec-vendor-block-img space-bottom-30">
+                            
+                                            <div class="ec-vendor-block-detail border-bottom">
+                                                {% if profile.image %}
+                                                    <img class="v-img" src="{{ profile.image.url }}" alt="user image">
+                                                {% else %}
+                                                    <img class="v-img" src="{% static 'assets/images/user/1.jpg' %}" alt="user image">
+                                                {% endif %}
+                                                <h5 class="name">{{ profile.full_name|title }}</h5>
+                                                {% comment %} <p>( Business Man )</p> {% endcomment %}
+                                            </div>
+                                            <p>Hello <span>{{ request.user|title }}!</span></p>
+                                            <p>From your account you can easily view and track orders. You can manage and change your account information like address, contact information and history of orders.</p>
+                                        </div>
+                                        <h5>Account Information</h5>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="ec-vendor-detail-block ec-vendor-block-email space-bottom-30">
+                                                    <h6>Full Name <a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"></a></h6>
+                                                    <ul>
+                                                        <li><input class="border-none"  style="font-weight: 500; color: #777;" type="text" value="{{ profile.full_name }}"></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="ec-vendor-detail-block ec-vendor-block-contact space-bottom-30">
+                                                    <h6>Bio<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"></a></h6>
+                                                    <ul>
+                                                        <li><input class="border-none" style="font-weight: 500; color: #777;" type="text" value="{{ profile.bio }}"></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="ec-vendor-detail-block ec-vendor-block-address mar-b-30">
+                                                    <h6>Phone Number<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"></i></a></h6>
+                                                    <ul>
+                                                        <li><input class="border-none" style="font-weight: 500; color: #777;" type="text" value="{{ profile.phone }}"></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="ec-vendor-detail-block ec-vendor-block-address">
+                                                    <h6>Verified<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal"></a></h6>
+                                                    {% if profile.verified == True %}
+                                                    <ul>
+                                                        <li><i class="fi-rr-check-circle"></i></li>
+                                                    </ul>
+                                                    {% else %}
+                                                    <ul>
+                                                        <li><i class="fi-rr-x" style="font-weight: 500; color: #777;"></i></li>
+                                                    </ul>
+
+                                                    {% endif %}
+
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-lg btn-primary"><a href="{% url 'userauths:profile-update' %}">Edit Detail</a></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End User profile section -->
+
+  
+</main>
+
+    
+{% endblock content %}

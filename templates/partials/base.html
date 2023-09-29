@@ -38,9 +38,9 @@
   <!-- Main Style -->
   <link type="text/css" rel="stylesheet" href="{% static 'assets/css/demo7.css' %}" />
 
-  <!-- Fontawesome cdn -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha512-L7MWcK7FNPcwNqnLdZq86lTHYLdQqZaz5YcAgE+5cnGmlw8JT03QB2+oxL100UeB6RlzZLUxCGSS4/++mNZdxw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Chart cdn -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   
 </head>
@@ -109,8 +109,8 @@
                            <div class="ec-header-user dropdown">
                                <button class="dropdown-toggle" data-bs-toggle="dropdown"><i class="fi-rr-user"></i></button>
                                <ul class="dropdown-menu dropdown-menu-right">
-                                   <li><a class="dropdown-item" href="{% url 'core:dashboard' %}">My account</a></li>
-                                   <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
+                                   <li><a class="dropdown-item" href="{% url 'core:user-profile' %}">My account</a></li>
+                                   <li><a class="dropdown-item" href="{% url 'core:checkout' %}">Checkout</a></li>
                                    {% if request.user.is_authenticated %}
                                    <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
                                    {% else %}
@@ -178,7 +178,7 @@
                                    <button class="dropdown-toggle" data-bs-toggle="dropdown"><i class="fi-rr-user"></i></button>
                                    <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a class="dropdown-item" href="{% url 'core:dashboard' %}">My account</a></li>
-                                        <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
+                                        {% comment %} <li><a class="dropdown-item" href="checkout.html">Checkout</a></li> {% endcomment %}
                                         {% if request.user.is_authenticated %}
                                         <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
                                         {% else %}
@@ -223,7 +223,7 @@
                    <!-- Header Search Start -->
                    <div class="col">
                        <div class="header-search">
-                           <form class="ec-btn-group-form" action="#">
+                           <form class="ec-btn-group-form" action="{% url 'core:search' %}">
                                <input class="form-control" placeholder="Enter Your Product Name..." type="text">
                                <button class="submit" type="submit"><i class="fi-rr-search"></i></button>
                            </form>
@@ -259,20 +259,21 @@
                                </li>
                                <li class="dropdown"><a href="javascript:void(0)">User</a>
                                    <ul class="sub-menu">
+                                       
+                                        <li><a href="{% url 'core:user-profile' %}">User Profile</a></li>
+                                        <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+                                        <li><a href="{% url 'core:user-history' %}">History</a></li>
+                                        <li><a href="{% url 'core:wishlist' %}">Wishlist</a></li>
+                                        <li><a href="{% url 'core:cart' %}">Cart</a></li>
+                                        <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
                                         {% if request.user.is_authenticated %}
                                         <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
                                         {% else %}
                                         <li><a class="dropdown-item" href="{% url 'userauths:sign-in' %}">Sign In</a></li>
                                         {% endif %}
-                                        
-                                        <li><a href="{% url 'core:dashboard' %}">User Profile</a></li>
-                                        <li><a href="{% url 'core:user-history' %}">History</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                       <li><a href="{% url 'core:cart' %}">Cart</a></li>
-                                       <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
                                        
                                        {% comment %} <li><a href="register.html">Register</a></li> {% endcomment %}
-                                       <li><a href="track-order.html">Track Order</a></li>
+                                       {% comment %} <li><a href="track-order.html">Track Order</a></li> {% endcomment %}
                                        
                                    </ul>
                                </li>
@@ -314,11 +315,13 @@
                    <ul>
                        <li><a href="{% url 'core:index' %}">Home</a></li>
                        <li><a href="{% url 'core:category-list' %}">Categories</a>
-                           <ul class="sub-menu">
+                            <ul class="sub-menu">
+                                {% for c in categories %}
                                <li>
-                                   <a href="">{{c.title}}</a>
-                                   
-                           </ul>
+                                   <a href="{% url 'core:category-product-list' c.cid %}">{{c.title}}</a>
+                               </li>
+                               {% endfor %}
+                            </ul>
                        </li>
                        <li><a href="{% url 'core:product-list' %}">Products</a>
                            
@@ -328,16 +331,21 @@
                        <li><a href="javascript:void(0)">Pages</a>
                            <ul class="sub-menu">
                                <li><a href="{% url 'core:cart' %}">Cart</a></li>
-                               <li><a href="checkout.html">Checkout</a></li>
-                               <li><a href="compare.html">Compare</a></li>
+                               <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
+                               <li><a href="{% url 'core:user-profile' %}">User Profile</a></li>
+                               <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+                               <li><a href="{% url 'core:user-history' %}">History</a></li>
+                               {% if request.user.is_authenticated %}
+                                    <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'userauths:sign-in' %}">Sign In</a></li>
+                                {% endif %}
                                
-                               <li><a href="{% url 'userauths:sign-in' %}">Login</a></li>
-                               <li><a href="{% url 'userauths:sign-up' %}">Register</a></li>
-                               <li><a href="track-order.html">Track Order</a></li>
+                               {% comment %} <li><a href="track-order.html">Track Order</a></li> {% endcomment %}
                                
                            </ul>
                        </li>
-                       <li class="dropdown"><a href="javascript:void(0)">About Us</a>
+                       {% comment %} <li class="dropdown"><a href="javascript:void(0)">About Us</a> {% endcomment %}
                            
                        </li>
                        
@@ -361,7 +369,7 @@
                                    class="ecicon eci-caret-down" aria-hidden="true"></i></button>
                            <ul class="dropdown-menu">
                                <li class="active"><a class="dropdown-item" href="#">NGN ₦‎</a></li>
-                               <li><a class="dropdown-item" href="#">USD $</a></li>
+                               {% comment %} <li><a class="dropdown-item" href="#">USD $</a></li> {% endcomment %}
                            </ul>
                        </div>
                        <!-- Currency End -->
@@ -646,6 +654,11 @@
     <script src="{% static 'assets/js/vendor/index.js' %}"></script>
     <script src="{% static 'assets/js/demo-7.js' %}"></script>
     <script src="{% static 'assets/js/function.js' %}"></script>
+
+{% comment %}     
+    <!-- Fontawesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha512-L7MWcK7FNPcwNqnLdZq86lTHYLdQqZaz5YcAgE+5cnGmlw8JT03QB2+oxL100UeB6RlzZLUxCGSS4/++mNZdxw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> {% endcomment %}
 
 </body>
 
