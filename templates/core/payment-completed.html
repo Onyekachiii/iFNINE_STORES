@@ -92,13 +92,10 @@
                                                     </div>
                                                     <div class="text-grey-m2">
                                                         <div class="my-2">
-                                                            123, Mountain View,
+                                                            {{user.address}}
                                                         </div>
-                                                        <div class="my-2">
-                                                            California, US State.
-                                                        </div>
-                                                        <div class="my-2"><b class="text-600">Phone : </b>1234567890
-                                                        </div>
+                                                        {% comment %} <div class="my-2"><b class="text-600">Phone : </b>1234567890
+                                                        </div> {% endcomment %}
                                                     </div>
                                                 </div>
                                                 <!-- /.col -->
@@ -108,14 +105,14 @@
                                                     <hr class="d-sm-none" />
                                                     <div class="text-grey-m2">
 
-                                                        <div class="my-2"><span class="text-600 text-90">ID : </span>
+                                                        {% comment %} <div class="my-2"><span class="text-600 text-90">ID : </span>
                                                             #111-222</div>
 
                                                         <div class="my-2"><span class="text-600 text-90">Issue Date :
-                                                            </span> Oct 12, 2021-2022</div>
+                                                            </span> {{item.date}}</div>
 
                                                         <div class="my-2"><span class="text-600 text-90">Invoice No :
-                                                            </span>6548</div>
+                                                            </span>{{item.invoice_no}}</div> {% endcomment %}
                                                     </div>
                                                 </div>
                                                 <!-- /.col -->
@@ -142,7 +139,7 @@
                                                                     <td><span>{{  item.title}}</span></td>
                                                                     <td><span>{{ item.qty }}</span></td>
                                                                     <td><span>₦ {{ item.price }}</span></td>
-                                                                    <td><span>₦ {% widthratio item.price 1 item.qty %}.00</span></td>
+                                                                    <td><span>₦ {% widthratio item.price 1 item.qty %}</span></td>
                                                                 </tr>
                                                                 {% endfor %}
                                                             </tbody>
@@ -165,7 +162,7 @@
                                                                 </tr> {% endcomment %}
                                                                 <tr>
                                                                     <td class="border-none m-m15"
-                                                                        colspan="3"><span class="note-text-color">Thanks for shopping at iFNINE stores</span></td>
+                                                                        colspan="3"><span class="note-text-color">Hey {{request.user|title}}, Thanks for shopping at iFNINE stores</span></td>
                                                                     <td class="border-color m-m15"
                                                                         colspan="1"><span><strong>Total</strong></span>
                                                                     </td>

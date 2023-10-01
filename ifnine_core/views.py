@@ -309,7 +309,7 @@ def checkout_view(request):
         'amount' : cart_total_amount,
         'item_name': "Order-Item-No-" + str(order.id),
         'invoice' : "INVOICE_NO-" + str(order.id),
-        'currency_code' : "NGN",
+        'currency_code' : "USD",
         'notify_url': 'http://{}{}'.format(host,reverse('core:paypal-ipn')),
         'return_url': 'http://{}{}'.format(host,reverse('core:payment-completed')),
         'cancel_url': 'http://{}{}'.format(host,reverse('core:payment-failed')),
