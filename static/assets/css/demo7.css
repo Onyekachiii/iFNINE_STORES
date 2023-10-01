@@ -1,13 +1,5 @@
 @charset "UTF-8";
-/*---------------------------------------------------------------------------------
-    Included CSS INDEX
------------------------------------------------------------------------------------
 
-01. Typography
-02. Utilities
-03. demo 7 css
-04. Responsive css
------------------------------------------------------------------------------------*/
 /*-------------------------------------------------
   Fonts Family & Style CSS
 ---------------------------------------------------*/
@@ -661,7 +653,7 @@ progress {
   margin-top: -1rem;
   margin-bottom: 1rem;
   font-size: 0.875em;
-  color: #ffffff;
+  color: #6c757d;
 }
 .blockquote-footer::before {
   content: "— ";
@@ -677,7 +669,7 @@ body {
   line-height: 1.625;
   position: relative;
   visibility: visible;
-  color: #ffffff;
+  color: #444444;
   letter-spacing: 0.4px;
   min-height: 100%;
 }
@@ -716,7 +708,7 @@ h6, .h6 {
   font-weight: 500;
   line-height: 1.2;
   font-size: 1rem;
-  color: #ffffff;
+  color: #212121;
 }
 
 .h6 {
@@ -725,7 +717,7 @@ h6, .h6 {
   font-weight: 500;
   line-height: 1.2;
   font-size: 1rem;
-  color: #ffffff;
+  color: #212121;
 }
 
 h5, .h5 {
@@ -734,7 +726,7 @@ h5, .h5 {
   font-weight: 500;
   line-height: 1.2;
   font-size: 1.25rem;
-  color: #ffffff;
+  color: #212121;
 }
 
 .h5 {
@@ -743,7 +735,7 @@ h5, .h5 {
   font-weight: 500;
   line-height: 1.2;
   font-size: 1.25rem;
-  color: #ffffff;
+  color: #212121;
 }
 
 h4, .h4 {
@@ -752,7 +744,7 @@ h4, .h4 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.275rem + 0.3vw);
-  color: #ffffff;
+  color: #212121;
 }
 
 .h4 {
@@ -761,7 +753,7 @@ h4, .h4 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.275rem + 0.3vw);
-  color: #ffffff;
+  color: #212121;
 }
 
 h3, .h3 {
@@ -770,7 +762,7 @@ h3, .h3 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.3rem + 0.6vw);
-  color: #ffffff;
+  color: #212121;
 }
 
 .h3 {
@@ -779,7 +771,7 @@ h3, .h3 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.3rem + 0.6vw);
-  color: #ffffff;
+  color: #212121;
 }
 
 h2, .h2 {
@@ -788,7 +780,7 @@ h2, .h2 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.325rem + 0.9vw);
-  color: #ffffff;
+  color: #212121;
 }
 
 .h2 {
@@ -797,7 +789,7 @@ h2, .h2 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.325rem + 0.9vw);
-  color: #ffffff;
+  color: #212121;
 }
 
 h1, .h1 {
@@ -806,7 +798,7 @@ h1, .h1 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.375rem + 1.5vw);
-  color: #ffffff;
+  color: #212121;
 }
 
 .h1 {
@@ -815,7 +807,7 @@ h1, .h1 {
   font-weight: 500;
   line-height: 1.2;
   font-size: calc(1.375rem + 1.5vw);
-  color: #ffffff;
+  color: #212121;
 }
 
 p {
@@ -14525,7 +14517,7 @@ li {
   stroke: #fff;
 }
 .ec-cc-style .cc-footer .cc-call-button span {
-  color: #ffffff;
+  color: #444444;
 }
 .ec-cc-style .cc-button {
   background-color: #00969b;
@@ -15990,7 +15982,7 @@ body.ec-open:before {
 .footer-cat-block .footer-cat-stitle {
   margin-bottom: 14px;
   font-weight: 600;
-  color: #ffffff;
+  color: #1c8855;
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -16005,7 +15997,7 @@ body.ec-open:before {
   margin-bottom: 22px;
 }
 .footer-cat-block a, .footer-cat-block span {
-  color: #ffffff;
+  color: #787878;
 }
 .footer-cat-block a {
   padding: 0 5px;
@@ -18498,7 +18490,7 @@ section.ec-instagram-section {
 }
 .ec-slide-content .ec-slide-title {
   font-size: 55px;
-  color: #3474d4;
+  color: #ff909d;
   margin-bottom: 15px;
   letter-spacing: 0.05rem;
   font-weight: 700;
@@ -18519,7 +18511,7 @@ section.ec-instagram-section {
 }
 .ec-slide-content .ec-slide-stitle {
   font-size: 30px;
-  color: #0f0f0f;
+  color: #1c8855;
   margin-bottom: 15px;
   letter-spacing: 10px;
   position: relative;
@@ -22046,7 +22038,7 @@ i.ecicon.eci-star.fill {
     width: 100%;
   }
   .ec-cc-style .cc-footer .cc-call-button span {
-    color: #ffffff;
+    color: #fff;
   }
   .ec-brand-outer .slick-arrow.slick-next,
 .ec-brand-outer .slick-arrow.slick-prev {
@@ -22502,6 +22494,4 @@ i.ecicon.eci-star.fill {
     font-size: 12px;
   }
 }
-
-
 /*# sourceMappingURL=demo7.css.map */

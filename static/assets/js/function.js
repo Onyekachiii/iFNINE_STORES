@@ -185,6 +185,7 @@ $(document).ready(function() {
                 if (response.boolean === true){
                     console.log("Added to wishlist")
                 }
+                
             }
         })
 

@@ -19572,7 +19572,7 @@ div#ec_news_signup {
   font-size: 15px;
   background: #f7f7f7;
   border: 1px solid #eeeeee;
-  color: #ffffff;
+  color: #777;
 }
 .footer-bottom-social ul li a:hover {
   color: #fff;
@@ -31399,6 +31399,12 @@ input[type=email]:focus::-webkit-input-placeholder {
 .ec-vendor-profile-card .ec-vendor-block-profile .ec-vendor-block-email ul li strong,
 .ec-vendor-profile-card .ec-vendor-block-profile .ec-vendor-block-contact ul li strong {
   font-weight: 500;
+}
+
+.ec-vendor-profile-card .ec-vendor-block-profile .edit-form .form-frame{
+  font-weight: 500;
+  color: #777;
+  border: 2px;
 }
 
 /*-----  Settings vendor page  -----*/

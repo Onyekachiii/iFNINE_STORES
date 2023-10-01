@@ -320,7 +320,7 @@ def checkout_view(request):
     try:
         active_address = Address.objects.get(user=request.user, status=True)
     except:
-        messages.warning(request, "You have more than one address, please activate just one")
+        messages.warning(request, "Please specify one address in your profile")
         active_address = None
             
     return render(request, 'core/checkout.html', {'cart_data':request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount, 'paypal_payment_button':paypal_payment_button, 'active_address':active_address})

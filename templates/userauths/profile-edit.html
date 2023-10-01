@@ -89,21 +89,21 @@
                                             <strong>{{ form.errors }}</strong>                                        
                                         </div>
                                         {% endif %}                                        
-                                        <form action="" method="POST" enctype="multipart/form-data">
+                                        <form class="edit-form" action="" method="POST" enctype="multipart/form-data">
                                             {% csrf_token %}
-                                            <div class="border-none;" style="font-weight: 500; color: #777;">
+                                            <div class="form-frame" style="font-weight: 500; color: #777; border:2px;">
                                                 {{form.full_name}}
                                             </div>
                                             <br>
-                                            <div>
+                                            <div class="form-frame" style="font-weight: 500; color: #777; border:2px;">
                                                 {{form.bio}}
                                             </div>
                                             <br>
-                                            <div>
+                                            <div class="form-frame" style="font-weight: 500; color: #777; border:2px;">
                                                 {{form.phone}}
                                             </div>
                                             <br>
-                                            <div>
+                                            <div class="form-frame" style="font-weight: 500; color: #777; border:2px;">
                                                 {{form.image}}
                                             </div>
                                             <br>

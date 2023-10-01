@@ -103,13 +103,13 @@
 							<p class="ec-description">
 								{{c.category.count}} Product{{c.category.count|pluralize:'s'}}
 							</p>
-							<ul class="ec-rating">
+							{% comment %} <ul class="ec-rating">
 								<li class="ecicon eci-star fill"></li>
 								<li class="ecicon eci-star fill"></li>
 								<li class="ecicon eci-star fill"></li>
 								<li class="ecicon eci-star fill"></li>
 								<li class="ecicon eci-star"></li>
-							</ul>
+							</ul> {% endcomment %}
 							<div class="ec-price"><span></span></div>
 							<div class="ec-link-btn">
 								<a class=" ec-add-to-cart" href="{% url 'core:category-product-list' c.cid %}">Explore</a>

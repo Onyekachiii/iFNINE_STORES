@@ -48,338 +48,343 @@
 
     <!-- Header start  -->
     <header class="ec-header">
-    <!-- Header Top Start -->
-    <div class="header-top">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Header Top social Start -->
-                <div class="col text-left header-top-left d-none d-lg-block">
-                    <div class="header-top-social">
-                        <span class="social-text text-upper">Follow us on:</span>
-                        <ul class="mb-0">
-                            <li class="list-inline-item"><a class="hdr-facebook" href="#"><i class="ecicon eci-facebook"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-twitter" href="#"><i class="ecicon eci-twitter"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-instagram" href="#"><i class="ecicon eci-instagram"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i class="ecicon eci-linkedin"></i></a></li>
-                        </ul>
+        <!-- Header Top Start -->
+        <div class="header-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Header Top social Start -->
+                    <div class="col text-left header-top-left d-none d-lg-block">
+                        <div class="header-top-social">
+                            <span class="social-text text-upper">Follow us on:</span>
+                            <ul class="mb-0">
+                                <li class="list-inline-item"><a class="hdr-facebook" href="#"><i class="ecicon eci-facebook"></i></a></li>
+                                <li class="list-inline-item"><a class="hdr-twitter" href="#"><i class="ecicon eci-twitter"></i></a></li>
+                                <li class="list-inline-item"><a class="hdr-instagram" href="#"><i class="ecicon eci-instagram"></i></a></li>
+                                <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i class="ecicon eci-linkedin"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <!-- Header Top social End -->
-                <!-- Header Top Category Toggle Start -->
-                <a href="#ec-mobile-sidebar" class="ec-header-btn ec-sidebar-toggle d-lg-none">
-                    <i class="fi fi-rr-apps"></i>
-                </a>
-                <!-- Header Top Category Toggle End -->
-                <!-- Header Top Message Start -->
-                <div class="col text-center header-top-center">
-                    <div class="header-top-message text-upper">
-                        <span><a href="#">Delivery charges</a></span> are subject to location.
+                    <!-- Header Top social End -->
+                    <!-- Header Top Category Toggle Start -->
+                    <a href="#ec-mobile-sidebar" class="ec-header-btn ec-sidebar-toggle d-lg-none">
+                        <i class="fi fi-rr-apps"></i>
+                    </a>
+                    <!-- Header Top Category Toggle End -->
+                    <!-- Header Top Message Start -->
+                    <div class="col text-center header-top-center">
+                        <div class="header-top-message text-upper">
+                            <span><a href="#">Delivery charges</a></span> are subject to location.
+                        </div>
                     </div>
-                </div>
-                <!-- Header Top Message End -->
-                <!-- Header Top Language Currency -->
-                <div class="col header-top-right d-none d-lg-block">
-                    <div class="header-top-lan-curr d-flex justify-content-end">
+                    <!-- Header Top Message End -->
+                    <!-- Header Top Language Currency -->
+                    <div class="col header-top-right d-none d-lg-block">
+                        <div class="header-top-lan-curr d-flex justify-content-end">
                         <!-- Currency Start -->
-                        <div class="header-top-curr dropdown">
-                            <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
-                                    class="ecicon eci-caret-down" aria-hidden="true"></i></button>
-                            <ul class="dropdown-menu">
-                                <li class="active"><a class="dropdown-item" href="#">USD $</a></li>
-                                <li><a class="dropdown-item" href="#">NRA ₦</a></li>
-                            </ul>
-                        </div>
-                        <!-- Currency End -->
+                            <div class="header-top-curr dropdown">
+                                <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
+                                        class="ecicon eci-caret-down" aria-hidden="true"></i></button>
+                                <ul class="dropdown-menu">
+                                    <li class="active"><a class="dropdown-item" href="#">USD $</a></li>
+                                    <li><a class="dropdown-item" href="#">NRA ₦</a></li>
+                                </ul>
+                            </div>
+                            <!-- Currency End -->
                         
-                    </div>
-                </div>
-                <!-- Header Top Language Currency -->
-                <!-- Header Top responsive Action -->
-                <div class="col d-lg-none ">
-                    <div class="ec-header-bottons">
-                        <!-- Header User Start -->
-                        <div class="ec-header-user dropdown">
-                            <button class="dropdown-toggle" data-bs-toggle="dropdown"><i class="fi-rr-user"></i></button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a class="dropdown-item" href="{% url 'core:dashboard' %}">My account</a></li>
-                                <li><a class="dropdown-item" href="{% url 'core:checkout' %}">Checkout</a></li>
-                                {% if request.user.is_authenticated %}
-                                <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
-                                {% else %}
-                                <li><a class="dropdown-item" href="{% url 'userauths:sign-in' %}">Sign In</a></li>
-                                {% endif %}
-                            </ul>
                         </div>
-                        <!-- Header User End -->
-                        <!-- Header Cart Start -->
-                        <a href="{% url 'core:wishlist' %}" class="ec-header-btn ec-header-wishlist">
-                            <div class="header-icon"><i class="fi-rr-heart"></i></div>
-                            <span class="ec-header-count">{{ wishlist.count }}</span>
-                        </a>
-                        <!-- Header Cart End -->
-                        <!-- Header Cart Start -->
-                        <a href="{% url 'core:cart' %}" class="ec-header-btn ec-side-toggle">
-                            <div class="header-icon"><i class="fi-rr-shopping-basket"></i></div>
-                            <span class="ec-header-count cart-items-count">{{ request.session.cart_data_obj|length }}</span>
-                        </a>
-                        <!-- Header Cart End -->
-                        <!-- Header menu Start -->
-                        <a href="#ec-mobile-menu" class="ec-header-btn ec-side-toggle d-lg-none">
-                            <i class="fi-rr-menu-burger"></i>
-                        </a>
-                        <!-- Header menu End -->
                     </div>
+                    <!-- Header Top Language Currency -->
+                    <!-- Header Top responsive Action -->
+                    <div class="col d-lg-none ">
+                        <div class="ec-header-bottons">
+                            <!-- Header User Start -->
+                            <div class="ec-header-user dropdown">
+                                <button class="dropdown-toggle" data-bs-toggle="dropdown"><i class="fi-rr-user"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item" href="{% url 'core:user-profile' %}">My account</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'core:checkout' %}">Checkout</a></li>
+                                    {% if request.user.is_authenticated %}
+                                    <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
+                                    {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'userauths:sign-in' %}">Sign In</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <!-- Header User End -->
+                            <!-- Header Cart Start -->
+                            <a href="{% url 'core:wishlist' %}" class="ec-header-btn ec-header-wishlist">
+                                <div class="header-icon"><i class="fi-rr-heart"></i></div>
+                                <span class="ec-header-count">{{ wishlist.count }}</span>
+                            </a>
+                            <!-- Header Cart End -->
+                            <!-- Header Cart Start -->
+                            <a href="{% url 'core:cart' %}" class="ec-header-btn ec-side-toggle">
+                                <div class="header-icon"><i class="fi-rr-shopping-basket"></i></div>
+                                <span class="ec-header-count cart-items-count">{{ request.session.cart_data_obj|length }}</span>
+                            </a>
+                            <!-- Header Cart End -->
+                            <!-- Header menu Start -->
+                            <a href="#ec-mobile-menu" class="ec-header-btn ec-side-toggle d-lg-none">
+                                <i class="fi-rr-menu-burger"></i>
+                            </a>
+                            <!-- Header menu End -->
+                        </div>
+                    </div>
+                    <!-- Header Top responsive Action -->
                 </div>
-                <!-- Header Top responsive Action -->
             </div>
         </div>
-    </div>
-    <!-- Header Top  End -->
-    <!-- Header Bottom  Start -->
-    <div class="ec-header-bottom d-none d-lg-block">
-        <div class="container position-relative">
-            <div class="row">
-                <div class="ec-flex">
+        <!-- Header Top  End -->
+        <!-- Header Bottom  Start -->
+        <div class="ec-header-bottom d-none d-lg-block">
+            <div class="container position-relative">
+                <div class="row">
+                    <div class="ec-flex">
+                        <!-- Header Logo Start -->
+                        <div class="align-self-center">
+                            <div class="header-logo">
+                                <a href="{% url 'core:index' %}"><img src="{% static 'assets/images/logo/if9_1.png' %}" alt="Site Logo" /><img
+                                        class="dark-logo" src="{% static 'assets/images/logo/if9_1.png' %}" alt="Site Logo"
+                                        style="display: none;" /></a>
+                            </div>
+                        </div>
+                        <!--  Header Logo End -->
+
+                        <!-- Header Search Start -->
+                        <div class="align-self-center">
+                            <div class="header-search">
+                                <form class="ec-btn-group-form" action="{% url 'core:search' %}" method="GET">
+                                    <input class="form-control" placeholder="Enter Your Product Name..." type="text" name="q"/>
+                                    <button class="submit" type="submit"><i class="fi-rr-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Header Search End -->
+
+                        <!-- Header Button Start -->
+                        <div class="align-self-center">
+                            <div class="ec-header-bottons">
+
+                                <!-- Header User Start -->
+                                <div class="ec-header-user dropdown">
+                                    <button class="dropdown-toggle" data-bs-toggle="dropdown"><i class="fi-rr-user"></i></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item" href="{% url 'core:dashboard' %}">My account</a></li>
+                                        {% comment %} <li><a class="dropdown-item" href="checkout.html">Checkout</a></li> {% endcomment %}
+                                        {% if request.user.is_authenticated %}
+                                        <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
+                                        {% else %}
+                                        <li><a class="dropdown-item" href="{% url 'userauths:sign-in' %}">Sign In</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                                <!-- Header User End -->
+                                <!-- Header wishlist Start -->
+                                <a href="{% url 'core:wishlist' %}" class="ec-header-btn ec-header-wishlist">
+                                    <div class="header-icon"><i class="fi-rr-heart"></i></div>
+                                    <span class="ec-header-count">{{ wishlist.count }}</span>
+                                </a>
+                                <!-- Header wishlist End -->
+                                <!-- Header Cart Start -->
+                                <a href="{% url 'core:cart' %}" class="ec-header-btn ec-side-toggle">
+                                    <div class="header-icon" ><i class="fi-rr-shopping-basket"></i></div>
+                                    <span class="ec-header-count cart-items-count">{{ request.session.cart_data_obj|length }}</span>
+                                </a>
+                                <!-- Header Cart End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header Button End -->
+        <!-- Header responsive Bottom  Start -->
+        <div class="ec-header-bottom d-lg-none">
+            <div class="container position-relative">
+                <div class="row ">
+
                     <!-- Header Logo Start -->
-                    <div class="align-self-center">
+                    <div class="col">
                         <div class="header-logo">
-                            <a href="index.html"><img src="{% static 'assets/images/logo/if9_1.png' %}" alt="Site Logo" /><img
+                            <a href="{% url 'core:index' %}"><img src="{% static 'assets/images/logo/if9_1.png' %}" alt="Site Logo" /><img
                                     class="dark-logo" src="{% static 'assets/images/logo/if9_1.png' %}" alt="Site Logo"
                                     style="display: none;" /></a>
                         </div>
                     </div>
-                    <!--  Header Logo End -->
-
+                    <!-- Header Logo End -->
                     <!-- Header Search Start -->
-                    <div class="align-self-center">
+                    <div class="col">
                         <div class="header-search">
-                            <form class="ec-btn-group-form" action="{% url 'core:search' %}" method="GET">
-                                <input class="form-control" placeholder="Enter Your Product Name..." type="text" name="q"/>
+                            <form class="ec-btn-group-form" action="{% url 'core:search' %}">
+                                <input class="form-control" placeholder="Enter Your Product Name..." type="text">
                                 <button class="submit" type="submit"><i class="fi-rr-search"></i></button>
                             </form>
                         </div>
                     </div>
                     <!-- Header Search End -->
+                </div>
+            </div>
+        </div>
+        <!-- Header responsive Bottom  End -->
 
-                    <!-- Header Button Start -->
-                    <div class="align-self-center">
-                        <div class="ec-header-bottons">
-
-                            <!-- Header User Start -->
-                            <div class="ec-header-user dropdown">
-                                <button class="dropdown-toggle" data-bs-toggle="dropdown"><i class="fi-rr-user"></i></button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                 <li><a class="dropdown-item" href="{% url 'core:dashboard' %}">My account</a></li>
-                                     {% comment %} <li><a class="dropdown-item" href="checkout.html">Checkout</a></li> {% endcomment %}
-                                     {% if request.user.is_authenticated %}
-                                     <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
-                                     {% else %}
-                                     <li><a class="dropdown-item" href="{% url 'userauths:sign-in' %}">Sign In</a></li>
-                                     {% endif %}
+        <!--  Main Menu Start -->
+        <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav">
+            <div class="container position-relative">
+                <div class="row">
+                    <div class="col-md-12 align-self-center">
+                        <div class="ec-main-menu">
+                            <ul>
+                                <li><a href="{% url 'core:index' %}">Home</a></li>
+                                <li class="dropdown"><a href="{% url 'core:category-list' %}">Categories</a>
+                                <ul class="sub-menu">
+                                    {% for c in categories %}
+                                    <li class="dropdown position-static"><a href="{% url 'core:category-product-list' c.cid %}">{{c.title}}
+                                            <i class="ecicon eci-angle-right"></i></a>
+                                    </li>
+                                 
+                                    {% endfor %}
+                                    <hr>
+                                    <li><a href="{% url 'core:category-list' %}">View All Categories</a></li>
                                 </ul>
-                            </div>
-                            <!-- Header User End -->
-                            <!-- Header wishlist Start -->
-                            <a href="{% url 'core:wishlist' %}" class="ec-header-btn ec-header-wishlist">
-                                <div class="header-icon"><i class="fi-rr-heart"></i></div>
-                                <span class="ec-header-count">{{ wishlist.count }}</span>
-                            </a>
-                            <!-- Header wishlist End -->
-                            <!-- Header Cart Start -->
-                            <a href="{% url 'core:cart' %}" class="ec-header-btn ec-side-toggle">
-                                <div class="header-icon" ><i class="fi-rr-shopping-basket"></i></div>
-                                <span class="ec-header-count cart-items-count">{{ request.session.cart_data_obj|length }}</span>
-                            </a>
-                            <!-- Header Cart End -->
+                            </li>
+                                <li class="dropdown"><a href="{% url 'core:product-list' %}">Shop</a>
+                                
+                                </li>
+                                <li class="dropdown"><a href="javascript:void(0)">User</a>
+                                    <ul class="sub-menu">
+                                        {% if request.user.is_authenticated %}
+                                        <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
+                                        {% else %}
+                                        <li><a class="dropdown-item" href="{% url 'userauths:sign-in' %}">Sign In</a></li>
+                                        {% endif %}
+                                     
+                                        <li><a href="{% url 'core:dashboard' %}">User Profile</a></li>
+                                        <li><a href="{% url 'core:user-history' %}">History</a></li>
+                                        <li><a href="{% url 'core:wishlist' %}">Wishlist</a></li>
+                                        <li><a href="{% url 'core:cart' %}">Cart</a></li>
+                                        <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
+                                    
+                                        {% comment %} <li><a href="register.html">Register</a></li> {% endcomment %}
+                                        {% comment %} <li><a href="track-order.html">Track Order</a></li> {% endcomment %}
+                                    
+                                    </ul>
+                                </li>
+                                <li><a href="{% url 'core:vendor-list' %}">Vendors</a></li>
+                                
+                                </li>
+                            
+                                <li><a href="{% url 'core:contact' %}">Contact Us</a></li>
+                            </ul>
                         </div>
                     </div>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{message.tags}}">
+                                <strong>{{ message }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <script>
+                        setTimeout (() => {
+                        $(".alert").alert("close")
+                    }, 4000);
+                </script>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Header Button End -->
-    <!-- Header responsive Bottom  Start -->
-    <div class="ec-header-bottom d-lg-none">
-        <div class="container position-relative">
-            <div class="row ">
+        <!-- Main Menu End -->
 
-                <!-- Header Logo Start -->
-                <div class="col">
-                    <div class="header-logo">
-                        <a href="index.html"><img src="{% static 'assets/images/logo/if9_1.png' %}" alt="Site Logo" /><img
-                                class="dark-logo" src="{% static 'assets/images/logo/if9_1.png' %}" alt="Site Logo"
-                                style="display: none;" /></a>
-                    </div>
-                </div>
-                <!-- Header Logo End -->
-                <!-- Header Search Start -->
-                <div class="col">
-                    <div class="header-search">
-                        <form class="ec-btn-group-form" action="{% url 'core:search' %}">
-                            <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                            <button class="submit" type="submit"><i class="fi-rr-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-                <!-- Header Search End -->
+        <!-- Mobile Menu Start -->
+        <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
+            <div class="ec-menu-title">
+                <span class="menu_title">My Menu</span>
+                <button class="ec-close">×</button>
             </div>
-        </div>
-    </div>
-    <!-- Header responsive Bottom  End -->
-    <!--  Main Menu Start -->
-    <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav">
-        <div class="container position-relative">
-            <div class="row">
-                <div class="col-md-12 align-self-center">
-                    <div class="ec-main-menu">
-                        <ul>
-                            <li><a href="{% url 'core:index' %}">Home</a></li>
-                            <li class="dropdown"><a href="{% url 'core:category-list' %}">Categories</a>
-                             <ul class="sub-menu">
-                                 {% for c in categories %}
-                                 <li class="dropdown position-static"><a href="{% url 'core:category-product-list' c.cid %}">{{c.title}}
-                                         <i class="ecicon eci-angle-right"></i></a>
-                                 </li>
-                                 
-                                 {% endfor %}
-                                 <hr>
-                                 <li><a href="{% url 'core:category-list' %}">View All Categories</a></li>
-                             </ul>
-                         </li>
-                            <li class="dropdown"><a href="{% url 'core:product-list' %}">Shop</a>
-                                
-                            </li>
-                            <li class="dropdown"><a href="javascript:void(0)">User</a>
-                                <ul class="sub-menu">
-                                     {% if request.user.is_authenticated %}
-                                     <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
-                                     {% else %}
-                                     <li><a class="dropdown-item" href="{% url 'userauths:sign-in' %}">Sign In</a></li>
-                                     {% endif %}
-                                     
-                                     <li><a href="{% url 'core:dashboard' %}">User Profile</a></li>
-                                     <li><a href="{% url 'core:user-history' %}">History</a></li>
-                                     <li><a href="{% url 'core:wishlist' %}">Wishlist</a></li>
-                                    <li><a href="{% url 'core:cart' %}">Cart</a></li>
-                                    <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
-                                    
-                                    {% comment %} <li><a href="register.html">Register</a></li> {% endcomment %}
-                                    {% comment %} <li><a href="track-order.html">Track Order</a></li> {% endcomment %}
-                                    
-                                </ul>
-                            </li>
-                            <li><a href="{% url 'core:vendor-list' %}">Vendors</a></li>
-                                
-                            </li>
-                            
-                            <li><a href="{% url 'core:contact' %}">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                 {% if messages %}
-                     {% for message in messages %}
-                         <div class="alert alert-{{message.tags}}">
-                             <strong>{{ message }}</strong>
-                         </div>
-                     {% endfor %}
-                 {% endif %}
-                 <script>
-                     setTimeout (() => {
-                     $(".alert").alert("close")
-                 }, 4000);
-              </script>
-            </div>
-        </div>
-    </div>
-    <!-- Main Menu End -->
-
-    <!-- Ec Main Menu End -->
-
-    <!-- Mobile Menu Start -->
-    <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
-        <div class="ec-menu-title">
-            <span class="menu_title">My Menu</span>
-            <button class="ec-close">×</button>
-        </div>
-        <div class="ec-menu-inner">
-            <div class="ec-menu-content">
-                <ul>
-                    <li><a href="{% url 'core:index' %}">Home</a></li>
-                    <li><a href="{% url 'core:category-list' %}">Categories</a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="">{{c.title}}</a>
-                                
-                        </ul>
-                    </li>
-                    <li><a href="{% url 'core:product-list' %}">Products</a>
+            <div class="ec-menu-inner">
+                <div class="ec-menu-content">
+                    <ul>
+                        <li><a href="{% url 'core:index' %}">Home</a></li>
+                        <li><a href="{% url 'core:category-list' %}">Categories</a>
+                            <ul class="sub-menu">
+                                {% for c in categories %}
+                                <li>
+                                    <a href="{% url 'core:category-product-list' c.cid %}">{{c.title}}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'core:product-list' %}">Products</a>
                         
-                    </li>
-                    <li><a href="{% url 'core:vendor-list' %}">Vendors</a></li>
+                        </li>
+                        <li><a href="{% url 'core:vendor-list' %}">Vendors</a></li>
                     
-                    <li><a href="javascript:void(0)">Pages</a>
-                        <ul class="sub-menu">
-                            <li><a href="{% url 'core:cart' %}">Cart</a></li>
-                            <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
-                            <li><a href="{% url 'core:user-profile' %}">User Profile</a></li>
-                            <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
-                            <li><a href="{% url 'core:user-history' %}">History</a></li>
-                            {% if request.user.is_authenticated %}
-                                 <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
-                             {% else %}
-                                 <li><a class="dropdown-item" href="{% url 'userauths:sign-in' %}">Sign In</a></li>
-                             {% endif %}
+                        <li><a href="javascript:void(0)">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'core:cart' %}">Cart</a></li>
+                                <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
+                                <li><a href="{% url 'core:user-profile' %}">User Profile</a></li>
+                                <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+                                <li><a href="{% url 'core:user-history' %}">History</a></li>
+                                {% if request.user.is_authenticated %}
+                                    <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Sign-out</a></li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'userauths:sign-in' %}">Sign In</a></li>
+                                {% endif %}
                             
-                            {% comment %} <li><a href="track-order.html">Track Order</a></li> {% endcomment %}
+                                {% comment %} <li><a href="track-order.html">Track Order</a></li> {% endcomment %}
                             
-                        </ul>
-                    </li>
-                    {% comment %} <li class="dropdown"><a href="javascript:void(0)">About Us</a> {% endcomment %}
+                            </ul>
+                        </li>
+                        {% comment %} <li class="dropdown"><a href="javascript:void(0)">About Us</a> {% endcomment %}
+                        
+                        </li>
                     
-                    <li><a href="{% url 'core:contact' %}">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="header-res-lan-curr">
-                <div class="header-top-lan-curr">
-                    <!-- Language Start -->
-                    <div class="header-top-lan dropdown">
-                        <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
-                                class="ecicon eci-caret-down" aria-hidden="true"></i></button>
-                        <ul class="dropdown-menu">
-                            <li class="active"><a class="dropdown-item" href="#">English</a></li>
-                        </ul>
-                    </div>
-                    <!-- Language End -->
-                    <!-- Currency Start -->
-                    <div class="header-top-curr dropdown">
-                        <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
-                                class="ecicon eci-caret-down" aria-hidden="true"></i></button>
-                        <ul class="dropdown-menu">
-                            <li class="active"><a class="dropdown-item" href="#">NGN ₦‎</a></li>
-                            {% comment %} <li><a class="dropdown-item" href="#">USD $</a></li> {% endcomment %}
-                        </ul>
-                    </div>
-                    <!-- Currency End -->
+                        <li><a href="{% url 'core:contact' %}">Contact Us</a></li>
+                    </ul>
                 </div>
-                <!-- Social Start -->
-                <div class="header-res-social">
-                    <div class="header-top-social">
-                        <ul class="mb-0">
-                            <li class="list-inline-item"><a class="hdr-facebook" href="#"><i class="ecicon eci-facebook"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-twitter" href="#"><i class="ecicon eci-twitter"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-instagram" href="#"><i class="ecicon eci-instagram"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i class="ecicon eci-linkedin"></i></a></li>
-                        </ul>
+                <div class="header-res-lan-curr">
+                    <div class="header-top-lan-curr">
+                        <!-- Language Start -->
+                        <div class="header-top-lan dropdown">
+                            <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
+                                    class="ecicon eci-caret-down" aria-hidden="true"></i></button>
+                            <ul class="dropdown-menu">
+                                <li class="active"><a class="dropdown-item" href="#">English</a></li>
+                            </ul>
+                        </div>
+                        <!-- Language End -->
+                        <!-- Currency Start -->
+                        <div class="header-top-curr dropdown">
+                            <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
+                                    class="ecicon eci-caret-down" aria-hidden="true"></i></button>
+                            <ul class="dropdown-menu">
+                                <li class="active"><a class="dropdown-item" href="#">NGN ₦‎</a></li>
+                                {% comment %} <li><a class="dropdown-item" href="#">USD $</a></li> {% endcomment %}
+                            </ul>
+                        </div>
+                        <!-- Currency End -->
                     </div>
-                </div>
+                    <!-- Social Start -->
+                    <div class="header-res-social">
+                        <div class="header-top-social">
+                            <ul class="mb-0">
+                                <li class="list-inline-item"><a class="hdr-facebook" href="#"><i class="ecicon eci-facebook"></i></a></li>
+                                <li class="list-inline-item"><a class="hdr-twitter" href="#"><i class="ecicon eci-twitter"></i></a></li>
+                                <li class="list-inline-item"><a class="hdr-instagram" href="#"><i class="ecicon eci-instagram"></i></a></li>
+                                <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i class="ecicon eci-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
                 <!-- Social End -->
-            </div>
+                </div>
           
+            </div>
         </div>
-    </div>
-    <!-- mobile Menu End -->
-</header>
-<!-- Header End  -->
+        <!-- mobile Menu End -->
+
+
+    </header>
+    <!-- Header End  -->
 
     <!-- Ec breadcrumb start -->
     <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
@@ -496,17 +501,16 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-3 ec-footer-contact">
                             <div class="ec-footer-widget">
-                                <div class="ec-footer-logo"><a href="#"><img src="{% static 'assets/images/logo/if9_1.png' %}"
+                                <div class="ec-footer-logo"><a href="{% url 'core:index' %}"><img src="{% static 'assets/images/logo/if9_1.png' %}"
                                             alt=""><img class="dark-footer-logo" src="{% static 'assets/images/logo/if9_1.png' %}"
                                             alt="Site Logo" style="display: none;" /></a></div>
                                 <h4 class="ec-footer-heading">Contact us</h4>
                                 <div class="ec-footer-links">
                                     <ul class="align-items-center">
-                                        <li class="ec-footer-link">71 Pilgrim Avenue Chevy Chase, east california.</li>
-                                        <li class="ec-footer-link"><span>Call Us:</span><a href="tel:+440123456789">+44
-                                                0123 456 789</a></li>
+                                        <li class="ec-footer-link">121 Ikorodu Road, Onipanu, Lagos</li>
+                                        <li class="ec-footer-link"><span>Call Us:</span><a href="tel:+2348188844722">+234 81888 44722</a></li>
                                         <li class="ec-footer-link"><span>Email:</span><a
-                                                href="mailto:example@ec-email.com">+example@ec-email.com</a></li>
+                                                href="mailto:support@ifninestores.com">support@ifninestores.com</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -516,10 +520,10 @@
                                 <h4 class="ec-footer-heading">Information</h4>
                                 <div class="ec-footer-links">
                                     <ul class="align-items-center">
-                                        <li class="ec-footer-link"><a href="about-us.html">About us</a></li>
-                                        <li class="ec-footer-link"><a href="faq.html">FAQ</a></li>
+                                        <li class="ec-footer-link"><a href="{% url 'core:index' %}">Home</a></li>
+                                        <li class="ec-footer-link"><a href="">FAQ</a></li>
                                         <li class="ec-footer-link"><a href="#">Delivery Information</a></li>
-                                        <li class="ec-footer-link"><a href="contact-us.html">Contact us</a></li>
+                                        <li class="ec-footer-link"><a href="{% url 'core:contact' %}">Contact us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -529,9 +533,9 @@
                                 <h4 class="ec-footer-heading">Account</h4>
                                 <div class="ec-footer-links">
                                     <ul class="align-items-center">
-                                        <li class="ec-footer-link"><a href="#">My Account</a></li>
-                                        <li class="ec-footer-link"><a href="track-order.html">Order History</a></li>
-                                        <li class="ec-footer-link"><a href="#">Wish List</a></li>
+                                        <li class="ec-footer-link"><a href="{% url 'core:dashboard' %}">My Account</a></li>
+                                        <li class="ec-footer-link"><a href="{% url 'core:user-history' %}">Order History</a></li>
+                                        <li class="ec-footer-link"><a href="{% url 'core:wishlist' %}">Wish List</a></li>
                                         <li class="ec-footer-link"><a href="#">Specials</a></li>
                                     </ul>
                                 </div>
@@ -545,7 +549,7 @@
                                         <li class="ec-footer-link"><a href="#">Discount Returns</a></li>
                                         <li class="ec-footer-link"><a href="#">Policy & policy </a></li>
                                         <li class="ec-footer-link"><a href="#">Customer Service</a></li>
-                                        <li class="ec-footer-link"><a href="terms-condition.html">Term & condition</a>
+                                        <li class="ec-footer-link"><a href="#">Term & condition</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -623,25 +627,21 @@
         <div class="container">
             <div class="ec-nav-panel">
                 <div class="ec-nav-panel-icons">
-                    <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><i
-                            class="fi-rr-menu-burger"></i></a>
+                    <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><i class="fi fi-rr-menu-burger"></i></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><i
-                            class="fi-rr-shopping-bag"></i><span
-                            class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
+                    <a href="{% url 'core:cart' %}" class="toggle-cart ec-header-btn ec-side-toggle"><i class="fi-rr-shopping-basket"></i><span
+                            class="ec-cart-noti ec-header-count cart-count-lable">{{ request.session.cart_data_obj|length }}</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="index.html" class="ec-header-btn"><i class="fi-rr-home"></i></a>
+                    <a href="{% url 'core:index' %}" class="ec-header-btn"><i class="fi-rr-home"></i></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="wishlist.html" class="ec-header-btn"><i class="fi-rr-heart"></i><span
-                            class="ec-cart-noti">4</span></a>
+                    <a href="{% url 'core:wishlist' %}" class="ec-header-btn"><i class="fi-rr-heart"></i><span class="ec-cart-noti">{{ wishlist.count }}</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="login.html" class="ec-header-btn"><i class="fi-rr-user"></i></a>
+                    <a href="{% url 'userauths:sign-in' %}" class="ec-header-btn"><i class="fi-rr-user"></i></a>
                 </div>
-
             </div>
         </div>
     </div>
@@ -686,6 +686,7 @@
     <!-- Main Js -->
     <script src="{% static 'assets/js/vendor/index.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
+    
 
 </body>
 
