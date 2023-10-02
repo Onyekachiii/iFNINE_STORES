@@ -7,5 +7,5 @@ psycopg2
 sqlparse
 whitenoise
 django-jazzmin
-taggit
-ckeditor
+django-taggit
+django-ckeditor
