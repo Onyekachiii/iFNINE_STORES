@@ -93,7 +93,14 @@ WSGI_APPLICATION = 'ifnine_stores.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse("postgres://ifnine_stores_db_user:jQBkEs0nVaOQZ0MRLLJIqs2CqnI2yqYw@dpg-ckd3124iibqc73fjim40-a.oregon-postgres.render.com/ifnine_stores_db")
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "HOST":  os.getenv("POSTGRES_HOST"),
+            "USER": os.getenv("POSTGRES_USERNAME"),
+            "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+            "NAME": os.getenv("POSTGRES_DBNAME"),
+            "POST": os.getenv("POSTGRES_PORT"),
+        },
 }
 
 # Password validation
