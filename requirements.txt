@@ -9,3 +9,4 @@ whitenoise
 django-jazzmin
 django-taggit
 django-ckeditor
+django-paypal
