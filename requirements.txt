@@ -1,8 +1,8 @@
-asgiref==3.7.2
-dj-database-url==2.0.0
-django==3.2.19
+asgiref
+dj-database-url
+django
 django-database-url
-gunicorn==20.1.0
-psycopg2==2.9.6
-sqlparse==0.4.4
-whitenoise==5.3.0
+gunicorn
+psycopg2
+sqlparse
+whitenoise
