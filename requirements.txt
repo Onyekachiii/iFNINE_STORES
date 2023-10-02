@@ -10,3 +10,5 @@ django-jazzmin
 django-taggit
 django-ckeditor
 django-paypal
+django-crispy-forms
+django-shortuuidfield
