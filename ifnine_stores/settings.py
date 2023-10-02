@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'ifnine_stores.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": ("postgres://ifnine_stores_db_7hce_user:17cc7als7Eb4nYem4EjTLe0Tx0ewgPrA@dpg-ckde834iibqc738m1m7g-a.oregon-postgres.render.com/ifnine_stores_db_7hce")
+    "default": dj_database_url.parse("postgres://ifnine_stores_db_7hce_user:17cc7als7Eb4nYem4EjTLe0Tx0ewgPrA@dpg-ckde834iibqc738m1m7g-a.oregon-postgres.render.com/ifnine_stores_db_7hce")
 }
 
 
