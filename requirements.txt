@@ -1,6 +1,7 @@
 asgiref
 dj-database-url
 django
-django-database-urlgunicorn
+django-database-url
+gunicorn
 psycopg2
 sqlparse
