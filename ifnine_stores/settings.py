@@ -93,14 +93,7 @@ WSGI_APPLICATION = 'ifnine_stores.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "HOST":  os.getenv("POSTGRES_HOST"),
-            "USER": os.getenv("POSTGRES_USERNAME"),
-            "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-            "NAME": os.getenv("POSTGRES_DBNAME"),
-            "POST": os.getenv("POSTGRES_PORT"),
-        },
+    "default": ("postgres://ifnine_stores_db_7hce_user:17cc7als7Eb4nYem4EjTLe0Tx0ewgPrA@dpg-ckde834iibqc738m1m7g-a.oregon-postgres.render.com/ifnine_stores_db_7hce")
 }
 
 
