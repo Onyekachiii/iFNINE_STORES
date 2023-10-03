@@ -70,7 +70,7 @@
 							</a>
 							<span class="ec-product-ribbon">{{p.get_percentage|floatformat:0}}%</span>
 							<div class="ec-link-icon">
-								<button data-tip="Add to Wishlist"><i class="fi-rr-heart add-to-wishlist" data-product-item="{{p.id}}"></i></button>
+								<a class="ec-btn-group wishlist add-to-wishlist" data-product-item="{{p.id}}" title="Wishlist"><i class="fi-rr-heart"></i></a>
 								{% comment %} <a href="#" data-tip="Compare"><i class="fi fi-rr-arrows-repeat"></i></a> {% endcomment %}
 								<a href="{% url 'core:product-detail' p.pid %}" data-tip="Quick View"><i class="fi-rr-eye"></i></a>
 							</div>
