@@ -168,10 +168,10 @@ def search_view(request):
         products = Product.objects.filter(title__icontains=query, description__icontains=query).order_by('-date')
     
     
-    context = {
-        "products": products,
-        "query": query,
-    }
+        context = {
+            "query": query,
+            "products": products,
+        }
     return render(request, 'core/search.html', context)
 
 
