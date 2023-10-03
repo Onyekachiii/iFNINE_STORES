@@ -12,3 +12,4 @@ django-ckeditor
 django-paypal
 django-crispy-forms
 django-shortuuidfield
+pillow
