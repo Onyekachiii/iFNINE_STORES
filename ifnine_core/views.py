@@ -367,7 +367,9 @@ def user_profile(request):
 def customer_dashboard(request):
     address = Address.objects.filter(user=request.user)
     
-    orders = CartOrder.objects.annotate(month=ExtractMonth('order_date')).values('month').annotate(count=Count('id')).values('month', 'count').filter(user=request.user)
+    
+    orders = CartOrder.objects.annotate(month=ExtractMonth('order_date')).values('month').annotate(count=Count('id')).values('month', 'count')
+    orders = CartOrder.objects.filter(user=request.user).order_by("-id")
     month = []
     total_orders = []
     
