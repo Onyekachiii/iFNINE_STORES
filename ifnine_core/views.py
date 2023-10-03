@@ -162,10 +162,8 @@ def ajax_add_review(request, pid):
 # To search for products
 def search_view(request):
     query = request.GET.get('q')
-    if query != None:
+    if query:
         products = Product.objects.filter(title__icontains=query, description__icontains=query).order_by('-date')
-    else:
-        products = Product.objects.filter(product_status= "published").order_by('-date')
     
     context = {
         "products": products,
