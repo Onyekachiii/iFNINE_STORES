@@ -163,7 +163,6 @@ def ajax_add_review(request, pid):
 def search_view(request):
     query = request.GET.get('q')
     
-    query = None
     if query is not None:
         products = Product.objects.filter(title__icontains=query, description__icontains=query).order_by('-date')
     
