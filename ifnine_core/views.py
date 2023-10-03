@@ -173,7 +173,8 @@ def search_view(request):
             "products": products,
         }
         return render(request, 'core/search.html', context)
-    
+    else:
+        return render(request, 'core/search.html')   
 
 
 
