@@ -23,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6i#18@0-671m0w89im!meiwi9m=vnmni_me2m4rv4enon30im@'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = ["ifnine-stores.onrender.com", "127.0.0.1"]
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split("")
 
 
 # Application definition
@@ -92,8 +92,9 @@ WSGI_APPLICATION = 'ifnine_stores.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+database_url = os.environ.get("DATABASE_URL")
 DATABASES = {
-    "default": dj_database_url.parse("postgres://ifnine_stores_db_7hce_user:17cc7als7Eb4nYem4EjTLe0Tx0ewgPrA@dpg-ckde834iibqc738m1m7g-a.oregon-postgres.render.com/ifnine_stores_db_7hce")
+    "default": dj_database_url.parse(database_url)
 }
 
 
