@@ -190,7 +190,7 @@
                                                         
                                                         <div class="ec-pro-actions">
                                                             <a href="{% url 'core:product-detail' p.pid %}" class="quickview" data-link-action="quickview" title="Quick view"><i class="fi-rr-eye"></i></a>
-                                                            <a class="ec-btn-group wishlist add-to-wishlist" data-product-item="{{p.id}}" title="Wishlist"><i class="fi-rr-heart"></i></a>
+                                                            <button class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart  add-to-wishlist" data-product-item="{{p.id}}"></i></button>
                                                             
                                                             {% comment %} <a href="compare.html" class="ec-btn-group compare" title="Compare"><i class="fi fi-rr-arrows-repeat"></i></a> {% endcomment %}
                                                             <span class="add-cart">
