@@ -172,7 +172,9 @@ def search_view(request):
             "query": query,
             "products": products,
         }
-    return render(request, 'core/search.html', context)
+        return render(request, 'core/search.html', context)
+    else:
+        messages.warning(request, "Please enter a search query")
 
 
 # To filter products by categories & vendors
